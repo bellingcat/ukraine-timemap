@@ -295,6 +295,7 @@ class Dashboard extends React.Component {
       left: checkMobile ? padding : "var(--toolbar-width)",
       top: 0,
       overflowY: "scroll",
+      textAlign: "justify"
     };
 
     if (checkMobile) {
