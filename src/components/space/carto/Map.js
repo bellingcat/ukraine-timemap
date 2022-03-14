@@ -121,11 +121,13 @@ class Map extends React.Component {
       process.env.MAPBOX_TOKEN !== defaultToken
     ) {
       firstLayer = L.tileLayer(
-        `http://a.tiles.mapbox.com/styles/v1/${this.props.ui.tiles}/tiles/{z}/{x}/{y}?access_token=${process.env.MAPBOX_TOKEN}`
+        `https://api.mapbox.com/styles/v1/${this.props.ui.tiles}/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.MAPBOX_TOKEN}`
+        // `http://a.tiles.mapbox.com/styles/v1/${this.props.ui.tiles}/tiles/{z}/{x}/{y}?access_token=${process.env.MAPBOX_TOKEN}`
       );
     } else {
       firstLayer = L.tileLayer(
         "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        // "https://api.maptiler.com/maps/bright/256/{z}/{x}/{y}.png?key="
       );
     }
     firstLayer.addTo(map);
