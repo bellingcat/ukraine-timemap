@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Player } from "video-react";
 import marked from "marked";
 import MediaOverlay from "./atoms/Media";
-// import falogo from "../assets/fa-logo.png";
+import falogo from "../assets/fa-logo.png";
 import bcatlogo from "../assets/bellingcat-logo.png";
 const MEDIA_HIDDEN = -2;
 
@@ -51,9 +51,9 @@ class TemplateCover extends React.Component {
       featureLang === 0
         ? featureVideo
         : {
-            ...translations[featureLang - 1],
-            poster: featureVideo.poster,
-          };
+          ...translations[featureLang - 1],
+          poster: featureVideo.poster,
+        };
 
     return (
       <div>
@@ -158,11 +158,10 @@ class TemplateCover extends React.Component {
             className="cover-logo-container"
             href="https://forensic-architecture.org"
           >
-            {/* <img */}
-            {/*   className="cover-logo" */}
-            {/*   src={falogo} */}
-            {/*   alt="Forensic Architecture logo" */}
-            {/* /> */}
+            <img
+              className="cover-logo"
+              src={falogo}
+              alt="Forensic Architecture logo" />
           </a>
           <a className="cover-logo-container" href="https://bellingcat.com">
             <img className="cover-logo" src={bcatlogo} alt="Bellingcat logo" />
