@@ -65,9 +65,12 @@ const Media = ({ src, title }) => {
 
     case "Tweet":
       const tweetIdRegex =
-        /https?:\/\/twitter.com\/[0-9a-zA-Z_]{1,20}\/status\/([0-9]*)/;
+        /https?:\/\/(mobile\.){0,1}twitter.com\/[0-9a-zA-Z_]{1,20}\/status\/([0-9]*)/;
       const match = tweetIdRegex.exec(src);
-      const tweetId = match[1];
+      if (!match || match.length < 2) {
+        return null;
+      }
+      const tweetId = match[match.length - 1];
 
       return (
         <div className="card-cell media embedded">
