@@ -11,6 +11,7 @@ import hash from "object-hash";
 
 export const generateCardLayout = {
   basic: ({ event }) => {
+    console.log(event)
     return [
       [
         {
@@ -22,6 +23,11 @@ export const generateCardLayout = {
           kind: "text",
           title: "Location",
           value: event.location || `—`,
+        },
+        {
+          kind: "text",
+          title: "id",
+          value: event.civId || `—`,
         },
       ],
       [{ kind: "line-break", times: 0.4 }],
@@ -36,6 +42,7 @@ export const generateCardLayout = {
     ];
   },
   sourced: ({ event }) => {
+    console.log(event)
     return [
       [
         {
@@ -47,6 +54,11 @@ export const generateCardLayout = {
           kind: "text",
           title: "Location",
           value: event.location || `—`,
+        },
+        {
+          kind: "text",
+          title: "id",
+          value: event.civId || `—`,
         },
       ],
       [

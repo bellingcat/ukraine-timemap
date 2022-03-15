@@ -160,6 +160,7 @@ export function validateDomain(domain, features) {
   // append events with datetime and sort
   sanitizedDomain.events = sanitizedDomain.events.filter((event, idx) => {
     let errorMsg = "";
+    event.civId = event.id;
     event.id = idx;
     // event.associations comes in as a [association.ids...]; convert to actual association objects
     event.associations = event.associations.reduce((acc, id) => {
