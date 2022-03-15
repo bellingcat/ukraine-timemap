@@ -11,7 +11,6 @@ import hash from "object-hash";
 
 export const generateCardLayout = {
   basic: ({ event }) => {
-    console.log(event)
     return [
       [
         {
@@ -42,7 +41,6 @@ export const generateCardLayout = {
     ];
   },
   sourced: ({ event }) => {
-    console.log(event)
     return [
       [
         {
