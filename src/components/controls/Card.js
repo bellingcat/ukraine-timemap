@@ -15,7 +15,7 @@ export const generateCardLayout = {
       [
         {
           kind: "date",
-          title: "Incident Date",
+          title: "Reported Incident Date",
           value: event.datetime || event.date || ``,
         },
         {
@@ -45,7 +45,7 @@ export const generateCardLayout = {
       [
         {
           kind: "date",
-          title: "Incident Date",
+          title: "Reported Incident Date",
           value: event.datetime || event.date || ``,
         },
         {
