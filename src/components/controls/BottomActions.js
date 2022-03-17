@@ -29,6 +29,7 @@ function BottomActions(props) {
             <CoverIcon onClickHandler={props.cover.toggle} />
           ) : null}
         </div>
+        <div style={{ fontSize: 9, paddingTop: 10 }}>Made with <a href="https://github.com/forensic-architecture/timemap">TimeMap</a><br />Free software from <br /> <a href="https://forensic-architecture.org">Forensic Architecture</a></div>
       </>
     );
   }
