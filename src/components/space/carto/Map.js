@@ -105,11 +105,6 @@ class Map extends React.Component {
       ;
     // This assumes your map is the constant 'map'
     map.attributionControl.addAttribution(`<a href="http://mapbox.com/about/maps" class='mapbox-logo' target="_blank">Mapbox</a>© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>`);
-    // const credits = L.control.attribution({position: 'bottomleft'}).addTo(map);
-    // credits.addAttribution(`<a href="http://mapbox.com/about/maps" class='mapbox-logo' target="_blank">Mapbox</a>`)
-    // credits.addAttribution(
-    //   `© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>`
-
 
     // Initialize supercluster index
     this.superclusterIndex = new Supercluster(clusterConfig);
