@@ -20,6 +20,7 @@ import Categories from "./Categories";
 class Timeline extends React.Component {
   constructor(props) {
     super(props);
+    let searchParams = new URLSearchParams(window.location.href.split("?")[1]);
     this.styleDatetime = this.styleDatetime.bind(this);
     this.getDatetimeX = this.getDatetimeX.bind(this);
     this.getY = this.getY.bind(this);
@@ -27,7 +28,7 @@ class Timeline extends React.Component {
     this.onSelect = this.onSelect.bind(this);
     this.svgRef = React.createRef();
     this.state = {
-      isFolded: false,
+      isFolded: (searchParams.has('timeline') && searchParams.get('timeline') === 'false'),
       dims: props.dimensions,
       scaleX: null,
       scaleY: null,
