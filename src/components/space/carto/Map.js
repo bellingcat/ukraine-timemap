@@ -3,6 +3,7 @@ import "leaflet";
 import React from "react";
 import { Portal } from "react-portal";
 import Supercluster from "supercluster";
+import { isMobileOnly } from "react-device-detect";
 
 import { connect } from "react-redux";
 import * as selectors from "../../../selectors";
@@ -101,10 +102,11 @@ class Map extends React.Component {
       .setView(mapConfig.anchor, mapConfig.startZoom)
       .setMinZoom(mapConfig.minZoom)
       .setMaxZoom(mapConfig.maxZoom)
-      .setMaxBounds(mapConfig.maxBounds)
-      ;
+      .setMaxBounds(mapConfig.maxBounds);
     // This assumes your map is the constant 'map'
-    map.attributionControl.addAttribution(`<a href="http://mapbox.com/about/maps" class='mapbox-logo' target="_blank">Mapbox</a>© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>`);
+    map.attributionControl.addAttribution(
+      `<a href="http://mapbox.com/about/maps" class='mapbox-logo' target="_blank">Mapbox</a>© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>`
+    );
 
     // Initialize supercluster index
     this.superclusterIndex = new Supercluster(clusterConfig);
@@ -479,9 +481,12 @@ class Map extends React.Component {
 
   render() {
     const { isShowingSites, isFetchingDomain } = this.props.app.flags;
-    const classes = this.props.app.narrative
-      ? "map-wrapper narrative-mode"
-      : "map-wrapper";
+    const checkMobile = isMobileOnly || window.innerWidth < 600;
+
+    const classes =
+      (this.props.app.narrative
+        ? "map-wrapper narrative-mode"
+        : "map-wrapper") + (checkMobile ? " mobile" : "");
     const innerMap = this.map ? (
       <>
         {this.renderTiles()}

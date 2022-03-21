@@ -41,14 +41,14 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.props.app.isMobile) {
-      this.props.actions.fetchDomain().then((domain) =>
-        this.props.actions.updateDomain({
-          domain,
-          features: this.props.features,
-        })
-      );
-    }
+    // if (!this.props.app.isMobile) {
+    this.props.actions.fetchDomain().then((domain) =>
+      this.props.actions.updateDomain({
+        domain,
+        features: this.props.features,
+      })
+    );
+    // }
     // NOTE: hack to get the timeline to always show. Not entirely sure why
     // this is necessary.
     window.dispatchEvent(new Event("resize"));
@@ -244,15 +244,14 @@ class Dashboard extends React.Component {
   }
 
   renderIntroPopup(isMobile, styles) {
+    const checkMobile = isMobileOnly || window.innerWidth < 600;
     const { app, actions } = this.props;
 
-    const extraContent = isMobile ? (
+    const extraContent = checkMobile ? (
       <div style={{ position: "relative", bottom: 0 }}>
         <h3 style={{ color: "var(--error-red)" }}>
-          This platform is not suitable for mobile.
-          <br />
-          <br />
-          Please re-visit the site on a device with a larger screen.
+          This platform may not work correctly on mobile. If possible, please
+          re-visit the site on a device with a larger screen.
         </h3>
       </div>
     ) : null;
@@ -262,11 +261,14 @@ class Dashboard extends React.Component {
       <Popup
         title="Introduction to the platform"
         theme="dark"
-        isOpen={app.flags.isIntropopup && (!searchParams.has('cover') || searchParams.get('cover') !== 'false')}
+        isOpen={
+          app.flags.isIntropopup &&
+          (!searchParams.has("cover") || searchParams.get("cover") !== "false")
+        }
         onClose={actions.toggleIntroPopup}
         content={app.intro}
         styles={styles}
-        isMobile={isMobile}
+        isMobile={false}
       >
         {extraContent}
       </Popup>
@@ -285,60 +287,62 @@ class Dashboard extends React.Component {
       width: checkMobile
         ? "100vw"
         : window.innerWidth > 768
-          ? "60vw"
-          : "calc(100vw - var(--toolbar-width))",
+        ? "60vw"
+        : "calc(100vw - var(--toolbar-width))",
       maxWidth: checkMobile ? "100vw" : 600,
       maxHeight: checkMobile
         ? "100vh"
         : window.innerHeight > 768
-          ? `calc(100vh - ${app.timeline.dimensions.height}px - ${dateHeight}px)`
-          : "100vh",
+        ? `calc(100vh - ${app.timeline.dimensions.height}px - ${dateHeight}px)`
+        : "100vh",
       left: checkMobile ? padding : "var(--toolbar-width)",
       top: 0,
       overflowY: "scroll",
-      textAlign: "justify"
+      textAlign: "justify",
     };
 
-    if (checkMobile) {
-      const msg =
-        "This platform is not suitable for mobile. Please re-visit the site on a device with a larger screen.";
-      return (
-        <div>
-          {features.USE_COVER && !app.intro && (
-            <StaticPage showing={app.flags.isCover}>
-              {/* enable USE_COVER in config.js features, and customise your header */}
-              {/* pass 'actions.toggleCover' as a prop to your custom header */}
-              <TemplateCover
-                showAppHandler={() => {
-                  /* eslint-disable no-undef */
-                  alert(msg);
-                  /* eslint-enable no-undef */
-                }}
-              />
-            </StaticPage>
-          )}
-          {app.intro && <>{this.renderIntroPopup(true, popupStyles)}</>}
-          {!app.intro && !features.USE_COVER && (
-            <div className="fixedTooSmallMessage">{msg}</div>
-          )}
-        </div>
-      );
-    }
+    // if (checkMobile) {
+    //   const msg =
+    //     "This platform is not suitable for mobile. Please re-visit the site on a device with a larger screen.";
+    //   return (
+    //     <div>
+    //       {features.USE_COVER && !app.intro && (
+    //         <StaticPage showing={app.flags.isCover}>
+    //           {/* enable USE_COVER in config.js features, and customise your header */}
+    //           {/* pass 'actions.toggleCover' as a prop to your custom header */}
+    //           <TemplateCover
+    //             showAppHandler={() => {
+    //               /* eslint-disable no-undef */
+    //               alert(msg);
+    //               /* eslint-enable no-undef */
+    //             }}
+    //           />
+    //         </StaticPage>
+    //       )}
+    //       {app.intro && <>{this.renderIntroPopup(true, popupStyles)}</>}
+    //       {!app.intro && !features.USE_COVER && (
+    //         <div className="fixedTooSmallMessage">{msg}</div>
+    //       )}
+    //     </div>
+    //   );
+    // }
 
     return (
       <div>
-        <Toolbar
-          isNarrative={!!app.associations.narrative}
-          methods={{
-            onTitle: actions.toggleCover,
-            onSelectFilter: (filters) =>
-              actions.toggleAssociations("filters", filters),
-            onCategoryFilter: (categories) =>
-              actions.toggleAssociations("categories", categories),
-            onShapeFilter: actions.toggleShapes,
-            onSelectNarrative: this.setNarrative,
-          }}
-        />
+        {checkMobile ? null : (
+          <Toolbar
+            isNarrative={!!app.associations.narrative}
+            methods={{
+              onTitle: actions.toggleCover,
+              onSelectFilter: (filters) =>
+                actions.toggleAssociations("filters", filters),
+              onCategoryFilter: (categories) =>
+                actions.toggleAssociations("categories", categories),
+              onShapeFilter: actions.toggleShapes,
+              onSelectNarrative: this.setNarrative,
+            }}
+          />
+        )}
         <Space
           kind={"map" in app ? "map" : "space3d"}
           onKeyDown={this.onKeyDown}
@@ -350,16 +354,18 @@ class Dashboard extends React.Component {
               : (ev) => this.handleSelect(ev, 1),
           }}
         />
-        <Timeline
-          onKeyDown={this.onKeyDown}
-          methods={{
-            onSelect: app.associations.narrative
-              ? this.selectNarrativeStep
-              : (ev) => this.handleSelect(ev, 0),
-            onUpdateTimerange: actions.updateTimeRange,
-            getCategoryColor: this.getCategoryColor,
-          }}
-        />
+        {checkMobile ? null : (
+          <Timeline
+            onKeyDown={this.onKeyDown}
+            methods={{
+              onSelect: app.associations.narrative
+                ? this.selectNarrativeStep
+                : (ev) => this.handleSelect(ev, 0),
+              onUpdateTimerange: actions.updateTimeRange,
+              getCategoryColor: this.getCategoryColor,
+            }}
+          />
+        )}
         <CardStack
           timelineDims={app.timeline.dimensions}
           onViewSource={this.handleViewSource}
@@ -374,9 +380,9 @@ class Dashboard extends React.Component {
           narrative={
             app.associations.narrative
               ? {
-                ...app.associations.narrative,
-                current: this.props.narrativeIdx,
-              }
+                  ...app.associations.narrative,
+                  current: this.props.narrativeIdx,
+                }
               : null
           }
           methods={{

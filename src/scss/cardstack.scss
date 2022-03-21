@@ -4,7 +4,8 @@
 $card-stack-header-height: 38px;
 .card-stack {
   position: absolute;
-  top: calc(#{$card-right} + #{$card-stack-header-height});
+  top: #{$card-right};
+  padding-top: #{$card-stack-header-height};
   right: $card-right;
   max-height: calc(100% - #{$timeline-height} + 60px);
   height: auto;
@@ -15,6 +16,7 @@ $card-stack-header-height: 38px;
   color: white;
   overflow-x: hidden;
   overflow-y: auto;
+  max-width: 100vw;
 
   &.narrative-mode {
     right: $card-right;
@@ -32,7 +34,8 @@ $card-stack-header-height: 38px;
     top: $card-right;
     min-height: $card-stack-header-height;
     line-height: $card-stack-header-height;
-    width: $card-width;
+    width: 100%;
+    max-width: $card-width;
     box-sizing: border-box;
     padding: 0 5px;
     background: $black;
@@ -41,6 +44,7 @@ $card-stack-header-height: 38px;
     font-size: $large;
     transition: 0.2s ease;
     text-align: left;
+    z-index: 20;
 
     &:hover {
       transition: 0.2s ease;
@@ -73,7 +77,8 @@ $card-stack-header-height: 38px;
   }
 
   .card-stack-content {
-    width: $card-width;
+    width: 100%;
+    max-width: $card-width;
 
     ul {
       padding: 0;
