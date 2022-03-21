@@ -4,13 +4,15 @@
 
 <h3 align="center">
 Read Bellingcat's article about this project in 
-<a href="https://www.bellingcat.com/news/2022/03/17/hospitals-bombed-and-apartments-destroyed-mapping-incidents-of-civilian-harm-in-ukraine/">English (UK)</a>
+<a href="https://www.bellingcat.com/news/2022/03/17/hospitals-bombed-and-apartments-destroyed-mapping-incidents-of-civilian-harm-in-ukraine/">English (UK)</a>,
 <a href="https://ru.bellingcat.com/novosti/2022/03/18/hospitals-bombed-and-apartments-destroyed-mapping-incidents-of-civilian-harm-in-ukraine-ru/">Русский (Россия)</a>
 </h3>
 
+<p align="center">
 <strong>
 	TimeMap is a tool for exploration, monitoring and classification of incidents in time and space, originally forked from <a href="https://github.com/forensic-architecture/timemap">forensic-architecture/timemap</a>.
 </strong>
+</p>
 <br>
 <br>
 
