@@ -66,7 +66,6 @@ const initial = {
       },
     },
     shapes: [],
-    isMobile: /Mobi/.test(navigator.userAgent),
     language: "en-US",
     cluster: {
       radius: 30,

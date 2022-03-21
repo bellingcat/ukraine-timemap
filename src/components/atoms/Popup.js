@@ -10,14 +10,13 @@ const Popup = ({
   onClose,
   title,
   theme = "light",
-  isMobile = false,
   children,
 }) => (
   <div>
     <div
       className={`infopopup ${isOpen ? "" : "hidden"} ${
         theme === "dark" ? "dark" : "light"
-      } ${isMobile ? "mobile" : ""}`}
+      }`}
       style={{ ...styles, fontSize }}
     >
       <div className="legend-header">
