@@ -21,9 +21,9 @@ Read Bellingcat's article about this project in
 ## Development
 * Use **node v14.x.x**
 * `npm install` to setup
-* `cp example.config.js config.js` create config file
+* adjust any local configs in [config.js](config.js)
 * `CONFIG=config.js npm run dev` or `npm run dev` if the file is named config.js
 * For more info visit the [original repo](https://github.com/forensic-architecture/timemap)
 
 ## Contributing
-Please check our [issues page](https://github.com/bellingcat/ukraine-timemap) for desired contributions, and feel free to suggest your own. 
+Please check our [issues page](https://github.com/bellingcat/ukraine-timemap/issues) for desired contributions, and feel free to suggest your own. 
