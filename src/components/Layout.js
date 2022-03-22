@@ -80,9 +80,14 @@ class Dashboard extends React.Component {
       // find in events
       const { events } = this.props.domain;
       const idx = this.findEventIdx(selected);
+      // binary search can return event with different id
+      if (events[idx].id !== selected.id) {
+        matchedEvents.push(events[idx]);
+      }
+
+
       // check events before
       let ptr = idx - 1;
-
       while (
         ptr >= 0 &&
         events[idx].datetime.getTime() === events[ptr].datetime.getTime()
@@ -92,9 +97,10 @@ class Dashboard extends React.Component {
         }
         ptr -= 1;
       }
+
+
       // check events after
       ptr = idx + 1;
-
       while (
         ptr < events.length &&
         events[idx].datetime.getTime() === events[ptr].datetime.getTime()
@@ -284,14 +290,14 @@ class Dashboard extends React.Component {
       width: checkMobile
         ? "100vw"
         : window.innerWidth > 768
-        ? "60vw"
-        : "calc(100vw - var(--toolbar-width))",
+          ? "60vw"
+          : "calc(100vw - var(--toolbar-width))",
       maxWidth: checkMobile ? "100vw" : 600,
       maxHeight: checkMobile
         ? "100vh"
         : window.innerHeight > 768
-        ? `calc(100vh - ${app.timeline.dimensions.height}px - ${dateHeight}px)`
-        : "100vh",
+          ? `calc(100vh - ${app.timeline.dimensions.height}px - ${dateHeight}px)`
+          : "100vh",
       left: checkMobile ? padding : "var(--toolbar-width)",
       top: 0,
       overflowY: "scroll",
@@ -351,9 +357,9 @@ class Dashboard extends React.Component {
           narrative={
             app.associations.narrative
               ? {
-                  ...app.associations.narrative,
-                  current: this.props.narrativeIdx,
-                }
+                ...app.associations.narrative,
+                current: this.props.narrativeIdx,
+              }
               : null
           }
           methods={{
