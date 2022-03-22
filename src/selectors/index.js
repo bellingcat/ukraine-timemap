@@ -128,6 +128,15 @@ export const selectEvents = createSelector(
 );
 
 /**
+ * Of all available events, select only those that fall within the currently selected time range.
+ * Since `events` is a sparse array, we need to reduce the array in order to count.
+ */
+export const selectEventCountInTimeRange = createSelector(
+  [selectEvents],
+  (events, timeRange) => events.reduce((acc) => acc + 1, 0)
+);
+
+/**
  * Of all available events, selects those that fall within the time range,
  * and if filters are being used, select them if their filters are enabled
  */

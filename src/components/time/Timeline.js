@@ -28,7 +28,9 @@ class Timeline extends React.Component {
     this.onSelect = this.onSelect.bind(this);
     this.svgRef = React.createRef();
     this.state = {
-      isFolded: (searchParams.has('timeline') && searchParams.get('timeline') === 'false'),
+      isFolded:
+        searchParams.has("timeline") &&
+        searchParams.get("timeline") === "false",
       dims: props.dimensions,
       scaleX: null,
       scaleY: null,
@@ -359,7 +361,8 @@ class Timeline extends React.Component {
   }
 
   render() {
-    const { isNarrative, app } = this.props;
+    const { isNarrative, app, domain } = this.props;
+
     let classes = `timeline-wrapper ${this.state.isFolded ? " folded" : ""}`;
     classes += app.narrative !== null ? " narrative-mode" : "";
     const { dims } = this.state;
@@ -372,6 +375,11 @@ class Timeline extends React.Component {
     const contentHeight = { height: dims.contentHeight };
     const { activeCategories: categories } = this.props;
 
+    const title = copy[this.props.app.language].timeline.info.replace(
+      "%n",
+      domain.eventCountInTimeRange
+    );
+
     return (
       <div
         className={classes}
@@ -380,7 +388,7 @@ class Timeline extends React.Component {
         tabIndex="1"
       >
         <Header
-          title={copy[this.props.app.language].timeline.info}
+          title={title}
           from={this.state.timerange[0]}
           to={this.state.timerange[1]}
           onClick={() => {
@@ -489,6 +497,7 @@ function mapStateToProps(state) {
     activeCategories: selectors.getActiveCategories(state),
     domain: {
       events: selectors.selectStackedEvents(state),
+      eventCountInTimeRange: selectors.selectEventCountInTimeRange(state),
       projects: selectors.selectProjects(state),
       narratives: state.domain.narratives,
     },
