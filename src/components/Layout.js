@@ -241,7 +241,7 @@ class Dashboard extends React.Component {
     }
   }
 
-  renderIntroPopup(isMobile, styles) {
+  renderIntroPopup(styles) {
     const checkMobile = isMobileOnly || window.innerWidth < 600;
     const { app, actions } = this.props;
 
@@ -266,7 +266,6 @@ class Dashboard extends React.Component {
         onClose={actions.toggleIntroPopup}
         content={app.intro}
         styles={styles}
-        isMobile={false}
       >
         {extraContent}
       </Popup>
@@ -298,32 +297,6 @@ class Dashboard extends React.Component {
       overflowY: "scroll",
       textAlign: "justify",
     };
-
-    // if (checkMobile) {
-    //   const msg =
-    //     "This platform is not suitable for mobile. Please re-visit the site on a device with a larger screen.";
-    //   return (
-    //     <div>
-    //       {features.USE_COVER && !app.intro && (
-    //         <StaticPage showing={app.flags.isCover}>
-    //           {/* enable USE_COVER in config.js features, and customise your header */}
-    //           {/* pass 'actions.toggleCover' as a prop to your custom header */}
-    //           <TemplateCover
-    //             showAppHandler={() => {
-    //               /* eslint-disable no-undef */
-    //               alert(msg);
-    //               /* eslint-enable no-undef */
-    //             }}
-    //           />
-    //         </StaticPage>
-    //       )}
-    //       {app.intro && <>{this.renderIntroPopup(true, popupStyles)}</>}
-    //       {!app.intro && !features.USE_COVER && (
-    //         <div className="fixedTooSmallMessage">{msg}</div>
-    //       )}
-    //     </div>
-    //   );
-    // }
 
     return (
       <div>
@@ -395,7 +368,7 @@ class Dashboard extends React.Component {
           isOpen={app.flags.isInfopopup}
           onClose={actions.toggleInfoPopup}
         />
-        {this.renderIntroPopup(false, popupStyles)}
+        {this.renderIntroPopup(popupStyles)}
         {app.debug ? (
           <Notification
             isNotification={app.flags.isNotification}

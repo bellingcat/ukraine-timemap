@@ -141,11 +141,16 @@ class Map extends React.Component {
     map.zoomControl.remove();
 
     map.on("moveend", () => {
-      this.updateClusters();
       this.alignLayers();
     });
 
-    map.on("move zoomend viewreset", () => this.alignLayers());
+    map.on("zoomend viewreset", () => {
+      this.map.dragging.enable();
+      this.map.doubleClickZoom.enable();
+      this.map.scrollWheelZoom.enable();
+      this.alignLayers();
+      this.updateClusters();
+    });
     map.on("zoomstart", () => {
       if (this.svgRef.current !== null)
         this.svgRef.current.classList.add("hide");
@@ -287,6 +292,10 @@ class Map extends React.Component {
       expansionZoom + zoomLevelsToSkip,
       this.props.app.cluster.maxZoom
     );
+
+    this.map.dragging.disable();
+    this.map.doubleClickZoom.disable();
+    this.map.scrollWheelZoom.disable();
     this.map.flyTo(new L.LatLng(latitude, longitude), zoomToFly);
   }
 
