@@ -22,6 +22,7 @@ import {
   getFilterIdx,
 } from "../common/utilities.js";
 import { ToolbarButton } from "./controls/atoms/ToolbarButton";
+import { FullscreenToggle } from "./controls/FullScreenToggle";
 
 class Toolbar extends React.Component {
   constructor(props) {
@@ -298,6 +299,9 @@ class Toolbar extends React.Component {
                 panels.shapes.icon
               )
             : null}
+          {features.USE_FULLSCREEN && (
+            <FullscreenToggle language={this.props.language} />
+          )}
         </div>
         <BottomActions
           info={{
