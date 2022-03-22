@@ -21,6 +21,7 @@ import {
   getCategoryIdxs,
   getFilterIdx,
 } from "../common/utilities.js";
+import { ToolbarButton } from "./controls/atoms/ToolbarButton";
 
 class Toolbar extends React.Component {
   constructor(props) {
@@ -179,20 +180,15 @@ class Toolbar extends React.Component {
   }
 
   renderToolbarTab(_selected, label, iconKey) {
-    const isActive = this.state._selected === _selected;
-    const classes = isActive ? "toolbar-tab active" : "toolbar-tab";
-
     return (
-      <div
-        className={classes}
-        key={iconKey}
+      <ToolbarButton
+        label={label}
+        iconKey={iconKey}
+        isActive={this.state._selected === _selected}
         onClick={() => {
           this.selectTab(_selected);
         }}
-      >
-        <i className="material-icons">{iconKey}</i>
-        <div className="tab-caption">{label}</div>
-      </div>
+      />
     );
   }
 
