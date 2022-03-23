@@ -573,7 +573,7 @@ function mapStateToProps(state) {
       },
     },
     ui: {
-      tiles: state.ui.tiles.current,
+      tiles: selectors.getTiles(state),
       dom: state.ui.dom,
       narratives: state.ui.style.narratives,
       mapSelectedEvents: state.ui.style.selectedEvents,
