@@ -104,6 +104,9 @@ class Map extends React.Component {
     }
   }
 
+  /**
+   * Initialize the base tile layer based on the ui state
+   */
   initializeTileLayer() {
     if (!this.map) {
       return;
@@ -136,7 +139,7 @@ class Map extends React.Component {
 
   initializeMap() {
     /**
-     * Creates a Leaflet map and a tilelayer for the map background
+     * Creates a Leaflet map
      */
     const { map: mapConfig, cluster: clusterConfig } = this.props.app;
 
