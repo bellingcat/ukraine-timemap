@@ -153,8 +153,6 @@ class Map extends React.Component {
     // Initialize supercluster index
     this.superclusterIndex = new Supercluster(clusterConfig);
 
-    this.initializeTileLayer(map);
-
     map.keyboard.disable();
     map.zoomControl.remove();
 
