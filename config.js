@@ -2,11 +2,12 @@ const one_day = 1440;
 module.exports = {
   title: "ukraine",
   display_title: "Civilian Harm in Ukraine",
-  SERVER_ROOT: 'https://ukraine.bellingcat.com/ukraine-server',
+  SERVER_ROOT: "https://ukraine.bellingcat.com/ukraine-server",
   EVENTS_EXT: "/api/ukraine/export_events/deeprows",
   SOURCES_EXT: "/api/ukraine/export_sources/deepids",
   ASSOCIATIONS_EXT: "/api/ukraine/export_associations/deeprows",
-  MAPBOX_TOKEN: "pk.eyJ1IjoiYmVsbGluZ2NhdC1tYXBib3giLCJhIjoiY2tleW0wbWliMDA1cTJ5bzdkbTRraHgwZSJ9.GJQkjPzj8554VhR5SPsfJg",
+  MAPBOX_TOKEN:
+    "pk.eyJ1IjoiYmVsbGluZ2NhdC1tYXBib3giLCJhIjoiY2tleW0wbWliMDA1cTJ5bzdkbTRraHgwZSJ9.GJQkjPzj8554VhR5SPsfJg",
   // MEDIA_EXT: "/api/media",
   DATE_FMT: "MM/DD/YYYY",
   TIME_FMT: "HH:mm",
@@ -16,7 +17,7 @@ module.exports = {
       debug: true,
       map: {
         // anchor: [49.02421913, 31.43836003],
-        anchor: [48.3326259, 33.199514470],
+        anchor: [48.3326259, 33.19951447],
         maxZoom: 18,
         minZoom: 4,
         startZoom: 6,
@@ -24,7 +25,7 @@ module.exports = {
       },
       cluster: { radius: 50, minZoom: 5, maxZoom: 12 },
       associations: {
-        defaultCategory: "Weapon System"
+        defaultCategory: "Weapon System",
       },
       timeline: {
         dimensions: {
@@ -32,15 +33,12 @@ module.exports = {
           contentHeight: 150,
         },
         zoomLevels: [
-          { label: 'Zoom to 1 week', duration: 7 * one_day },
-          { label: 'Zoom to 2 weeks', duration: 14 * one_day },
-          { label: 'Zoom to 1 month', duration: 31 * one_day },
-          { label: 'Zoom to 3 months', duration: 3 * 31 * one_day },
+          { label: "Zoom to 1 week", duration: 7 * one_day },
+          { label: "Zoom to 2 weeks", duration: 14 * one_day },
+          { label: "Zoom to 1 month", duration: 31 * one_day },
+          { label: "Zoom to 3 months", duration: 3 * 31 * one_day },
         ],
-        range: [
-          new Date(Date.now() - (14 * (60 * 60 * 1000 * 24))),
-          new Date()
-        ],
+        range: [new Date(Date.now() - 14 * (60 * 60 * 1000 * 24)), new Date()],
         // rangeLimits: []
       },
       intro: [
@@ -71,8 +69,8 @@ module.exports = {
           "## A Note on Bellingcat's Global Authentication Project",
           "The Global Authentication Project consists of a wide community of open source researchers assisting in Bellingcat research through structured tasks and feedback. Our aim is to authenticate events taking place around the world and fill in the gaps of knowledge that exist, particularly in situations where there are vast quantities of data. In creating a community for those interested in open source research, we are fostering Bellingcat's original aim of solving problems **together**, to diversify our investigations and promote the use of these skills. For this dataset, we are working with many individuals who have Ukrainian language skills and others with local contextual knowledge of the events and places seen on the map. Other participants include individuals skilled in geolocation and chronolocation, with all contributions being vetted by Bellingcat researchers. As we expand the Global Authentication Project in the coming months, more information will be available on our website and Twitter.",
           "## Feedback",
-          "This map will continue to change and be updated for the duration of this conflict. We welcome feedback on our methodology,  data collection and take transparency seriously. Should you have any direct feedback about the platform, please indicate it on this [form](https://forms.gle/cV2YAojBoh6h4T3XA)."
-        ]
+          "This map will continue to change and be updated for the duration of this conflict. We welcome feedback on our methodology,  data collection and take transparency seriously. Should you have any direct feedback about the platform, please indicate it on this [form](https://forms.gle/cV2YAojBoh6h4T3XA).",
+        ],
       },
       toolbar: {
         panels: {
@@ -87,30 +85,43 @@ module.exports = {
             //   label: "Unverified",
             //   description: "todo",
             // }
-          }
-        }
+          },
+        },
       },
-      spotlights: {}
+      spotlights: {},
     },
     ui: {
       coloring: {
         mode: "STATIC",
         maxNumOfColors: 9,
         defaultColor: "#dfdfdf",
-        colors: ["#7E57C2", "#F57C00", "#FFEB3B", "#D34F73", "#08B2E3", "#A1887F", "#90A4AE", "#E57373", "#80CBC4"],
+        colors: [
+          "#7E57C2",
+          "#F57C00",
+          "#FFEB3B",
+          "#D34F73",
+          "#08B2E3",
+          "#A1887F",
+          "#90A4AE",
+          "#E57373",
+          "#80CBC4",
+        ],
       },
       card: {
         layout: {
-          template: "sourced"
-        }
+          template: "sourced",
+        },
       },
       carto: {
-        eventRadius: 8
+        eventRadius: 8,
       },
       timeline: {
-        eventRadius: 9
+        eventRadius: 9,
       },
-      tiles: 'bellingcat-mapbox/cl0qnou2y003m15s8ieuyhgsy'
+      tiles: {
+        current: "bellingcat-mapbox/cl0qnou2y003m15s8ieuyhgsy",
+        default: "bellingcat-mapbox/cl0qnou2y003m15s8ieuyhgsy",
+      },
     },
     features: {
       USE_CATEGORIES: false,
@@ -123,6 +134,7 @@ module.exports = {
       USE_SHAPES: false,
       USE_COVER: true,
       USE_INTRO: false,
+      USE_SATELLITE_OVERLAY_TOGGLE: true,
       USE_SEARCH: false,
       USE_SITES: false,
       ZOOM_TO_TIMEFRAME_ON_TIMELINE_CLICK: one_day,
@@ -130,7 +142,7 @@ module.exports = {
       USE_MEDIA_CACHE: false,
       GRAPH_NONLOCATED: false,
       NARRATIVE_STEP_STYLES: false,
-      CUSTOM_EVENT_FIELDS: []
+      CUSTOM_EVENT_FIELDS: [],
     },
   },
 };

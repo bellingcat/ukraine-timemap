@@ -1,0 +1,28 @@
+@import "variables";
+
+.satellite-overlay-toggle {
+  background-color: rgb(53, 53, 53);
+  opacity: 0.9;
+  position: fixed;
+  top: 4px;
+  left: 120px;
+  z-index: $map-overlay;
+}
+
+.satellite-overlay-toggle-button-active {
+  padding: 2px 4px 4px 4px;
+  border-style: none;
+  font-size: $small;
+  font-family: $mainfont;
+  background-color: rgb(53, 53, 53);
+  color: white;
+}
+
+.satellite-overlay-toggle-button-inactive {
+  padding: 2px 4px 4px 4px;
+  border-style: none;
+  font-size: $small;
+  font-family: $mainfont;
+  background-color: rgb(53, 53, 53);
+  color: rgb(159, 159, 159);
+}
