@@ -4,17 +4,14 @@ import SatelliteOverlayToggle from "../SatelliteOverlayToggle";
 import "@testing-library/jest-dom";
 
 describe("<SatelliteOverlayToggle />", () => {
-  it("disables the currently selected default option", () => {
+  it("shows the option to switch to satellite by default", () => {
     render(
       <SatelliteOverlayToggle reset={jest.fn()} switchToSatellite={jest.fn()} />
     );
-    expect(
-      screen.getByRole("button", { name: /satellite/i })
-    ).not.toBeDisabled();
-    expect(screen.getByRole("button", { name: /default/i })).toBeDisabled();
+    expect(screen.getByRole("button", { name: /sat/i })).toBeTruthy();
   });
 
-  it("disables the currently selected satellite option", () => {
+  it("shows the option to switch to map when satellite selected", () => {
     render(
       <SatelliteOverlayToggle
         isUsingSatellite
@@ -22,8 +19,7 @@ describe("<SatelliteOverlayToggle />", () => {
         switchToSatellite={jest.fn()}
       />
     );
-    expect(screen.getByRole("button", { name: /satellite/i })).toBeDisabled();
-    expect(screen.getByRole("button", { name: /default/i })).not.toBeDisabled();
+    expect(screen.getByRole("button", { name: /map/i })).toBeTruthy();
   });
 
   it("calls the reset function when switching to the default overlay", () => {
@@ -36,7 +32,7 @@ describe("<SatelliteOverlayToggle />", () => {
         switchToSatellite={mockSat}
       />
     );
-    const btn = screen.getByRole("button", { name: /default/i });
+    const btn = screen.getByRole("button", { name: /map/i });
     fireEvent.click(btn);
     expect(mockReset).toHaveBeenCalledTimes(1);
     expect(mockSat).not.toHaveBeenCalled();
@@ -48,7 +44,7 @@ describe("<SatelliteOverlayToggle />", () => {
     render(
       <SatelliteOverlayToggle reset={mockReset} switchToSatellite={mockSat} />
     );
-    const btn = screen.getByRole("button", { name: /satellite/i });
+    const btn = screen.getByRole("button", { name: /sat/i });
     fireEvent.click(btn);
     expect(mockSat).toHaveBeenCalledTimes(1);
     expect(mockReset).not.toHaveBeenCalled();

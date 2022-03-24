@@ -1,8 +1,8 @@
 {
   "es-MX": {
     "tiles": {
-      "default": "Predeterminado",
-      "satellite": "Satélite"
+      "default": "Mapa",
+      "satellite": "Sat"
     },
     "loading": "Cargando...",
     "legend": {
@@ -95,8 +95,8 @@
   },
   "en-US": {
     "tiles": {
-      "default": "Default",
-      "satellite": "Satellite"
+      "default": "Map",
+      "satellite": "Sat"
     },
     "loading": "Loading...",
     "legend": {
