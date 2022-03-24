@@ -530,7 +530,7 @@
   }
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1080px) {
   .toolbar-panels {
     top: 75px;
     left: 0px;
@@ -548,15 +548,20 @@
       padding: 0px;
       margin-right: 70px;
       float: right;
+      width: 75px;
+      :nth-child(2) {
+        display: none;
+      }
     }
     .toolbar {
       width: 100%;
       .toolbar-header p:first-child {
-        font-size: 16px;
+        font-size: 14px;
         margin-top: 10px;
       }
       .bottom-actions {
-        right: 0px;
+        width: 50px;
+        right: 20px;
         top: 25px;
         .action-button {
           border: 1px solid #232323;
