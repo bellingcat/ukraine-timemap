@@ -104,6 +104,25 @@ class Map extends React.Component {
     }
   }
 
+  getTileUrl(tiles) {
+    if (
+      supportedMapboxMap.indexOf(this.props.ui.tiles) !== -1 &&
+      process.env.MAPBOX_TOKEN &&
+      process.env.MAPBOX_TOKEN !== defaultToken
+    ) {
+      return `http://a.tiles.mapbox.com/v4/mapbox.${tiles}/{z}/{x}/{y}@2x.png?access_token=${process.env.MAPBOX_TOKEN}`;
+    } else if (
+      process.env.MAPBOX_TOKEN &&
+      process.env.MAPBOX_TOKEN !== defaultToken
+    ) {
+      return `https://api.mapbox.com/styles/v1/${tiles}/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.MAPBOX_TOKEN}`;
+      // `http://a.tiles.mapbox.com/styles/v1/${this.props.ui.tiles}/tiles/{z}/{x}/{y}?access_token=${process.env.MAPBOX_TOKEN}`
+    } else {
+      return "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+      // "https://api.maptiler.com/maps/bright/256/{z}/{x}/{y}.png?key="
+    }
+  }
+
   /**
    * Initialize the base tile layer based on the ui state
    */
@@ -112,29 +131,16 @@ class Map extends React.Component {
       return;
     }
 
-    if (
-      supportedMapboxMap.indexOf(this.props.ui.tiles) !== -1 &&
-      process.env.MAPBOX_TOKEN &&
-      process.env.MAPBOX_TOKEN !== defaultToken
-    ) {
-      this.tileLayer = L.tileLayer(
-        `http://a.tiles.mapbox.com/v4/mapbox.${this.props.ui.tiles}/{z}/{x}/{y}@2x.png?access_token=${process.env.MAPBOX_TOKEN}`
-      );
-    } else if (
-      process.env.MAPBOX_TOKEN &&
-      process.env.MAPBOX_TOKEN !== defaultToken
-    ) {
-      this.tileLayer = L.tileLayer(
-        `https://api.mapbox.com/styles/v1/${this.props.ui.tiles}/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.MAPBOX_TOKEN}`
-        // `http://a.tiles.mapbox.com/styles/v1/${this.props.ui.tiles}/tiles/{z}/{x}/{y}?access_token=${process.env.MAPBOX_TOKEN}`
-      );
+    const url = this.getTileUrl(this.props.ui.tiles);
+    /**
+     * If a tile layer already exists, we update its url. Otherwise, we create it and add it to the map.
+     */
+    if (this.tileLayer) {
+      this.tileLayer.setUrl(url);
     } else {
-      this.tileLayer = L.tileLayer(
-        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        // "https://api.maptiler.com/maps/bright/256/{z}/{x}/{y}.png?key="
-      );
+      this.tileLayer = L.tileLayer(url);
+      this.tileLayer.addTo(this.map);
     }
-    this.tileLayer.addTo(this.map);
   }
 
   initializeMap() {
