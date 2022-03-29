@@ -38,7 +38,7 @@ module.exports = {
           { label: "Zoom to 1 month", duration: 31 * one_day },
           { label: "Zoom to 3 months", duration: 3 * 31 * one_day },
         ],
-        range: [new Date(Date.now() - 14 * (60 * 60 * 1000 * 24)), new Date()],
+        range: [new Date(Date.now() - 31 * (60 * 60 * 1000 * 24)), new Date()],
         // rangeLimits: []
       },
       intro: [
