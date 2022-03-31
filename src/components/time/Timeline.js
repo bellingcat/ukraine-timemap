@@ -34,7 +34,7 @@ class Timeline extends React.Component {
       dims: props.dimensions,
       scaleX: null,
       scaleY: null,
-      timerange: [null, null], // two datetimes
+      timerange: [null, null], // two Dates
       dragPos0: null,
       transitionDuration: 300,
     };
@@ -47,7 +47,7 @@ class Timeline extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (hash(nextProps) !== hash(this.props)) {
       this.setState({
-        timerange: nextProps.app.timeline.range,
+        timerange: nextProps.timeline.range,
         scaleX: this.makeScaleX(),
       });
     }
@@ -219,7 +219,7 @@ class Timeline extends React.Component {
       this.state.scaleX.domain()[0],
       extent / 2
     );
-    const { rangeLimits } = this.props.app.timeline;
+    const { rangeLimits } = this.props.timeline;
 
     let newDomain0 = d3.timeMinute.offset(newCentralTime, -zoom.duration / 2);
     let newDomainF = d3.timeMinute.offset(newCentralTime, zoom.duration / 2);
@@ -278,7 +278,7 @@ class Timeline extends React.Component {
     const dragNow = this.state.scaleX.invert(d3.event.x).getTime();
     const timeShift = (drag0 - dragNow) / 1000;
 
-    const { range, rangeLimits } = this.props.app.timeline;
+    const { range, rangeLimits } = this.props.timeline;
     let newDomain0 = d3.timeSecond.offset(range[0], timeShift);
     let newDomainF = d3.timeSecond.offset(range[1], timeShift);
 
@@ -361,7 +361,7 @@ class Timeline extends React.Component {
   }
 
   render() {
-    const { isNarrative, app, domain } = this.props;
+    const { isNarrative, app, timeline, domain } = this.props;
 
     let classes = `timeline-wrapper ${this.state.isFolded ? " folded" : ""}`;
     classes += app.narrative !== null ? " narrative-mode" : "";
@@ -405,7 +405,7 @@ class Timeline extends React.Component {
             <svg ref={this.svgRef} width={dims.width} style={contentHeight}>
               <Clip dims={dims} />
               <Axis
-                ticks={app.timeline.dimensions.ticks}
+                ticks={timeline.dimensions.ticks}
                 dims={dims}
                 extent={this.getTimeScaleExtent()}
                 transitionDuration={this.state.transitionDuration}
@@ -432,7 +432,7 @@ class Timeline extends React.Component {
                     .default_categories_label
                 }
               />
-              {app.timeline.dimensions.ticks === 1 && (
+              {timeline.dimensions.ticks === 1 && (
                 <Handles
                   dims={dims}
                   onMoveTime={(dir) => {
@@ -442,7 +442,7 @@ class Timeline extends React.Component {
               )}
               <ZoomControls
                 extent={this.getTimeScaleExtent()}
-                zoomLevels={this.props.app.timeline.zoomLevels}
+                zoomLevels={timeline.zoomLevels}
                 dims={dims}
                 onApplyZoom={this.onApplyZoom}
               />
@@ -504,9 +504,15 @@ function mapStateToProps(state) {
     app: {
       selected: state.app.selected,
       language: state.app.language,
-      timeline: state.app.timeline,
       narrative: state.app.associations.narrative,
       coloringSet: state.app.associations.coloringSet,
+    },
+    timeline: {
+      zoomLevels: state.app.timeline.zoomLevels,
+      dimensions: selectors.selectDimensions(state),
+      ticks: state.app.timeline.ticks,
+      range: selectors.selectTimeRange(state),
+      rangeLimits: selectors.selectTimeRangeLimits(state),
     },
     ui: {
       dom: state.ui.dom,
