@@ -6,7 +6,7 @@ import { language } from "../common/utilities";
 import { DEFAULT_TAB_ICONS } from "../common/constants";
 
 const isSmallLaptop = window.innerHeight < 800;
-const mapIniital = {
+const mapInitial = {
   anchor: [31.356397, 34.784818],
   startZoom: 11,
   minZoom: 2,
@@ -83,8 +83,9 @@ const initial = {
         contentHeight: isSmallLaptop ? 160 : 200,
         width_controls: 100,
       },
-      range: [new Date(2001, 2, 23, 12), new Date(2021, 2, 23, 12)],
-      rangeLimits: [new Date(1, 1, 1, 1), new Date()],
+      range: {
+        current: null,
+      },
       zoomLevels: copy[language].timeline.zoomLevels || [
         { label: "20 years", duration: 10512000 },
         { label: "2 years", duration: 1051200 },
@@ -210,13 +211,10 @@ if (process.env.store) {
   appStore = initial;
 }
 
-// NB: config.js dates get implicitly converted to strings in mergeDeepLeft
-appStore.app.timeline.range[0] = new Date(appStore.app.timeline.range[0]);
-appStore.app.timeline.range[1] = new Date(appStore.app.timeline.range[1]);
 appStore.app.flags.isIntropopup = !!appStore.app.intro;
 
 if ("map" in appStore.app) {
-  appStore.app.map = mergeDeepLeft(appStore.app.map, mapIniital);
+  appStore.app.map = mergeDeepLeft(appStore.app.map, mapInitial);
 }
 
 if ("space3d" in appStore.app) {

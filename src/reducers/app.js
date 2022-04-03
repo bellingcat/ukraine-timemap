@@ -1,6 +1,7 @@
 import initial from "../store/initial.js";
 import { ASSOCIATION_MODES } from "../common/constants";
 import { toggleFlagAC } from "../common/utilities";
+import * as selectors from "../selectors";
 
 import {
   UPDATE_HIGHLIGHTED,
@@ -68,17 +69,14 @@ function updateColoringSet(appState, action) {
 }
 
 function updateNarrative(appState, action) {
-  let minTime = appState.timeline.range[0];
-  let maxTime = appState.timeline.range[1];
+  let [minTime, maxTime] = selectors.selectTimeRange(appState);
 
   const cornerBound0 = [180, 180];
   const cornerBound1 = [-180, -180];
 
   // Compute narrative time range and map bounds
   if (action.narrative) {
-    // Forced to comment out min and max time changes, not sure why?
-    minTime = appState.timeline.rangeLimits[0];
-    maxTime = appState.timeline.rangeLimits[1];
+    [minTime, maxTime] = selectors.selectTimeRangeLimits(appState);
 
     // Find max and mins coordinates of narrative events
     action.narrative.steps.forEach((step) => {
@@ -119,6 +117,7 @@ function updateNarrative(appState, action) {
     minTime = minTime - Math.abs((maxTime - minTime) / 10);
     maxTime = maxTime + Math.abs((maxTime - minTime) / 10);
   }
+
   return {
     ...appState,
     associations: {
@@ -131,7 +130,10 @@ function updateNarrative(appState, action) {
     },
     timeline: {
       ...appState.timeline,
-      range: [minTime, maxTime],
+      range: {
+        ...appState.timeline.range,
+        current: [minTime, maxTime],
+      },
     },
   };
 }
@@ -200,7 +202,13 @@ function updateTimeRange(appState, action) {
     ...appState,
     timeline: {
       ...appState.timeline,
-      range: action.timerange,
+      range: {
+        ...appState.timeline.range,
+        current: [
+          new Date(action.timerange[0]).toISOString(),
+          new Date(action.timerange[1]).toISOString(),
+        ],
+      },
     },
   };
 }
