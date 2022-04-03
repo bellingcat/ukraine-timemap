@@ -1,6 +1,5 @@
 import React from "react";
 import colors from "../../../common/global";
-import hash from "object-hash";
 import {
   getEventCategories,
   isLatitude,
@@ -23,7 +22,7 @@ const TimelineMarkers = ({
     function renderCircle(y) {
       return (
         <circle
-          key={hash(event)}
+          key={event.id}
           className="timeline-marker"
           cx={0}
           cy={0}
