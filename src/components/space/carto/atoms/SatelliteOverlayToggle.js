@@ -17,7 +17,7 @@ const SatelliteOverlayToggle = ({
           style={{ backgroundImage: `url(${mapImg}` }}
           onClick={reset}
         >
-          <div class="label">{copy[language].tiles.default}</div>
+          <div className="label">{copy[language].tiles.default}</div>
         </button>
       ) : (
         <button
@@ -25,7 +25,7 @@ const SatelliteOverlayToggle = ({
           style={{ backgroundImage: `url(${satImg}` }}
           onClick={switchToSatellite}
         >
-          <div class="label">{copy[language].tiles.satellite}</div>
+          <div className="label">{copy[language].tiles.satellite}</div>
         </button>
       )}
     </div>
