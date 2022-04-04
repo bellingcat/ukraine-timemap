@@ -85,7 +85,6 @@ class Dashboard extends React.Component {
         matchedEvents.push(events[idx]);
       }
 
-
       // check events before
       let ptr = idx - 1;
       while (
@@ -97,7 +96,6 @@ class Dashboard extends React.Component {
         }
         ptr -= 1;
       }
-
 
       // check events after
       ptr = idx + 1;
@@ -279,7 +277,7 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    const { actions, app, domain, features } = this.props;
+    const { actions, app, domain, timeline, features } = this.props;
     const dateHeight = 80;
     const padding = 2;
     const checkMobile = isMobileOnly || window.innerWidth < 600;
@@ -290,14 +288,14 @@ class Dashboard extends React.Component {
       width: checkMobile
         ? "100vw"
         : window.innerWidth > 768
-          ? "60vw"
-          : "calc(100vw - var(--toolbar-width))",
+        ? "60vw"
+        : "calc(100vw - var(--toolbar-width))",
       maxWidth: checkMobile ? "100vw" : 600,
       maxHeight: checkMobile
         ? "100vh"
         : window.innerHeight > 768
-          ? `calc(100vh - ${app.timeline.dimensions.height}px - ${dateHeight}px)`
-          : "100vh",
+        ? `calc(100vh - ${timeline.dimensions.height}px - ${dateHeight}px)`
+        : "100vh",
       left: checkMobile ? padding : "var(--toolbar-width)",
       top: 0,
       overflowY: "scroll",
@@ -344,7 +342,7 @@ class Dashboard extends React.Component {
           />
         )}
         <CardStack
-          timelineDims={app.timeline.dimensions}
+          timelineDims={timeline.dimensions}
           onViewSource={this.handleViewSource}
           onSelect={
             app.associations.narrative ? this.selectNarrativeStep : () => null
@@ -357,9 +355,9 @@ class Dashboard extends React.Component {
           narrative={
             app.associations.narrative
               ? {
-                ...app.associations.narrative,
-                current: this.props.narrativeIdx,
-              }
+                  ...app.associations.narrative,
+                  current: this.props.narrativeIdx,
+                }
               : null
           }
           methods={{
@@ -427,6 +425,9 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   (state) => ({
     ...state,
+    timeline: {
+      dimensions: selectors.selectDimensions(state),
+    },
     narrativeIdx: selectors.selectNarrativeIdx(state),
     narratives: selectors.selectNarratives(state),
     selected: selectors.selectSelected(state),

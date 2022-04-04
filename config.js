@@ -38,8 +38,25 @@ module.exports = {
           { label: "Zoom to 1 month", duration: 31 * one_day },
           { label: "Zoom to 3 months", duration: 3 * 31 * one_day },
         ],
-        range: [new Date(Date.now() - 31 * (60 * 60 * 1000 * 24)), new Date()],
-        // rangeLimits: []
+        range: {
+          /**
+           * Initial date range shown on map load.
+           * Use [start, end] (strings in ISO 8601 format) for a fixed range.
+           * Use undefined for a dynamic initial range based on the browser time.
+           */
+          initial: undefined,
+          /** The number of days to show when using a dynamic initial range */
+          initialDaysShown: 31,
+          limits: {
+            /** Required. The lower bound of the range that can be accessed on the map. (ISO 8601) */
+            lower: "2022-02-01T00:00:00.000Z",
+            /**
+             * The upper bound of the range that can be accessed on the map.
+             * Defaults to current browser time if undefined.
+             */
+            upper: undefined,
+          },
+        },
       },
       intro: [
         '<div style="display:flex; flex-direction: row; width: 100%; min-width: calc(100% - 20px); max-width: 25vw; margin-top: 20px; gap: 20px; justify-content: space-between;"><img style="max-width:35vw; width:50%;" src="https://bellingcat-embeds.ams3.cdn.digitaloceanspaces.com/ukraine-timemap/cover01-s.jpg" frameborder="0"></img><img style="max-width:35vw; width:50%;" src="https://bellingcat-embeds.ams3.cdn.digitaloceanspaces.com/ukraine-timemap/cover02-s.jpg" frameborder="0"></img></div>',

@@ -34,8 +34,6 @@ export const getNotifications = (state) => state.domain.notifications;
 export const getActiveFilters = (state) => state.app.associations.filters;
 export const getActiveCategories = (state) => state.app.associations.categories;
 export const getActiveShapes = (state) => state.app.shapes;
-export const getTimeRange = (state) => state.app.timeline.range;
-export const getTimelineDimensions = (state) => state.app.timeline.dimensions;
 export const selectNarrative = (state) => state.app.associations.narrative;
 export const getFeatures = (state) => state.features;
 export const getEventRadius = (state) => state.ui.eventRadius;
@@ -67,6 +65,47 @@ export const selectRegions = createSelector(
   }
 );
 
+const getTimeRange = (state) => state.app.timeline.range.current;
+const getInitialTimeRange = (state) => state.app.timeline.range.initial;
+const getInitialDaysShown = (state) =>
+  state.app.timeline.range.initialDaysShown;
+export const selectTimeRange = createSelector(
+  [getTimeRange, getInitialTimeRange, getInitialDaysShown],
+  (range, initialRange, initialDaysShown) => {
+    let start, end;
+
+    if (Array.isArray(range) && range.length === 2) {
+      [start, end] = range;
+    } else if (Array.isArray(initialRange) && initialRange.length === 2) {
+      [start, end] = initialRange;
+    } else {
+      end = new Date();
+      start = new Date(end.getTime() - initialDaysShown * 24 * 60 * 60 * 1000);
+    }
+
+    return [new Date(start), new Date(end)];
+  }
+);
+
+const getTimeRangeLimits = (state) => state.app.timeline.range.limits;
+export const selectTimeRangeLimits = createSelector(
+  getTimeRangeLimits,
+  (limits) => {
+    return [new Date(limits.lower), new Date(limits.upper || Date.now())];
+  }
+);
+
+const getTimelineDimensions = (state) => state.app.timeline.dimensions;
+export const selectDimensions = createSelector(
+  getTimelineDimensions,
+  (dimensions) => {
+    return {
+      ...dimensions,
+      trackHeight: dimensions.contentHeight - 50, // height of time labels
+    };
+  }
+);
+
 /**
  * Of all available events, selects those that
  * 1. fall in time range
@@ -79,7 +118,7 @@ export const selectEvents = createSelector(
     getActiveFilters,
     getActiveCategories,
     getActiveShapes,
-    getTimeRange,
+    selectTimeRange,
     getFeatures,
   ],
   (
@@ -351,15 +390,5 @@ export const selectSelected = createSelector(
       return [];
     }
     return selected.map(insetSourceFrom(sources));
-  }
-);
-
-export const selectDimensions = createSelector(
-  [getTimelineDimensions],
-  (dimensions) => {
-    return {
-      ...dimensions,
-      trackHeight: dimensions.contentHeight - 50, // height of time labels
-    };
   }
 );
