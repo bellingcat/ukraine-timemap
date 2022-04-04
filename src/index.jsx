@@ -3,6 +3,14 @@ import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import store from "./store";
 import App from "./components/App";
+import copy from "./common/data/copy.json";
+
+// XXX: Hack to make migration from "copy.json" and
+// adding missing translation strings smoother.
+Object.assign(copy, {
+  ru: { ...copy["en-US"], ...copy["uk"], ...copy["ru"] },
+  uk: { ...copy["en-US"], ...copy["ru"], ...copy["uk"] },
+});
 
 const root = ReactDOM.createRoot(document.getElementById("explore-app"));
 root.render(
@@ -10,6 +18,20 @@ root.render(
     <App />
   </Provider>
 );
+
+store.subscribe(() => {
+  const { app } = store.getState();
+  renderAppLanguage(app);
+});
+
+// Update language in places that are out of the App's reach
+function renderAppLanguage({ language, languages }) {
+  const html = document.documentElement;
+  if (language && language !== html.lang) {
+    html.lang = language;
+    document.title = copy[language].page_title;
+  }
+}
 
 // Expressions from https://exceptionshub.com/how-to-detect-safari-chrome-ie-firefox-and-opera-browser.html
 

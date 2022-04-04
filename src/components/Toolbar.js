@@ -23,6 +23,7 @@ import {
 } from "../common/utilities.js";
 import { ToolbarButton } from "./controls/atoms/ToolbarButton";
 import { FullscreenToggle } from "./controls/FullScreenToggle";
+import { LanguageSwitch } from "./controls/LanguageSwitch";
 
 class Toolbar extends React.Component {
   constructor(props) {
@@ -274,6 +275,15 @@ class Toolbar extends React.Component {
         <div className="toolbar-header" onClick={this.props.methods.onTitle}>
           <p>{title}</p>
         </div>
+        <div className="toolbar-languages">
+          <LanguageSwitch
+            language={this.props.language}
+            languages={this.props.languages}
+            actions={{
+              toggleLanguage: this.props.actions.toggleLanguage,
+            }}
+          />
+        </div>
         <div className="toolbar-tabs">
           <TabList>
             {narrativesExist
@@ -347,6 +357,7 @@ function mapStateToProps(state) {
     narratives: selectors.selectNarratives(state),
     shapes: selectors.getShapes(state),
     language: state.app.language,
+    languages: state.app.languages,
     toolbarCopy: state.app.toolbar,
     activeFilters: selectors.getActiveFilters(state),
     activeCategories: selectors.getActiveCategories(state),

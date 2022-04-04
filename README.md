@@ -37,6 +37,8 @@ Please check our [issues page](https://github.com/bellingcat/ukraine-timemap/iss
 * `XXXX_EXT` - points to the respective JSONs of the data, for events, sources, and associations
 * `MAPBOX_TOKEN` - used to load the custom styles
 * `DATE_FMT` and `TIME_FMT` - how to consume the events' date/time from the API
+* `store.app.language` - configures default language
+* `store.app.languages` - configures available languages
 * `store.app.map` - configures the initial map view and the UX limits
 * `store.app.cluster` - configures how clusters/bubbles are grouped into larger clusters, larger `radius` means bigger cluster bubbles
 * `store.app.timeline` - configure timeline ranges, zoom level options, and default range

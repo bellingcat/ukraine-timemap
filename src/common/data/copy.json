@@ -94,6 +94,8 @@
     }
   },
   "en-US": {
+    "language_short": "Eng",
+    "page_title": "Civilian harm in Ukraine",
     "tiles": {
       "default": "Map",
       "satellite": "Sat"
@@ -192,5 +194,12 @@
       "receiver": "Receiver",
       "warning": "(!) Highly questioned"
     }
+  },
+  "ru": {
+    "language_short": "Рус",
+    "page_title": "Ущерб гражданскому населению Украины"
+  },
+  "uk": {
+    "language_short": "Укр"
   }
 }
