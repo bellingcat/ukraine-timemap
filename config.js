@@ -14,8 +14,8 @@ module.exports = {
 
   store: {
     app: {
-      language: 'en-US',
-      languages: ['en-US', 'ru', 'uk'],
+      language: 'en',
+      languages: ['en', 'ru', 'uk'],
       debug: true,
       map: {
         // anchor: [49.02421913, 31.43836003],
@@ -65,7 +65,6 @@ module.exports = {
         'This map plots out and highlights incidents that have resulted in potential civilian impact or harm since Russia began its invasion of Ukraine. The incidents detailed have been collected by Bellingcat researchers. Included in the map are instances where civilian areas and infrastructure have been damaged or destroyed, where the presence of civilian injuries are visible and/or there is the presence of immobile civilian bodies. Collection for the incidences contained in this map began on February 24, 2022. Users can explore incidents by date and location. We intend this to be a living project that will continue to be updated as long as the conflict persists. For more detailed information about the entries included in this map, please refer to our methodology and explainer article which can be read <a href="https://www.bellingcat.com/news/2022/03/17/hospitals-bombed-and-apartments-destroyed-mapping-incidents-of-civilian-harm-in-ukraine/" >here</a>. ',
         "Image left: Vyacheslav Madiyevskyy/Reuters. Image right: Järva Teataja/Scanpix Baltics via Reuters.",
       ],
-
       flags: { isInfopoup: false, isCover: false },
       cover: {
         title: "About and Methodology",

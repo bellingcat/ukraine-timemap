@@ -8,8 +8,8 @@ import copy from "./common/data/copy.json";
 // XXX: Hack to make migration from "copy.json" and
 // adding missing translation strings smoother.
 Object.assign(copy, {
-  ru: { ...copy["en-US"], ...copy["uk"], ...copy["ru"] },
-  uk: { ...copy["en-US"], ...copy["ru"], ...copy["uk"] },
+  ru: { ...copy["en"], ...copy["uk"], ...copy["ru"] },
+  uk: { ...copy["en"], ...copy["ru"], ...copy["uk"] },
 });
 
 const root = ReactDOM.createRoot(document.getElementById("explore-app"));
