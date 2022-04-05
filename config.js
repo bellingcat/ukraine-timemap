@@ -14,8 +14,6 @@ module.exports = {
 
   store: {
     app: {
-      language: 'en',
-      languages: ['en', 'ru', 'uk'],
       debug: true,
       map: {
         // anchor: [49.02421913, 31.43836003],
