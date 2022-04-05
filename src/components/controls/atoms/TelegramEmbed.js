@@ -83,13 +83,15 @@ class TelegramEmbed extends Component {
   render() {
     const { src, height } = this.state;
     const { container } = this.props;
+    const embedSrc = new URL(src);
+    embedSrc.searchParams.append("embed", "1");
 
     return (
       <div data-sharing-id={container} style={containerStyles}>
         <iframe
           title={src}
           ref={(node) => (this.iFrame = node)}
-          src={src + "?embed=1"}
+          src={embedSrc.toString()}
           height={height}
           id={
             "telegram-post" + this.urlObj.pathname.replace(/[^a-z0-9_]/gi, "-")
