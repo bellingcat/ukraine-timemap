@@ -11,6 +11,7 @@ export const DEFAULT_TAB_ICONS = {
   NARRATIVE: "timeline",
   FILTER: "filter_list",
   SHAPE: "change_history",
+  DOWNLOAD: "download"
 };
 
 export const AVAILABLE_SHAPES = {
