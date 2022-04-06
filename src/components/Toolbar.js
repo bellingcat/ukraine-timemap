@@ -296,34 +296,34 @@ class Toolbar extends React.Component {
           <TabList>
             {narrativesExist
               ? this.renderToolbarTab(
-                narrativesIdx,
-                panels.narratives.label,
-                panels.narratives.icon
-              )
+                  narrativesIdx,
+                  panels.narratives.label,
+                  panels.narratives.icon
+                )
               : null}
             {features.USE_CATEGORIES
               ? this.renderToolbarCategoryTabs(categoryIdxs)
               : null}
             {features.USE_ASSOCIATIONS
               ? this.renderToolbarTab(
-                filtersIdx,
-                panels.filters.label,
-                panels.filters.icon
-              )
+                  filtersIdx,
+                  panels.filters.label,
+                  panels.filters.icon
+                )
               : null}
             {features.USE_SHAPES
               ? this.renderToolbarTab(
-                shapesIdx,
-                panels.shapes.label,
-                panels.shapes.icon
-              )
+                  shapesIdx,
+                  panels.shapes.label,
+                  panels.shapes.icon
+                )
               : null}
             {features.USE_DOWNLOAD
               ? this.renderToolbarTab(
-                downloadIdx,
-                panels.download.label,
-                panels.download.icon
-              )
+                  downloadIdx,
+                  panels.download.label,
+                  panels.download.icon
+                )
               : null}
             {features.USE_FULLSCREEN && (
               <FullscreenToggle language={this.props.language} />
