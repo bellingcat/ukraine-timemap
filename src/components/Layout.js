@@ -301,7 +301,7 @@ class Dashboard extends React.Component {
       overflowY: "scroll",
       textAlign: "justify",
     };
-    
+
     return (
       <div>
         {checkMobile ? null : (
