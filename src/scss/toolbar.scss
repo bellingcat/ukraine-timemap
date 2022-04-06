@@ -186,20 +186,21 @@
     }
   }
 
-  .download-row{
+  .download-row {
     display: flex;
     flex-direction: row;
   }
-  .download-button{
+  .download-button {
     flex: 1 1 auto;
   }
-  .download-description{
+  .download-description {
     flex: 1 5 auto;
     text-align: justify;
     margin: auto;
   }
 
-  .toolbar-tab, .download-button {
+  .toolbar-tab,
+  .download-button {
     display: flex;
     align-items: center;
     justify-content: center;
