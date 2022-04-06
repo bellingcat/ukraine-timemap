@@ -117,6 +117,10 @@
   &.hide {
     display: none;
   }
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .leaflet-popup {
