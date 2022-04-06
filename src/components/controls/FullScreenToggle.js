@@ -1,7 +1,7 @@
 import React from "react";
 import screenfull from "screenfull";
 import { ToolbarButton } from "./atoms/ToolbarButton";
-import copy from "../../common/data/copy.json";
+import { translateTo } from "../translate.js";
 
 export class FullscreenToggle extends React.Component {
   constructor(props) {
@@ -33,7 +33,7 @@ export class FullscreenToggle extends React.Component {
   render() {
     if (!screenfull.isEnabled) return null;
 
-    const { language } = this.props;
+    const translate = translateTo(this.props.language);
     const { isFullscreen } = this.state;
 
     return (
@@ -41,8 +41,8 @@ export class FullscreenToggle extends React.Component {
         isActive={isFullscreen}
         label={
           isFullscreen
-            ? copy[language].toolbar.fullscreen_exit
-            : copy[language].toolbar.fullscreen_enter
+            ? translate("toolbar.fullscreen_exit")
+            : translate("toolbar.fullscreen_enter")
         }
         iconKey={isFullscreen ? "fullscreen_exit" : "fullscreen"}
         onClick={this.onToggleFullscreen}

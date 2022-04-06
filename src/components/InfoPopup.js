@@ -1,15 +1,18 @@
 import React from "react";
 import Popup from "./atoms/Popup";
-import copy from "../common/data/copy.json";
+import { useTranslate } from "./translate.js";
 
-const Infopopup = ({ isOpen, onClose, language, styles }) => (
-  <Popup
-    title={copy[language].legend.default.header}
-    content={copy[language].legend.default.intro}
-    onClose={onClose}
-    isOpen={isOpen}
-    styles={styles}
-  />
-);
+const Infopopup = ({ isOpen, onClose, language, styles }) => {
+  const translate = useTranslate(language);
+  return (
+    <Popup
+      title={translate("legend.default.header")}
+      content={translate("legend.default.intro", { fallback: [] })}
+      onClose={onClose}
+      isOpen={isOpen}
+      styles={styles}
+    />
+  );
+};
 
 export default Infopopup;

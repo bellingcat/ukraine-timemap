@@ -139,6 +139,12 @@ const initial = {
           title: copy[language].toolbar.explore_by_shape__title,
           description: copy[language].toolbar.explore_by_shape__description,
         },
+        download: {
+          icon: DEFAULT_TAB_ICONS.DOWNLOAD,
+          label: copy[language].toolbar.download.button,
+          title: copy[language].toolbar.download.panel.title,
+          description: copy[language].toolbar.download.panel.description,
+        },
       },
     },
     loading: false,

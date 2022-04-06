@@ -307,6 +307,7 @@ class Dashboard extends React.Component {
         {checkMobile ? null : (
           <Toolbar
             isNarrative={!!app.associations.narrative}
+            domain={domain}
             methods={{
               onTitle: actions.toggleCover,
               onSelectFilter: (filters) =>
