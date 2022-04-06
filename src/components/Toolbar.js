@@ -23,6 +23,7 @@ import {
 } from "../common/utilities.js";
 import { ToolbarButton } from "./controls/atoms/ToolbarButton";
 import { FullscreenToggle } from "./controls/FullScreenToggle";
+import DownloadPanel from "./controls/DownloadPanel";
 
 class Toolbar extends React.Component {
   constructor(props) {
@@ -180,6 +181,21 @@ class Toolbar extends React.Component {
     }
   }
 
+  renderToolbarDownloadPanel() {
+    const { panels } = this.props.toolbarCopy;
+
+    return (
+      <TabPanel>
+        <DownloadPanel
+          language={this.props.language}
+          title={panels.download.label}
+          description={panels.download.description}
+          domain={this.props.domain}
+        />
+      </TabPanel>
+    );
+  }
+
   renderToolbarTab(_selected, label, iconKey, key) {
     return (
       <ToolbarButton
@@ -223,6 +239,7 @@ class Toolbar extends React.Component {
         {features.USE_CATEGORIES ? this.renderToolbarCategoriesPanel() : null}
         {features.USE_ASSOCIATIONS ? this.renderToolbarFilterPanel() : null}
         {features.USE_SHAPES ? this.renderToolbarShapePanel() : null}
+        {features.USE_DOWNLOAD ? this.renderToolbarDownloadPanel() : null}
       </div>
     );
   }
@@ -267,7 +284,8 @@ class Toolbar extends React.Component {
       features.USE_CATEGORIES,
       numCategoryPanels || 0
     );
-    const shapesIdx = filtersIdx + 1;
+    const shapesIdx = filtersIdx + features.USE_SHAPES;
+    const downloadIdx = shapesIdx + features.USE_DOWNLOAD;
 
     return (
       <div className="toolbar">
@@ -278,27 +296,34 @@ class Toolbar extends React.Component {
           <TabList>
             {narrativesExist
               ? this.renderToolbarTab(
-                  narrativesIdx,
-                  panels.narratives.label,
-                  panels.narratives.icon
-                )
+                narrativesIdx,
+                panels.narratives.label,
+                panels.narratives.icon
+              )
               : null}
             {features.USE_CATEGORIES
               ? this.renderToolbarCategoryTabs(categoryIdxs)
               : null}
             {features.USE_ASSOCIATIONS
               ? this.renderToolbarTab(
-                  filtersIdx,
-                  panels.filters.label,
-                  panels.filters.icon
-                )
+                filtersIdx,
+                panels.filters.label,
+                panels.filters.icon
+              )
               : null}
             {features.USE_SHAPES
               ? this.renderToolbarTab(
-                  shapesIdx,
-                  panels.shapes.label,
-                  panels.shapes.icon
-                )
+                shapesIdx,
+                panels.shapes.label,
+                panels.shapes.icon
+              )
+              : null}
+            {features.USE_DOWNLOAD
+              ? this.renderToolbarTab(
+                downloadIdx,
+                panels.download.label,
+                panels.download.icon
+              )
               : null}
             {features.USE_FULLSCREEN && (
               <FullscreenToggle language={this.props.language} />

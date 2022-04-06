@@ -301,12 +301,13 @@ class Dashboard extends React.Component {
       overflowY: "scroll",
       textAlign: "justify",
     };
-
+    
     return (
       <div>
         {checkMobile ? null : (
           <Toolbar
             isNarrative={!!app.associations.narrative}
+            domain={domain}
             methods={{
               onTitle: actions.toggleCover,
               onSelectFilter: (filters) =>
