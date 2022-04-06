@@ -93,7 +93,8 @@
       "warning": "(!) HECHOS CUESTIONADOS"
     }
   },
-  "en-US": {
+  "en": {
+    "language_short": "Eng",
     "tiles": {
       "default": "Map",
       "satellite": "Sat"
@@ -192,5 +193,11 @@
       "receiver": "Receiver",
       "warning": "(!) Highly questioned"
     }
+  },
+  "ru": {
+    "language_short": "Рус"
+  },
+  "uk": {
+    "language_short": "Укр"
   }
 }

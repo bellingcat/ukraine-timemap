@@ -227,10 +227,15 @@ function updateDimensions(appState, action) {
 }
 
 function toggleLanguage(appState, action) {
-  const otherLanguage = appState.language === "es-MX" ? "en-US" : "es-MX";
-  return Object.assign({}, appState, {
-    language: action.language || otherLanguage,
-  });
+  return {
+    ...appState,
+    language: action.language || selectNextLanguage(appState),
+  };
+  function selectNextLanguage({ language, languages }) {
+    const currentIndex = appState.languages.indexOf(language);
+    const nextIndex = (currentIndex + 1) % languages.length;
+    return languages[nextIndex];
+  }
 }
 
 function updateSource(appState, action) {

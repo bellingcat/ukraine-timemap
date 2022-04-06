@@ -1,0 +1,22 @@
+.language-switch {
+  padding: 1.5em 1em;
+  color: $midwhite;
+  text-transform: uppercase;
+  cursor: pointer;
+  user-select: none;
+  .language-option {
+    padding: 0.5em 0.25em;
+    transition: 0.2s ease;
+    border-bottom: solid 2px transparent;
+    &.selected {
+      font-weight: bold;
+      border-bottom-color: $midwhite;
+      color: $offwhite;
+    }
+  }
+  &:hover {
+    .language-option {
+      border-bottom-color: $offwhite;
+    }
+  }
+}
