@@ -9,7 +9,7 @@ import FilterListPanel from "./controls/FilterListPanel";
 import CategoriesListPanel from "./controls/CategoriesListPanel";
 import ShapesListPanel from "./controls/ShapesListPanel";
 import BottomActions from "./controls/BottomActions";
-import copy from "../common/data/copy.json";
+import { translateTo } from "./translate";
 import {
   trimAndEllipse,
   getImmediateFilterParent,
@@ -183,13 +183,14 @@ class Toolbar extends React.Component {
 
   renderToolbarDownloadPanel() {
     const { panels } = this.props.toolbarCopy;
+    const translate = translateTo(this.props.language);
 
     return (
       <TabPanel>
         <DownloadPanel
           language={this.props.language}
-          title={panels.download.label}
-          description={panels.download.description}
+          title={translate("toolbar.download.panel.title")}
+          description={translate("toolbar.download.panel.description")}
           domain={this.props.domain}
         />
       </TabPanel>
@@ -267,10 +268,9 @@ class Toolbar extends React.Component {
   }
 
   renderToolbarTabs() {
+    const translate = translateTo(this.props.language);
     const { features, narratives, toolbarCopy } = this.props;
     const narrativesExist = narratives && narratives.length !== 0;
-    let title = copy[this.props.language].toolbar.title;
-    if (process.env.display_title) title = process.env.display_title;
     const { panels } = toolbarCopy;
 
     const narrativesIdx = 0;
@@ -290,7 +290,7 @@ class Toolbar extends React.Component {
     return (
       <div className="toolbar">
         <div className="toolbar-header" onClick={this.props.methods.onTitle}>
-          <p>{title}</p>
+          <p>{translate("display_title")}</p>
         </div>
         <div className="toolbar-tabs">
           <TabList>
@@ -307,7 +307,7 @@ class Toolbar extends React.Component {
             {features.USE_ASSOCIATIONS
               ? this.renderToolbarTab(
                   filtersIdx,
-                  panels.filters.label,
+                  translate("toolbar.filters_label"),
                   panels.filters.icon
                 )
               : null}
@@ -321,7 +321,7 @@ class Toolbar extends React.Component {
             {features.USE_DOWNLOAD
               ? this.renderToolbarTab(
                   downloadIdx,
-                  panels.download.label,
+                  translate("toolbar.download.button"),
                   panels.download.icon
                 )
               : null}

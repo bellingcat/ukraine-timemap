@@ -1,7 +1,8 @@
 import React from "react";
-import copy from "../../common/data/copy.json";
+import { useTranslate } from "../translate.js";
 
 const LoadingOverlay = ({ isLoading, language }) => {
+  const translate = useTranslate(language);
   let classes = "loading-overlay";
   classes += !isLoading ? " hidden" : "";
 
@@ -9,7 +10,7 @@ const LoadingOverlay = ({ isLoading, language }) => {
     <div id="loading-overlay" className={classes}>
       <div className="loading-wrapper">
         <span id="loading-text" className="text">
-          {copy[language].loading}
+          {translate("loading")}
         </span>
         <div className="spinner">
           <div className="double-bounce1" />

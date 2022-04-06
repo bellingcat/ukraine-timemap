@@ -1,6 +1,5 @@
 import React from "react";
-import copy from "../../../../common/data/copy.json";
-import { language } from "../../../../common/utilities";
+import { useTranslate } from "../../../translate.js";
 import mapImg from "../../../../assets/satelliteoverlaytoggle/map.png";
 import satImg from "../../../../assets/satelliteoverlaytoggle/sat.png";
 
@@ -9,6 +8,7 @@ const SatelliteOverlayToggle = ({
   reset,
   isUsingSatellite,
 }) => {
+  const translate = useTranslate();
   return (
     <div id="satellite-overlay-toggle" className="satellite-overlay-toggle">
       {isUsingSatellite ? (
@@ -17,7 +17,7 @@ const SatelliteOverlayToggle = ({
           style={{ backgroundImage: `url(${mapImg}` }}
           onClick={reset}
         >
-          <div className="label">{copy[language].tiles.default}</div>
+          <div className="label">{translate("tiles.default")}</div>
         </button>
       ) : (
         <button
@@ -25,7 +25,7 @@ const SatelliteOverlayToggle = ({
           style={{ backgroundImage: `url(${satImg}` }}
           onClick={switchToSatellite}
         >
-          <div className="label">{copy[language].tiles.satellite}</div>
+          <div className="label">{translate("tiles.satellite")}</div>
         </button>
       )}
     </div>

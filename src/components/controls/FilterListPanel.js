@@ -1,6 +1,7 @@
 import React from "react";
 import Checkbox from "../atoms/Checkbox";
 import marked from "marked";
+import { useTranslate } from "../translate.js";
 import {
   aggregateFilterPaths,
   getFilterIdxFromColorSet,
@@ -26,10 +27,8 @@ function FilterListPanel({
   filters,
   activeFilters,
   onSelectFilter,
-  language,
   coloringSet,
   filterColors,
-  title,
   description,
 }) {
   function createNodeComponent(filter, depth) {
@@ -82,9 +81,11 @@ function FilterListPanel({
     );
   }
 
+  const translate = useTranslate();
+
   return (
     <div className="react-innertabpanel">
-      <h2>{title}</h2>
+      <h2>{translate("filters.title")}</h2>
       <p
         dangerouslySetInnerHTML={{
           __html: marked(description),

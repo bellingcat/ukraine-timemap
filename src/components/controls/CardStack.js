@@ -4,7 +4,7 @@ import { generateCardLayout, Card } from "./Card";
 
 import * as selectors from "../../selectors";
 import { getFilterIdxFromColorSet } from "../../common/utilities";
-import copy from "../../common/data/copy.json";
+import { translateTo } from "../translate.js";
 import hash from "object-hash";
 
 class CardStack extends React.Component {
@@ -106,7 +106,8 @@ class CardStack extends React.Component {
   }
 
   renderCardStackHeader() {
-    const headerLang = copy[this.props.language].cardstack.header;
+    const translate = translateTo(this.props.language);
+    const headerLang = translate("cardstack.header");
 
     return (
       <div

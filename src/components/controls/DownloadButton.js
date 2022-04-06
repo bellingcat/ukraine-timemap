@@ -1,5 +1,5 @@
 import React from "react";
-import copy from "../../common/data/copy.json";
+import { translateTo } from "../translate.js";
 import { parse } from "json2csv";
 import { downloadAsFile } from "../../common/utilities";
 
@@ -68,7 +68,8 @@ export class DownloadButton extends React.Component {
   }
   render() {
     const { language, domain, format } = this.props;
-    const textByFormat = copy[language].toolbar.download.panel.formats[format];
+    const translate = translateTo(language);
+    const textByFormat = translate(`toolbar.download.panel.formats.${format}`);
     return (
       <div className="download-row">
         <span

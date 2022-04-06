@@ -6,7 +6,7 @@ import hash from "object-hash";
 
 import { setLoading, setNotLoading, updateTicks } from "../../actions";
 import * as selectors from "../../selectors";
-import copy from "../../common/data/copy.json";
+import { translateTo } from "../translate.js";
 
 import Header from "./atoms/Header";
 import Axis from "./Axis";
@@ -362,6 +362,7 @@ class Timeline extends React.Component {
 
   render() {
     const { isNarrative, app, timeline, domain } = this.props;
+    const translate = translateTo(app.language);
 
     let classes = `timeline-wrapper ${this.state.isFolded ? " folded" : ""}`;
     classes += app.narrative !== null ? " narrative-mode" : "";
@@ -375,7 +376,7 @@ class Timeline extends React.Component {
     const contentHeight = { height: dims.contentHeight };
     const { activeCategories: categories } = this.props;
 
-    const title = copy[this.props.app.language].timeline.info.replace(
+    const title = translate("timeline.info").replace(
       "%n",
       domain.eventCountInTimeRange
     );
@@ -427,10 +428,7 @@ class Timeline extends React.Component {
                 }}
                 categories={categories}
                 features={this.props.features}
-                fallbackLabel={
-                  copy[this.props.app.language].timeline
-                    .default_categories_label
-                }
+                fallbackLabel={translate("timeline.default_categories_label")}
               />
               {timeline.dimensions.ticks === 1 && (
                 <Handles
