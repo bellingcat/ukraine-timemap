@@ -74,7 +74,10 @@ const Media = ({ src, title }) => {
 
       return (
         <div className="card-cell media embedded">
-          <TwitterTweetEmbed tweetId={tweetId} options={{ conversation: "none" }} />
+          <TwitterTweetEmbed
+            tweetId={tweetId}
+            options={{ conversation: "none" }}
+          />
         </div>
       );
     default:

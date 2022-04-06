@@ -577,11 +577,14 @@ export function getFilterIdx(
 }
 
 export function downloadAsFile(filename, content) {
-  let element = document.createElement('a');
-  element.setAttribute('href', `data:application/octet-stream;charset=utf-8,${encodeURIComponent(content)}`);
-  element.setAttribute('download', filename);
+  let element = document.createElement("a");
+  element.setAttribute(
+    "href",
+    `data:application/octet-stream;charset=utf-8,${encodeURIComponent(content)}`
+  );
+  element.setAttribute("download", filename);
 
-  element.style.display = 'none';
+  element.style.display = "none";
   document.body.appendChild(element);
 
   element.click();

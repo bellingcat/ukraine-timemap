@@ -162,8 +162,8 @@
       "fullscreen_enter": "Fullscreen",
       "fullscreen_exit": "Exit Fullscreen",
       "download": {
-        "button":  "Download",
-        "panel":{
+        "button": "Download",
+        "panel": {
           "title": "Download events",
           "description": "Export the most recent available events in different formats.",
           "formats": {
@@ -176,7 +176,7 @@
               "description": "JSON file where each event is a structured object containing nested arrays of sources and filters."
             }
           }
-        } 
+        }
       }
     },
     "timeline": {
