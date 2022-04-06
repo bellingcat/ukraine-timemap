@@ -1,6 +1,10 @@
 const one_day = 1440;
 module.exports = {
   title: "ukraine",
+  page_title: {
+    en: "Civilian Harm in Ukraine",
+    ru: "Ущерб гражданскому населению Украины",
+  },
   display_title: "Civilian Harm in Ukraine",
   SERVER_ROOT: "https://ukraine.bellingcat.com/ukraine-server",
   EVENTS_EXT: "/api/ukraine/export_events/deeprows",

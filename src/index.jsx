@@ -25,11 +25,12 @@ store.subscribe(() => {
 });
 
 // Update language in places that are out of the App's reach
-function renderAppLanguage({ language, languages }) {
+function renderAppLanguage({ language }) {
   const html = document.documentElement;
   if (language && language !== html.lang) {
     html.lang = language;
-    document.title = copy[language].page_title;
+    const title = process.env.page_title[language];
+    if (title) document.title = title;
   }
 }
 
