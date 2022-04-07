@@ -341,6 +341,14 @@ export function toggleLanguage(language) {
   };
 }
 
+export const CHANGE_NAVIGATOR_LANGUAGES = "CHANGE_NAVIGATOR_LANGUAGES";
+export function changeNavigatorLanguages(languages) {
+  return {
+    type: CHANGE_NAVIGATOR_LANGUAGES,
+    languages,
+  };
+}
+
 export const CLOSE_TOOLBAR = "CLOSE_TOOLBAR";
 export function closeToolbar() {
   return {

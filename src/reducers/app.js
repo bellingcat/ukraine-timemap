@@ -1,6 +1,7 @@
 import initial from "../store/initial.js";
 import { ASSOCIATION_MODES } from "../common/constants";
 import { toggleFlagAC } from "../common/utilities";
+import { pickPreferredLanguage } from "../common/language.js";
 import * as selectors from "../selectors";
 
 import {
@@ -31,6 +32,7 @@ import {
   SET_INITIAL_CATEGORIES,
   SET_INITIAL_SHAPES,
   UPDATE_SEARCH_QUERY,
+  CHANGE_NAVIGATOR_LANGUAGES,
 } from "../actions";
 
 function updateHighlighted(appState, action) {
@@ -238,6 +240,13 @@ function toggleLanguage(appState, action) {
   }
 }
 
+function changeNavigatorLanguages(appState, action) {
+  const preferred = action.languages;
+  const available = appState.languages || [appState.language];
+  const language = pickPreferredLanguage(available, preferred);
+  return language ? { ...appState, language } : appState;
+}
+
 function updateSource(appState, action) {
   return {
     ...appState,
@@ -341,6 +350,8 @@ function app(appState = initial.app, action) {
       return updateNarrativeStepIdx(appState, action);
     case UPDATE_SOURCE:
       return updateSource(appState, action);
+    case CHANGE_NAVIGATOR_LANGUAGES:
+      return changeNavigatorLanguages(appState, action);
     /* toggles */
     case TOGGLE_LANGUAGE:
       return toggleLanguage(appState, action);

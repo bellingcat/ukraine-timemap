@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
-import store from "./store";
+import store, { dispatchNavigatorLanguagesChange } from "./store";
 import App from "./components/App";
 import copy from "./common/data/copy.json";
 
@@ -18,6 +18,10 @@ root.render(
     <App />
   </Provider>
 );
+
+// pick up user's preferred language on startup and whenever it changes
+dispatchNavigatorLanguagesChange();
+window.addEventListener("languagechange", dispatchNavigatorLanguagesChange);
 
 store.subscribe(() => {
   const { app } = store.getState();

@@ -160,7 +160,24 @@
       "explore_by_shapes__title": "Explore events by shape breakdown",
       "explore_by_shape__description": "Shapes map to a given type of event that appears on the timeline.<br><br>Select the shape marker to toggle this type of event on / off",
       "fullscreen_enter": "Fullscreen",
-      "fullscreen_exit": "Exit Fullscreen"
+      "fullscreen_exit": "Exit Fullscreen",
+      "download": {
+        "button": "Download",
+        "panel": {
+          "title": "Download events",
+          "description": "Export the most recent available events in different formats.",
+          "formats": {
+            "csv": {
+              "label": "CSV",
+              "description": "CSV file where sources and filters are concatenated into a single column due to data structure limitations."
+            },
+            "json": {
+              "label": "JSON",
+              "description": "JSON file where each event is a structured object containing nested arrays of sources and filters."
+            }
+          }
+        }
+      }
     },
     "timeline": {
       "labels_title": "Testimonies",
