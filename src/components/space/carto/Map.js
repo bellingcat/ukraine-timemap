@@ -168,6 +168,7 @@ class Map extends React.Component {
 
     map.on("moveend", () => {
       this.alignLayers();
+      this.updateClusters();
     });
 
     map.on("zoomend viewreset", () => {
