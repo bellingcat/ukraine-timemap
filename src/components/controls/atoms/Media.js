@@ -1,8 +1,9 @@
 import React, { useRef } from "react";
 import { useCallback } from "react";
-import { typeForPath } from "../../../common/utilities";
 import { TwitterTweetEmbed } from "react-twitter-embed";
+import { typeForPath } from "../../../common/utilities";
 import TelegramPostEmbed from "./TelegramEmbed";
+import InstagramPostEmbed from "./InstagramPostEmbed";
 
 const TITLE_LENGTH = 50;
 // TODO should videos
@@ -80,6 +81,15 @@ const Media = ({ src, title }) => {
           />
         </div>
       );
+
+    case "Instagram": {
+      return (
+        <div className="card-cell media embedded">
+          <InstagramPostEmbed src={src} />
+        </div>
+      );
+    }
+
     default:
       if (src === "HIDDEN") {
         return (

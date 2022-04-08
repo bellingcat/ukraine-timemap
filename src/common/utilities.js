@@ -334,6 +334,10 @@ export function typeForPath(path) {
       type = "Telegram";
       break;
 
+    case /(instagram\.com)/.test(path):
+      type = "Instagram";
+      break;
+
     default:
       type = "Unknown";
       break;
