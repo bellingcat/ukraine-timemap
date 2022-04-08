@@ -280,7 +280,7 @@ class Timeline extends React.Component {
     const dragNow = this.state.scaleX.invert(event.x).getTime();
     const timeShift = (drag0 - dragNow) / 1000;
 
-    const { range, rangeLimits } = this.props.app.timeline;
+    const { range, rangeLimits } = this.props.timeline;
     let newDomain0 = timeSecond.offset(range[0], timeShift);
     let newDomainF = timeSecond.offset(range[1], timeShift);
 
