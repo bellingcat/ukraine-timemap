@@ -1,3 +1,5 @@
+import React from "react";
+
 export function ToolbarButton({ isActive, iconKey, onClick, label }) {
   return (
     <div

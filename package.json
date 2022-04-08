@@ -171,6 +171,7 @@
     ],
     "modulePaths": [],
     "moduleNameMapper": {
+      "d3$": "<rootDir>/node_modules/d3/dist/d3.min.js",
       "^react-native$": "react-native-web",
       "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
     },
