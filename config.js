@@ -9,7 +9,7 @@ module.exports = {
   MAPBOX_TOKEN:
     "pk.eyJ1IjoiYmVsbGluZ2NhdC1tYXBib3giLCJhIjoiY2tleW0wbWliMDA1cTJ5bzdkbTRraHgwZSJ9.GJQkjPzj8554VhR5SPsfJg",
   // MEDIA_EXT: "/api/media",
-  DATE_FMT: "MM/DD/YYYY",
+  DATE_FMT: "M/D/YYYY",
   TIME_FMT: "HH:mm",
 
   store: {
