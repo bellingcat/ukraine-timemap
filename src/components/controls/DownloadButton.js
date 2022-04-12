@@ -6,7 +6,8 @@ import { downloadAsFile } from "../../common/utilities";
 
 export class DownloadButton extends React.Component {
   onDownload(format, domain) {
-    let filename = `ukr-civharm-${this.datetimeToDateString(new Date())}`;
+    console.log()
+    let filename = `ukr-civharm-${dayjs().format('YYYY-MM-DD')}`;
     if (format === "csv") {
       let outputData = this.getCsvData(domain);
       downloadAsFile(`${filename}.csv`, outputData);
@@ -20,7 +21,7 @@ export class DownloadButton extends React.Component {
     const exportEvents = events.map((e) => {
       return {
         id: e.civId,
-        date: this.datetimeToDateString(e.datetime),
+        date: e.date,
         latitude: e.latitude,
         longitude: e.longitude,
         location: e.location,
@@ -38,7 +39,7 @@ export class DownloadButton extends React.Component {
     const exportEvents = events.map((e) => {
       return {
         id: e.civId,
-        date: this.datetimeToDateString(e.datetime),
+        date: e.date,
         latitude: e.latitude,
         longitude: e.longitude,
         location: e.location,
@@ -60,12 +61,6 @@ export class DownloadButton extends React.Component {
       };
     });
     return JSON.stringify(exportEvents);
-  }
-  datetimeToDateString(datetime) {
-    try {
-      return dayjs(datetime).format('YYYY-MM-DD')
-    } catch (_) { }
-    return "";
   }
   render() {
     const { language, domain, format } = this.props;
