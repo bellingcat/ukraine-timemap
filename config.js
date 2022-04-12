@@ -138,6 +138,7 @@ module.exports = {
       tiles: {
         current: "bellingcat-mapbox/cl0qnou2y003m15s8ieuyhgsy",
         default: "bellingcat-mapbox/cl0qnou2y003m15s8ieuyhgsy",
+        satellite: "bellingcat-mapbox/cl1win2vp003914pdhateva6p"
       },
     },
     features: {

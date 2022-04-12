@@ -159,6 +159,7 @@ const initial = {
     tiles: {
       current: "openstreetmap", // ['openstreetmap', 'streets', 'satellite']
       default: "openstreetmap", // ['openstreetmap', 'streets', 'satellite']
+      satellite: "satellite"
     },
     style: {
       categories: {
