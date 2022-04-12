@@ -26,7 +26,6 @@
     font-size: $normal;
     font-weight: 100;
     transition: 0.2s ease;
-    z-index: $header;
 
     button {
       background: #222222;
@@ -277,6 +276,7 @@
 }
 
 .toolbar-panels {
+  z-index: -1;
   width: 440px;
   top: 15px;
   bottom: 0;
