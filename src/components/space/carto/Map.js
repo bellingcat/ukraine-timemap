@@ -536,7 +536,6 @@ class Map extends React.Component {
         {this.renderSelected()}
       </>
     ) : null;
-    console.log(this)
 
     return (
       <div className={classes} onKeyDown={this.props.onKeyDown} tabIndex="0">
