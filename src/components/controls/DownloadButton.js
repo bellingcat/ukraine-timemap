@@ -1,5 +1,6 @@
 import React from "react";
 import copy from "../../common/data/copy.json";
+import dayjs from "dayjs";
 import { parse } from "json2csv";
 import { downloadAsFile } from "../../common/utilities";
 
@@ -62,8 +63,8 @@ export class DownloadButton extends React.Component {
   }
   datetimeToDateString(datetime) {
     try {
-      return datetime.toISOString().split("T")[0];
-    } catch (_) {}
+      return dayjs(datetime).format('YYYY-MM-DD')
+    } catch (_) { }
     return "";
   }
   render() {
