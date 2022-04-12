@@ -50,7 +50,7 @@ class Timeline extends React.Component {
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (hash(nextProps) !== hash(this.props)) {
       this.setState({
-        timerange: nextProps.timeline.range,
+        timerange: nextProps.app.timeline.range,
         scaleX: this.makeScaleX(),
       });
     }
@@ -221,7 +221,7 @@ class Timeline extends React.Component {
       this.state.scaleX.domain()[0],
       extent / 2
     );
-    const { rangeLimits } = this.props.timeline;
+    const { rangeLimits } = this.props.app.timeline;
 
     let newDomain0 = timeMinute.offset(newCentralTime, -zoom.duration / 2);
     let newDomainF = timeMinute.offset(newCentralTime, zoom.duration / 2);
@@ -280,7 +280,7 @@ class Timeline extends React.Component {
     const dragNow = this.state.scaleX.invert(event.x).getTime();
     const timeShift = (drag0 - dragNow) / 1000;
 
-    const { range, rangeLimits } = this.props.timeline;
+    const { range, rangeLimits } = this.props.app.timeline;
     let newDomain0 = timeSecond.offset(range[0], timeShift);
     let newDomainF = timeSecond.offset(range[1], timeShift);
 
@@ -363,7 +363,8 @@ class Timeline extends React.Component {
   }
 
   render() {
-    const { isNarrative, app, timeline, domain } = this.props;
+    const { isNarrative, app, domain } = this.props;
+    const { timeline } = app;
 
     let classes = `timeline-wrapper ${this.state.isFolded ? " folded" : ""}`;
     classes += app.narrative !== null ? " narrative-mode" : "";
@@ -502,13 +503,13 @@ function mapStateToProps(state) {
       language: state.app.language,
       narrative: state.app.associations.narrative,
       coloringSet: state.app.associations.coloringSet,
-    },
-    timeline: {
-      zoomLevels: state.app.timeline.zoomLevels,
-      dimensions: selectors.selectDimensions(state),
-      ticks: state.app.timeline.ticks,
-      range: selectors.selectTimeRange(state),
-      rangeLimits: selectors.selectTimeRangeLimits(state),
+      timeline: {
+        zoomLevels: state.app.timeline.zoomLevels,
+        dimensions: selectors.selectDimensions(state),
+        ticks: state.app.timeline.ticks,
+        range: selectors.selectTimeRange(state),
+        rangeLimits: selectors.selectTimeRangeLimits(state),
+      },
     },
     ui: {
       dom: state.ui.dom,
