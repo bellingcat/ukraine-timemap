@@ -94,7 +94,9 @@
     }
   },
   "en": {
+    "language_label": "Language",
     "language_short": "Eng",
+    "language_long": "English",
     "tiles": {
       "default": "Map",
       "satellite": "Sat"
@@ -212,9 +214,13 @@
     }
   },
   "ru": {
-    "language_short": "Рус"
+    "language_label": "Язык",
+    "language_short": "Рус",
+    "language_long": "Русский"
   },
   "uk": {
-    "language_short": "Укр"
+    "language_label": "Мова",
+    "language_short": "Укр",
+    "language_long": "Українська"
   }
 }

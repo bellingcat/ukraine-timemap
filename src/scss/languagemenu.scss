@@ -1,0 +1,23 @@
+.language-menu {
+  color: $midwhite;
+  font-size: 1.25em;
+  .language-option:not(:first-child) {
+    border-top: solid 1px $midwhite;
+  }
+  .language-option {
+    cursor: pointer;
+    transition: 0.2s ease;
+    padding: 1em 1em;
+    background-color: $darkgrey;
+    &.selected {
+      background-color: $black;
+      color: $offwhite;
+    }
+    &:active {
+      background-color: $midgrey;
+    }
+    &:hover {
+      color: $offwhite;
+    }
+  }
+}

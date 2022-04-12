@@ -24,18 +24,25 @@ import {
 import { ToolbarButton } from "./controls/atoms/ToolbarButton";
 import { FullscreenToggle } from "./controls/FullScreenToggle";
 import { LanguageSwitch } from "./controls/LanguageSwitch";
+import { ToolbarLanguageMenu } from "./controls/LanguageMenu";
 import DownloadPanel from "./controls/DownloadPanel";
 
 class Toolbar extends React.Component {
   constructor(props) {
     super(props);
     this.onSelectFilter = this.onSelectFilter.bind(this);
-    this.state = { _selected: -1 };
+    this.state = { _selected: -1, isLanguageMenuActive: false };
   }
 
   selectTab(selected) {
     const _selected = this.state._selected === selected ? -1 : selected;
-    this.setState({ _selected });
+    this.setState({ _selected, isLanguageMenuActive: false });
+  }
+
+  setIsLanguageMenuActive(isActive) {
+    isActive
+      ? this.setState({ isLanguageMenuActive: true, _selected: -1 })
+      : this.setState({ isLanguageMenuActive: false });
   }
 
   onSelectFilter(key, matchingKeys) {
@@ -210,6 +217,17 @@ class Toolbar extends React.Component {
       />
     );
   }
+  renderToolbarLanguageTab() {
+    return (
+      <ToolbarLanguageMenu
+        isActive={this.state.isLanguageMenuActive}
+        setIsActive={(isActive) => this.setIsLanguageMenuActive(isActive)}
+        language={this.props.language}
+        languages={this.props.languages}
+        setLanguage={this.props.actions.toggleLanguage}
+      />
+    );
+  }
 
   renderToolbarCategoryTabs(idxs) {
     const { categories: panelCategories } = this.props.toolbarCopy.panels;
@@ -304,6 +322,9 @@ class Toolbar extends React.Component {
         </div>
         <div className="toolbar-tabs">
           <TabList>
+            {this.props.languages?.length > 1
+              ? this.renderToolbarLanguageTab()
+              : null}
             {narrativesExist
               ? this.renderToolbarTab(
                   narrativesIdx,
