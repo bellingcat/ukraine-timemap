@@ -26,7 +26,6 @@
     font-size: $normal;
     font-weight: 100;
     transition: 0.2s ease;
-    z-index: $header;
 
     button {
       background: #222222;
@@ -277,6 +276,7 @@
 }
 
 .toolbar-panels {
+  z-index: -1;
   width: 440px;
   top: 15px;
   bottom: 0;
@@ -519,6 +519,27 @@
         text-transform: none;
       }
     }
+  }
+}
+
+// Toolbar-menu consists of a toolbar-button and a panel.
+// Panel is positioned next to the button.
+// Panel slides behind the toolbar.
+.toolbar-menu {
+  position: relative;
+  .toolbar-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    visibility: hidden;
+    &.active {
+      left: 100%;
+      right: auto;
+      visibility: visible;
+    }
+    transition: 0.2s ease;
   }
 }
 
