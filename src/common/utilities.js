@@ -268,14 +268,15 @@ export function injectSource(id) {
   };
 }
 
+const API_ROOT =
+  process.env.NODE_ENV === "development" ? "" : process.env.SERVER_ROOT;
+
 export function urlFromEnv(ext) {
   if (process.env[ext]) {
     if (!Array.isArray(process.env[ext])) {
-      return [`${process.env.SERVER_ROOT}${process.env[ext]}`];
+      return [`${API_ROOT}${process.env[ext]}`];
     } else {
-      return process.env[ext].map(
-        (suffix) => `${process.env.SERVER_ROOT}${suffix}`
-      );
+      return process.env[ext].map((suffix) => `${API_ROOT}${suffix}`);
     }
   } else {
     return null;
