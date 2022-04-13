@@ -168,6 +168,7 @@ class Map extends React.Component {
 
     map.on("moveend", () => {
       this.alignLayers();
+      this.updateClusters();
     });
 
     map.on("zoomend viewreset", () => {
@@ -547,7 +548,7 @@ class Map extends React.Component {
         />
         {this.props.features.USE_SATELLITE_OVERLAY_TOGGLE && (
           <SatelliteOverlayToggle
-            isUsingSatellite={this.props.ui.tiles === "satellite"}
+            isUsingSatellite={this.props.ui.tiles === "bellingcat-mapbox/cl1win2vp003914pdhateva6p"}
             switchToSatellite={this.props.actions.useSatelliteTilesOverlay}
             reset={this.props.actions.resetTilesOverlay}
           />
