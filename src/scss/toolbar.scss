@@ -545,15 +545,8 @@
 
 @media (max-width: 1080px) {
   .toolbar-panels {
-    top: 95px;
+    top: 75px;
     left: 0px;
-    padding: 0px;
-    margin-right: 70px;
-    float: right;
-    width: 85%;
-    :nth-child(2) {
-      display: none;
-    }
   }
   .toolbar-wrapper {
     position: fixed;
@@ -564,6 +557,51 @@
     bottom: auto;
     z-index: 10;
     background: #2c2c2c;
+    .toolbar-tab {
+      padding: 0px;
+      margin-right: 70px;
+      float: right;
+      width: 75px;
+      :nth-child(2) {
+        display: none;
+      }
+    }
+    .toolbar {
+      width: 100%;
+      .toolbar-header p:first-child {
+        font-size: 14px;
+        margin-top: 10px;
+      }
+      .bottom-actions {
+        width: 50px;
+        right: 20px;
+        top: 25px;
+        .action-button {
+          border: 1px solid #232323;
+        }
+        .bottom-action-info {
+          display: none;
+        }
+      }
+      .toolbar-header {
+        float: left;
+        border-bottom: 0px;
+      }
+    }
+  }
+}
+
+@media (max-height: 678px) {
+  .toolbar-wrapper {
+    width: 100%;
+    height: 100px;
+    .toolbar {
+      width: 100%;
+      .toolbar-header p:first-child {
+        font-size: 13px;
+        margin-top: 15px;
+      }
+    }
     .toolbar-tab {
       padding: 0px;
       width: 80px;
