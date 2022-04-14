@@ -543,12 +543,74 @@
   }
 }
 
-@media (max-height: 678px) {
+@media (max-width: 1080px) {
+  .toolbar-panels {
+    top: 95px;
+    left: 0px;
+    padding: 0px;
+    margin-right: 70px;
+    float: right;
+    width: 85%;
+    :nth-child(2) {
+      display: none;
+    }
+  }
   .toolbar-wrapper {
+    position: fixed;
+    width: 100%;
+    height: 90px;
+    top: 0px;
+    left: 0px;
+    bottom: auto;
+    z-index: 10;
+    background: #2c2c2c;
     .toolbar-tab {
-      height: 60px;
-      padding: 0;
+      padding: 0px;
+      width: 80px;
+      float: right;
+      margin-top: -20px;
+    }
+    .toolbar {
+      width: 100%;
+      .toolbar-header p:first-child {
+        font-size: 14px;
+        margin-top: 10px;
+      }
+      .bottom-actions {
+        display: none;
+        width: 50px;
+        right: 20px;
+        top: 25px;
+        .action-button {
+          border: 1px solid #232323;
+        }
+        .bottom-action-info {
+          display: none;
+        }
+      }
+      .toolbar-header {
+        float: left;
+        border-bottom: 0px;
+      }
+    }
+  }
+}
 
+@media (max-width: 720px) {
+  .toolbar-wrapper {
+    width: 100%;
+    height: 100px;
+    .toolbar {
+      width: 100%;
+      .toolbar-header p:first-child {
+        font-size: 13px;
+        margin-top: 15px;
+      }
+    }
+    .toolbar-tab {
+      height: 80px;
+      width: 60px !important;
+      padding: 0;
       &:hover {
         .tab-caption {
           transition: 0.2s ease;
@@ -558,7 +620,7 @@
     }
     .toolbar .bottom-actions {
       .action-button {
-        margin-top: 5px;
+        display: none;
       }
     }
   }
