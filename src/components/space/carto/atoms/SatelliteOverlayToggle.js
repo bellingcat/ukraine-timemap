@@ -4,30 +4,23 @@ import { language } from "../../../../common/utilities";
 import mapImg from "../../../../assets/satelliteoverlaytoggle/map.png";
 import satImg from "../../../../assets/satelliteoverlaytoggle/sat.png";
 
-const SatelliteOverlayToggle = ({
-  switchToSatellite,
-  reset,
-  isUsingSatellite,
-}) => {
+const SatelliteOverlayToggle = ({ isUsingSatellite, toggleSatellite }) => {
+  const toggleClass = isUsingSatellite
+    ? "satellite-overlay-toggle-map"
+    : "satellite-overlay-toggle-sat";
+  const toggleImg = isUsingSatellite ? mapImg : satImg;
+  const toggleLabel = isUsingSatellite
+    ? copy[language].tiles.default
+    : copy[language].tiles.satellite;
   return (
     <div id="satellite-overlay-toggle" className="satellite-overlay-toggle">
-      {isUsingSatellite ? (
-        <button
-          className="satellite-overlay-toggle-button satellite-overlay-toggle-map"
-          style={{ backgroundImage: `url(${mapImg}` }}
-          onClick={reset}
-        >
-          <div className="label">{copy[language].tiles.default}</div>
-        </button>
-      ) : (
-        <button
-          className="satellite-overlay-toggle-button satellite-overlay-toggle-sat"
-          style={{ backgroundImage: `url(${satImg}` }}
-          onClick={switchToSatellite}
-        >
-          <div className="label">{copy[language].tiles.satellite}</div>
-        </button>
-      )}
+      <button
+        className={`satellite-overlay-toggle-button ${toggleClass}`}
+        style={{ backgroundImage: `url(${toggleImg}` }}
+        onClick={toggleSatellite}
+      >
+        <div className="label">{toggleLabel}</div>
+      </button>
     </div>
   );
 };

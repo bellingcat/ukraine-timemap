@@ -383,6 +383,13 @@ export function toggleCover() {
   };
 }
 
+export const TOGGLE_SATELLITE = "TOGGLE_SATELLITE";
+export function toggleSatellite() {
+  return {
+    type: TOGGLE_SATELLITE,
+  };
+}
+
 export const UPDATE_SEARCH_QUERY = "UPDATE_SEARCH_QUERY";
 export function updateSearchQuery(searchQuery) {
   return {
@@ -398,19 +405,5 @@ export function fetchSourceError(msg) {
   return {
     type: FETCH_SOURCE_ERROR,
     msg,
-  };
-}
-
-export const USE_SATELLITE_TILES_OVERLAY = "USE_SATELLITE_TILES_OVERLAY";
-export function useSatelliteTilesOverlay() {
-  return {
-    type: USE_SATELLITE_TILES_OVERLAY,
-  };
-}
-
-export const RESET_TILES_OVERLAY = "RESET_TILES_OVERLAY";
-export function resetTilesOverlay() {
-  return {
-    type: RESET_TILES_OVERLAY,
   };
 }
