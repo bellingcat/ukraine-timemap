@@ -1,10 +1,10 @@
 import initial from "../store/initial.js";
 
-import { TOGGLE_SATELLITE } from "../actions";
+import { TOGGLE_TILE_OVERLAY } from "../actions";
 
 function ui(uiState = initial.ui, action) {
   switch (action.type) {
-    case TOGGLE_SATELLITE:
+    case TOGGLE_TILE_OVERLAY:
       return {
         ...uiState,
         tiles: {

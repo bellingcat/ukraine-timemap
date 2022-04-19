@@ -549,7 +549,7 @@ class Map extends React.Component {
         {this.props.features.USE_SATELLITE_OVERLAY_TOGGLE && (
           <SatelliteOverlayToggle
             isUsingSatellite={this.props.ui.isUsingSatellite}
-            toggleSatellite={this.props.actions.toggleSatellite}
+            toggleSatellite={this.props.actions.toggleTileOverlay}
           />
         )}
         {innerMap}

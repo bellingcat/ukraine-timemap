@@ -383,10 +383,10 @@ export function toggleCover() {
   };
 }
 
-export const TOGGLE_SATELLITE = "TOGGLE_SATELLITE";
-export function toggleSatellite() {
+export const TOGGLE_TILE_OVERLAY = "TOGGLE_TILE_OVERLAY";
+export function toggleTileOverlay() {
   return {
-    type: TOGGLE_SATELLITE,
+    type: TOGGLE_TILE_OVERLAY,
   };
 }
 
