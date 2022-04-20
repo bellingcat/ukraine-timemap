@@ -37,7 +37,9 @@ export const getActiveShapes = (state) => state.app.shapes;
 export const selectNarrative = (state) => state.app.associations.narrative;
 export const getFeatures = (state) => state.features;
 export const getEventRadius = (state) => state.ui.eventRadius;
-export const getTiles = (state) => state.ui.tiles.current;
+export const getTile = (state) => state.ui.tiles.current;
+export const isUsingSatellite = (state) =>
+  state.ui.tiles.current === state.ui.tiles.satellite;
 
 export const selectSites = createSelector(
   [getSites, getFeatures],

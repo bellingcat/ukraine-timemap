@@ -1,23 +1,18 @@
 import initial from "../store/initial.js";
 
-import { USE_SATELLITE_TILES_OVERLAY, RESET_TILES_OVERLAY } from "../actions";
+import { TOGGLE_TILE_OVERLAY } from "../actions";
 
 function ui(uiState = initial.ui, action) {
   switch (action.type) {
-    case USE_SATELLITE_TILES_OVERLAY:
+    case TOGGLE_TILE_OVERLAY:
       return {
         ...uiState,
         tiles: {
           ...uiState.tiles,
-          current: uiState.tiles.satellite,
-        },
-      };
-    case RESET_TILES_OVERLAY:
-      return {
-        ...uiState,
-        tiles: {
-          ...uiState.tiles,
-          current: uiState.tiles.default,
+          current:
+            uiState.tiles.current === uiState.tiles.satellite
+              ? uiState.tiles.default
+              : uiState.tiles.satellite,
         },
       };
     default:

@@ -64,7 +64,7 @@ class Map extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.ui.tiles !== this.props.ui.tiles && this.map) {
+    if (prevProps.ui.tile !== this.props.ui.tile && this.map) {
       this.initializeTileLayer();
     }
   }
@@ -105,18 +105,18 @@ class Map extends React.Component {
     }
   }
 
-  getTileUrl(tiles) {
+  getTileUrl(tile) {
     if (
       supportedMapboxMap.indexOf(this.props.ui.tiles) !== -1 &&
       process.env.MAPBOX_TOKEN &&
       process.env.MAPBOX_TOKEN !== defaultToken
     ) {
-      return `http://a.tiles.mapbox.com/v4/mapbox.${tiles}/{z}/{x}/{y}@2x.png?access_token=${process.env.MAPBOX_TOKEN}`;
+      return `http://a.tiles.mapbox.com/v4/mapbox.${tile}/{z}/{x}/{y}@2x.png?access_token=${process.env.MAPBOX_TOKEN}`;
     } else if (
       process.env.MAPBOX_TOKEN &&
       process.env.MAPBOX_TOKEN !== defaultToken
     ) {
-      return `https://api.mapbox.com/styles/v1/${tiles}/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.MAPBOX_TOKEN}`;
+      return `https://api.mapbox.com/styles/v1/${tile}/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.MAPBOX_TOKEN}`;
       // `http://a.tiles.mapbox.com/styles/v1/${this.props.ui.tiles}/tiles/{z}/{x}/{y}?access_token=${process.env.MAPBOX_TOKEN}`
     } else {
       return "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
@@ -132,7 +132,7 @@ class Map extends React.Component {
       return;
     }
 
-    const url = this.getTileUrl(this.props.ui.tiles);
+    const url = this.getTileUrl(this.props.ui.tile);
     /**
      * If a tile layer already exists, we update its url. Otherwise, we create it and add it to the map.
      */
@@ -548,9 +548,8 @@ class Map extends React.Component {
         />
         {this.props.features.USE_SATELLITE_OVERLAY_TOGGLE && (
           <SatelliteOverlayToggle
-            isUsingSatellite={this.props.ui.tiles === "bellingcat-mapbox/cl1win2vp003914pdhateva6p"}
-            switchToSatellite={this.props.actions.useSatelliteTilesOverlay}
-            reset={this.props.actions.resetTilesOverlay}
+            isUsingSatellite={this.props.ui.isUsingSatellite}
+            toggleSatellite={this.props.actions.toggleTileOverlay}
           />
         )}
         {innerMap}
@@ -584,7 +583,8 @@ function mapStateToProps(state) {
       },
     },
     ui: {
-      tiles: selectors.getTiles(state),
+      tile: selectors.getTile(state),
+      isUsingSatellite: selectors.isUsingSatellite(state),
       dom: state.ui.dom,
       narratives: state.ui.style.narratives,
       mapSelectedEvents: state.ui.style.selectedEvents,
