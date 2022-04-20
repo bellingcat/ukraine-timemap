@@ -199,5 +199,6 @@
   },
   "eslintConfig": {
     "extends": "react-app"
-  }
+  },
+  "proxy": "https://ukraine.bellingcat.com/ukraine-server"
 }
