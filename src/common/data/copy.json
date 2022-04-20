@@ -171,7 +171,7 @@
           "formats": {
             "csv": {
               "label": "CSV",
-              "description": "CSV file where sources and filters are concatenated into a single column due to data structure limitations."
+              "description": "CSV file where sources and filters are concatenated into a single column each due to data structure limitations."
             },
             "json": {
               "label": "JSON",

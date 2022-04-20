@@ -9,7 +9,7 @@ function ui(uiState = initial.ui, action) {
         ...uiState,
         tiles: {
           ...uiState.tiles,
-          current: "satellite",
+          current: uiState.tiles.satellite,
         },
       };
     case RESET_TILES_OVERLAY:
