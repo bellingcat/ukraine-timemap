@@ -19,7 +19,6 @@ Read Bellingcat's article about this project in
 ![ukraine.bellingcat.com timemap preview](docs/example-timemap.png)
 
 ## Development
-* Use **node v14.x.x**
 * `npm install` to setup
 * adjust any local configs in [config.js](config.js)
 * `CONFIG=config.js npm run dev` or `npm run dev` if the file is named config.js
