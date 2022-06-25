@@ -305,3 +305,16 @@
 .handle {
   fill: $offwhite;
 }
+
+@media (max-width: 1280px) {
+  .timeline-wrapper {
+    left: 0px !important;
+  }
+  .timeline-header {
+    .timeline-info {
+      width: 100%;
+      margin-left: 0 !important;
+      margin-top: -85px !important;
+    }
+  }
+}

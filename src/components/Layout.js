@@ -304,21 +304,19 @@ class Dashboard extends React.Component {
 
     return (
       <div>
-        {checkMobile ? null : (
-          <Toolbar
-            isNarrative={!!app.associations.narrative}
-            domain={domain}
-            methods={{
-              onTitle: actions.toggleCover,
-              onSelectFilter: (filters) =>
-                actions.toggleAssociations("filters", filters),
-              onCategoryFilter: (categories) =>
-                actions.toggleAssociations("categories", categories),
-              onShapeFilter: actions.toggleShapes,
-              onSelectNarrative: this.setNarrative,
-            }}
-          />
-        )}
+        <Toolbar
+          isNarrative={!!app.associations.narrative}
+          domain={domain}
+          methods={{
+            onTitle: actions.toggleCover,
+            onSelectFilter: (filters) =>
+              actions.toggleAssociations("filters", filters),
+            onCategoryFilter: (categories) =>
+              actions.toggleAssociations("categories", categories),
+            onShapeFilter: actions.toggleShapes,
+            onSelectNarrative: this.setNarrative,
+          }}
+        />
         <Space
           kind={"map" in app ? "map" : "space3d"}
           onKeyDown={this.onKeyDown}
