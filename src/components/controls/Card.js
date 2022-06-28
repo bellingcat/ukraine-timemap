@@ -7,7 +7,6 @@ import CardCustom from "./atoms/CustomField";
 import CardMedia from "./atoms/Media";
 
 import { makeNiceDate, isEmptyString } from "../../common/utilities";
-import hash from "object-hash";
 
 export const generateCardLayout = {
   basic: ({ event }) => {
@@ -158,7 +157,7 @@ export const Card = ({
             {field.title && <h4>{field.title}</h4>}
             {/* <div className="card-row"> */}
             {field.value.map((t, idx) => (
-              <CardButton key={`card-button-${idx}`} {...t} />
+              <CardButton key={idx} {...t} />
             ))}
             {/* </div> */}
           </div>
@@ -173,7 +172,7 @@ export const Card = ({
             {field.title && <h4>{field.title}</h4>}
             <div className="card-row m0">
               {field.value.map(({ text, href }, idx) => (
-                <a href={href} key={`card-links-url-${idx}`}>
+                <a href={href} key={idx}>
                   {text}
                 </a>
               ))}
@@ -191,7 +190,7 @@ export const Card = ({
             {field.title && <h4>{field.title}</h4>}
             <div className="card-row m0">
               {field.value.map((t, idx) => (
-                <CardText key={`card-list-text-${idx}`} value={t} {...t} />
+                <CardText key={idx} value={t} {...t} />
               ))}
             </div>
           </div>
@@ -201,11 +200,11 @@ export const Card = ({
     }
   }
 
-  function renderRow(row) {
+  function renderRow(row, rowIdx) {
     return (
-      <div className="card-row" key={hash(row)}>
-        {row.map((field) => (
-          <span key={hash(field)}>{renderField(field)}</span>
+      <div className="card-row" key={rowIdx}>
+        {row.map((field, fieldIdx) => (
+          <span key={fieldIdx}>{renderField(field)}</span>
         ))}
       </div>
     );
@@ -216,11 +215,10 @@ export const Card = ({
 
   return (
     <li
-      key={hash(content)}
       className={`event-card ${isSelected ? "selected" : ""}`}
       onClick={onSelect}
     >
-      {content.map((row) => renderRow(row))}
+      {content.map((row, rowIdx) => renderRow(row, rowIdx))}
       {isOpen && (
         <div className="card-bottomhalf">
           {sources.map(() => (
