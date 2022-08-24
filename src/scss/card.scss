@@ -266,7 +266,8 @@
     width: calc(#{$card-width} - 50px) !important;
   }
 
-  .source-hidden {
+  .source-hidden,
+  .source-graphic {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -280,5 +281,16 @@
     h4 {
       color: white;
     }
+  }
+}
+.media.source-graphic {
+  background-color: darken($red, 26%);
+  h4 {
+    color: white;
+  }
+  h4:hover {
+    font-size: 103%;
+    color: lighten(yellow, 20%);
+    cursor: pointer;
   }
 }

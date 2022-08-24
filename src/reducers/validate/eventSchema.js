@@ -19,6 +19,7 @@ function createEventSchema(custom) {
       id: Joi.string().allow(""),
       civId: Joi.string().allow(""),
       description: Joi.string().allow("").required(),
+      graphic: Joi.string().allow(""),
       date: Joi.string().allow(""),
       time: Joi.string().allow(""),
       time_precision: Joi.string().allow(""),

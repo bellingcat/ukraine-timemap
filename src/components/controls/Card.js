@@ -71,7 +71,7 @@ export const generateCardLayout = {
         source.paths.map((p) => ({
           kind: "media",
           title: "Media",
-          value: [{ src: p, title: null }],
+          value: [{ src: p, title: null, graphic: event.graphic === "TRUE" }],
         })),
       ]),
     ];
@@ -81,6 +81,7 @@ export const generateCardLayout = {
 export const Card = ({
   content = [],
   isLoading = true,
+  cardIdx = -1,
   onSelect = () => {},
   sources = [],
   isSelected = false,
@@ -103,17 +104,25 @@ export const Card = ({
       <CardCaret toggle={() => toggle()} isOpen={isOpen} />
     );
 
-  const renderMedia = ({ media, idx }) => {
-    return <CardMedia key={idx} src={media.src} title={media.title} />;
+  const renderMedia = ({ media, idx, cardIdx }) => {
+    return (
+      <CardMedia
+        key={idx}
+        cardIdx={cardIdx}
+        src={media.src}
+        title={media.title}
+        graphic={media.graphic}
+      />
+    );
   };
 
-  function renderField(field) {
+  function renderField(field, cardIdx) {
     switch (field.kind) {
       case "media":
         return (
           <div className="card-cell">
             {field.value.map((media, idx) => {
-              return renderMedia({ media, idx });
+              return renderMedia({ media, idx, cardIdx });
             })}
           </div>
         );
@@ -201,11 +210,12 @@ export const Card = ({
     }
   }
 
-  function renderRow(row) {
+  function renderRow(row, cardIdx) {
     return (
       <div className="card-row" key={hash(row)}>
         {row.map((field) => (
-          <span key={hash(field)}>{renderField(field)}</span>
+          // src by src meaning wrapGrahpic must be called around a map of renderField for sources
+          <span key={hash(field)}>{renderField(field, cardIdx)}</span>
         ))}
       </div>
     );
@@ -220,7 +230,7 @@ export const Card = ({
       className={`event-card ${isSelected ? "selected" : ""}`}
       onClick={onSelect}
     >
-      {content.map((row) => renderRow(row))}
+      {content.map((row) => renderRow(row, cardIdx))}
       {isOpen && (
         <div className="card-bottomhalf">
           {sources.map(() => (

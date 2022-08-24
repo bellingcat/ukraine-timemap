@@ -11,7 +11,38 @@ const TITLE_LENGTH = 50;
 //    - only show cover image and then lightbox when clicked
 //    - show video control plane?
 // TODO landscape image doesn't fit in box properly
-const Media = ({ src, title }) => {
+const Media = ({ cardIdx, src, title, graphic }) => {
+  const wrapGraphic = (content) => {
+    if (!graphic) return content;
+
+    const contentId = `graphic${cardIdx}`;
+    const overlayId = `overlay-${contentId}`;
+    return (
+      <div>
+        <div className={`card-cell media source-graphic ${overlayId}`}>
+          <h4
+            onClick={() => {
+              Array.from(document.querySelectorAll("." + contentId)).map(
+                (o) => (o.style.display = "block")
+              );
+              // Array.from(document.querySelectorAll("." + overlayId)).map(o => o.remove())
+              Array.from(document.querySelectorAll("." + overlayId)).map(
+                (o) => (o.style.display = "none")
+              );
+              // document.getElementById(contentId).style.display = "block"
+            }}
+          >
+            Graphic content
+            <br />
+            Click here to show
+          </h4>
+        </div>
+        <span className={contentId} style={{ display: "none" }}>
+          {content}
+        </span>
+      </div>
+    );
+  };
   const videoRef = useRef();
   const onVideoStart = useCallback(() => {
     return videoRef.current?.play();
@@ -28,7 +59,7 @@ const Media = ({ src, title }) => {
 
   switch (type) {
     case "Video":
-      return (
+      return wrapGraphic(
         <div className="card-cell media">
           {title && <h4 title={title}>{formattedTitle}</h4>}
           <video
@@ -44,7 +75,7 @@ const Media = ({ src, title }) => {
         </div>
       );
     case "Image":
-      return (
+      return wrapGraphic(
         <div className="card-cell media">
           {title && <h4 title={title}>{formattedTitle}</h4>}
           <div className="img-wrapper">
@@ -57,7 +88,7 @@ const Media = ({ src, title }) => {
       );
 
     case "Telegram":
-      return (
+      return wrapGraphic(
         <div className="card-cell media embedded">
           <TelegramPostEmbed src={src} />
         </div>
@@ -72,7 +103,7 @@ const Media = ({ src, title }) => {
       }
       const tweetId = match[match.length - 1];
 
-      return (
+      return wrapGraphic(
         <div className="card-cell media embedded">
           <TwitterTweetEmbed
             tweetId={tweetId}

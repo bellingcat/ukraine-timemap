@@ -77,7 +77,8 @@ class CardStack extends React.Component {
 
       return (
         <Card
-          key={hash(content)}
+          key={idx}
+          cardIdx={idx}
           content={content}
           language={this.props.language}
           isLoading={this.props.isLoading}
