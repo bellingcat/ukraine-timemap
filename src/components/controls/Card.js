@@ -238,10 +238,9 @@ export const Card = ({
       onClick={onSelect}
     >
       {content.map((row) => {
-        if (row[0].kind === "sources") {
+        if (row[0].kind === "sources" && row[0].values.length > 0) {
           return (
             <div>
-              {/* <div key={hash(row)} className="TESTS">TEST</div> */}
               <details>
                 <summary>
                   <span className="summary-line"></span>
