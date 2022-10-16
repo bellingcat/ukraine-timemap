@@ -40,5 +40,12 @@
   .react-innertabpanel {
     box-sizing: border-box;
     padding-top: 0;
+
+    hr {
+      border-top: 0;
+      border-bottom: 1px solid $midwhite;
+      margin-block-start: 0.5em;
+      margin-block-end: 1.5em;
+    }
   }
 }

@@ -193,17 +193,36 @@
     }
   }
 
-  .download-row {
-    display: flex;
-    flex-direction: row;
+  .download-row + .download-row {
+    margin-top: 14px;
   }
   .download-button {
-    flex: 1 1 auto;
+    aspect-ratio: 1 / 1;
+    width: 50px;
+    height: auto;
+    flex-direction: column;
+    text-align: center;
+    display: inline-flex;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+    color: $black;
+    border: 1px solid $offwhite;
+    background: $offwhite;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    &:hover {
+      background: rgba(#fff, 0.6);
+    }
   }
   .download-description {
-    flex: 1 5 auto;
-    text-align: justify;
-    margin: auto;
+    display: inline-block;
+    width: calc(100% - 52px);
+    padding-left: 12px;
+    box-sizing: border-box;
+    vertical-align: middle;
   }
 
   .toolbar-tab {
