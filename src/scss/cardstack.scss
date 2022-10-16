@@ -19,6 +19,14 @@
   background: $offwhite;
   border-radius: 6px;
 
+  @media screen and (max-width: 600px) {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-height: 100vh;
+  }
+
   &.narrative-mode {
     right: $card-right;
     left: auto;

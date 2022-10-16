@@ -100,6 +100,20 @@
           color: $midwhite;
           font-weight: 400;
         }
+        @media screen and (max-width: 600px) {
+          font-size: 1rem;
+          &:nth-child(1) {
+            font-size: 0.875rem;
+          }
+        }
+      }
+
+      // mobile styles
+      @media screen and (max-width: 600px) {
+        bottom: 115%;
+        bottom: calc(100% + 25px);
+        width: 96vw;
+        margin: 0 2vw 10px;
       }
     }
   }
@@ -275,6 +289,9 @@
   align-items: center;
   justify-content: center;
   grid-gap: 9px;
+  @media screen and (max-width: 600px) {
+    padding: 6px 3px;
+  }
 
   .zoom-level-button {
     padding: 6px 9px;
@@ -288,6 +305,7 @@
     border: 0;
     background-color: transparent;
     font-weight: 600;
+    text-align: center;
 
     &:hover {
       color: $offwhite;

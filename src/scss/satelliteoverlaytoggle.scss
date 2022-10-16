@@ -8,6 +8,10 @@
   border-radius: 6px;
   overflow: hidden;
 
+  @media screen and (max-width: 600px) {
+    top: 75px;
+  }
+
   .satellite-overlay-toggle-button {
     cursor: pointer;
     width: 64px;

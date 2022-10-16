@@ -21,6 +21,20 @@
   border-radius: 6px;
   box-shadow: 10px -10px 38px rgba(0, 0, 0, 0.3),
     10px 15px 12px rgba(0, 0, 0, 0.22);
+
+  @media screen and (max-width: 600px) {
+    font-size: 18px;
+    width: auto;
+    max-width: none;
+    left: 3px;
+    top: auto;
+    bottom: 3px;
+    right: 3px;
+    max-height: 90vh;
+    max-height: calc(100vh - 76px);
+    background: rgba(0, 0, 0, 0.95);
+    overflow: auto;
+  }
   p:nth-last-child(1) {
     margin-bottom: 0;
   }
@@ -72,6 +86,9 @@
     // background: $black-transparent;
     background: rgba(0, 0, 0, 0.8);
     color: white;
+    @media screen and (max-width: 600px) {
+      background: rgba(0, 0, 0, 0.9);
+    }
   }
 
   iframe {

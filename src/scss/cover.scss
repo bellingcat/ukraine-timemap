@@ -41,8 +41,12 @@
     top: 78px;
     right: 7px;
     transition: all 0.6s ease;
-    transition-delay: 0;
+    transition-delay: 0s;
     z-index: 10;
+
+    @media screen and (max-width: 600px) {
+      top: 145px;
+    }
   }
 
   .cover-logo-container {

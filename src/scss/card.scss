@@ -59,6 +59,14 @@
     .card-cell {
       flex: 1;
     }
+
+    @media screen and (max-width: 600px) {
+      flex-wrap: wrap;
+      & > span {
+        display: block;
+        min-width: 50%;
+      }
+    }
   }
 
   .card-col {
@@ -263,10 +271,18 @@
 
   .card-row {
     border-color: darkgray;
+
+    @media screen and (max-width: 600px) {
+      & > span {
+        flex: 1;
+      }
+    }
   }
 
   .embedded {
-    width: calc(#{$card-width} - 50px) !important;
+    // width: calc(#{$card-width} - 50px) !important;
+    width: 100%;
+    max-width: 90vw;
   }
 
   .source-hidden,
