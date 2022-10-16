@@ -67,13 +67,20 @@ export const generateCardLayout = {
           scaleFont: 1.1,
         },
       ],
-      ...event.sources.flatMap((source) => [
-        source.paths.map((p) => ({
-          kind: "media",
-          title: "Media",
-          value: [{ src: p, title: null, graphic: event.graphic === "TRUE" }],
-        })),
-      ]),
+      [
+        {
+          kind: "sources",
+          values: event.sources.flatMap((source) => [
+            source.paths.map((p) => ({
+              kind: "media",
+              title: "Media",
+              value: [
+                { src: p, title: null, graphic: event.graphic === "TRUE" },
+              ],
+            })),
+          ]),
+        },
+      ],
     ];
   },
 };
@@ -230,14 +237,35 @@ export const Card = ({
       className={`event-card ${isSelected ? "selected" : ""}`}
       onClick={onSelect}
     >
-      {content.map((row) => renderRow(row, cardIdx))}
-      {isOpen && (
+      {content.map((row) => {
+        if (row[0].kind === "sources") {
+          return (
+            <div>
+              {/* <div key={hash(row)} className="TESTS">TEST</div> */}
+              <details>
+                <summary>
+                  <span className="summary-line"></span>
+                  <span className="summary-text">
+                    <span className="summary-show">Show</span>{" "}
+                    <span className="summary-hide">Hide</span> sources (
+                    {row[0].values.length})
+                  </span>
+                  <span className="summary-line"></span>
+                </summary>
+                {row[0].values.map((r) => renderRow(r, cardIdx))}
+              </details>
+            </div>
+          );
+        } else return renderRow(row, cardIdx);
+      })}
+
+      {/* {isOpen && (
         <div className="card-bottomhalf">
           {sources.map(() => (
             <div className="card-row"></div>
           ))}
         </div>
-      )}
+      )} */}
       {sources.length > 0 ? renderCaret() : null}
     </li>
   );

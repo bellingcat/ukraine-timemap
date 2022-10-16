@@ -1,20 +1,21 @@
 .event-card {
   box-sizing: border-box;
-  border: 1px solid black;
   margin: 0;
   padding: 15px;
   transition: 0.2 ease;
-  background: $midwhite;
-  opacity: 0.92;
-  color: $darkgrey;
+  border: 0;
+  opacity: 1;
+  color: $black;
   list-style-type: none;
-  font-size: $large;
-  line-height: $xxlarge;
   transition: background-color 0.4s;
   text-align: left;
-  overflow-y: scroll;
+  overflow-y: auto;
   height: 100%;
   max-width: $card-width;
+
+  & + .event-card {
+    border-top: 1px solid #dedede;
+  }
 
   &:hover {
     background: $lightwhite;
@@ -26,9 +27,10 @@
     margin-bottom: 0;
     margin-right: 5px;
     text-transform: uppercase;
-    font-size: $small;
-    color: $darkwhite;
-    font-weight: 800;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: $midwhite;
+    margin-bottom: 3px;
 
     &:first-child {
       margin-top: 0;
@@ -104,6 +106,7 @@
   }
 
   .card-cell {
+    font-size: 16px;
     a {
       transition: color 0.2s;
     }
@@ -282,15 +285,60 @@
       color: white;
     }
   }
+
+  details {
+    margin-top: 18px;
+  }
+  /* Styling the Disclosure Widgets */
+  details > summary {
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &:hover {
+      .summary-text {
+        background: rgba($active, 0.3);
+      }
+    }
+    .summary-hide {
+      display: none;
+    }
+    .summary-line {
+      height: 1px;
+      flex: 1;
+      background: #000;
+    }
+    .summary-text {
+      padding: 5px 9px;
+      border-radius: 6px;
+      margin: 0 6px;
+      transition: background 0.3s ease;
+    }
+  }
+
+  details[open] {
+    .summary-hide {
+      display: inline;
+    }
+    .summary-show {
+      display: none;
+    }
+  }
+
+  details > summary > * {
+    display: inline;
+  }
 }
 .media.source-graphic {
   background-color: darken($red, 26%);
   h4 {
-    color: white;
+    color: $midwhite;
+    transition: font-size 0.3s ease;
   }
   h4:hover {
     font-size: 103%;
-    color: lighten(yellow, 20%);
+    color: $offwhite;
     cursor: pointer;
   }
 }

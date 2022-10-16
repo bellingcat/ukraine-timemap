@@ -142,6 +142,13 @@ Scrollbar
   background: $offwhite;
 }
 
+.scrollbar-black {
+  *::-webkit-scrollbar-thumb,
+  &::-webkit-scrollbar-thumb {
+    background: $black;
+  }
+}
+
 .hidden {
   visibility: hidden;
 }
