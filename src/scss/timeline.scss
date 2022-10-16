@@ -65,28 +65,39 @@
         border-bottom: 2px solid $midwhite;
       }
     }
+    @media screen and (max-width: 1040px) {
+      .timeline-toggle p {
+        margin: -25px 10px 0 auto;
+      }
+    }
 
     .timeline-info {
+      width: calc(#{$card-width} - 20px);
+      position: absolute;
+      bottom: 100%;
+      margin-bottom: 6px;
+      margin-left: 10px;
+      background: rgba($black, 0.8);
+      padding: 9px 15px 11px;
+      box-sizing: border-box;
+      min-height: 20px;
+      border-radius: 6px;
       &.hidden {
         display: none;
       }
-      width: calc(#{$card-width} - 20px);
-      position: absolute;
-      margin-top: -70px;
-      margin-left: 10px;
-      background: rgba($black, 0.8);
-      padding: 10px;
-      min-height: 20px;
       p {
         margin: 0;
-        height: 20px;
         text-transform: uppercase;
-        letter-spacing: 0.1em;
+        font-size: 1.15rem;
 
+        span {
+          color: $offwhite;
+        }
         &:first-child {
           text-transform: none;
-          font-size: $normal;
-          letter-spacing: 0.05em;
+          font-size: 1rem;
+          color: $midwhite;
+          font-weight: 400;
         }
       }
     }
