@@ -5,7 +5,6 @@
   position: fixed;
   top: 0px;
   left: 0px;
-  bottom: 0px;
   z-index: $header;
   background: transparent;
 
@@ -282,7 +281,7 @@
     }
 
     &.active {
-      background: $black;
+      background: $active;
     }
 
     &:hover,
