@@ -22,42 +22,34 @@
   position: fixed;
   bottom: 20px;
   left: 0;
-  display: flex;
-  width: 100vw;
+  width: 64px;
+  right: 7px;
+  left: auto;
+  top: 7px;
+  bottom: auto;
+  border-radius: 6px;
+  overflow: hidden;
+  max-width: initial;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: all 0.6s ease;
+  transition-delay: 0.3s;
 
-  @media only screen and (max-width: 1200px) {
-    position: inherit;
+  &.minimized {
+    top: 78px;
+    right: 7px;
+    transition: all 0.6s ease;
+    transition-delay: 0;
   }
 
   .cover-logo-container {
-    padding: 20px 0 0 20px;
-    display: flex;
-
-    &.minimized {
-    }
-
-    .cover-logo {
-      transition: all 1s;
-      width: 60px;
-      height: 60px;
-    }
-  }
-
-  &.minimized {
-    bottom: 150px;
-    max-width: $toolbar-width;
-    max-height: 30px;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
-    .cover-logo-container {
-      padding: 5px;
-    }
-
-    .cover-logo {
-      width: 60px;
-      height: 60px;
+    display: block;
+    padding: 0;
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
     }
   }
 }
@@ -152,25 +144,14 @@
 
   .hero {
     min-width: 100%;
-    min-height: 80px;
-    margin: auto;
+    margin: 20px 0 40px;
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
-    margin-top: 60px;
-
-    @media only screen and (max-width: 1200px) {
-      min-height: 250px;
-    }
 
     .row {
       display: flex;
       flex: 1;
       flex-direction: row;
-
-      @media only screen and (max-width: 1200px) {
-        flex-direction: column;
-      }
 
       justify-content: space-around;
 
@@ -200,37 +181,30 @@
           min-height: 10px;
           background-color: black;
           letter-spacing: 1px;
-
-          @media only screen and (max-width: 1200px) {
-            min-height: 100px;
-          }
         }
 
         &.yellow {
-          color: black !important;
+          color: $offwhite;
           background-color: $yellow;
         }
 
         &:hover {
           cursor: pointer;
-          background-color: $darkwhite;
-          color: white;
-        }
-
-        @media only screen and (max-width: 1200px) {
-          min-height: 100px;
+          background-color: $offwhite;
+          color: $yellow;
+          border-color: $yellow;
         }
       }
     }
   }
 
   .cover-content {
-    display: flex;
     flex-direction: column;
     max-width: 600px;
+    margin: 0 auto;
     overflow-y: auto;
     overflow-x: hidden;
-    padding-bottom: 10em;
+    padding-bottom: 2em;
 
     h1,
     h2,
@@ -238,6 +212,9 @@
     h4,
     h5 {
       text-align: center;
+    }
+    h2 {
+      margin: 75px 0 15px;
     }
 
     h1 {
@@ -264,6 +241,8 @@
 
       p {
         text-align: justify;
+        font-size: 1.2rem;
+        line-height: 1.65em;
       }
     }
 
