@@ -33,7 +33,7 @@ const TimelineMarkers = ({
           strokeLinejoin="round"
           strokeDasharray={styles ? styles["stroke-dasharray"] : "2,2"}
           style={{
-            transform: `translate(${getEventX(event)}px, ${y + 21}px)`,
+            transform: `translate(${getEventX(event)}px, ${y + 40}px)`,
             WebkitTransition: `transform ${transitionDuration / 1000}s ease`,
             MozTransition: "none",
             opacity: 1,
