@@ -1,23 +1,39 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>TimeMap - Forensic Architecture</title>
   <link rel="stylesheet" href="https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css">
-  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"> -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Styles are always go to the head, never the body -->
+  <style>
+    @media (hover: none) {
+      #id {
+        display: none;
+      }
+
+      #nodisplay {
+        display: block;
+      }
+    }
+
+    @media (hover: hover) {
+      #nodisplay {
+        display: none;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<style>
-@media (hover: none) {
-  #id { display: none; }
-  #nodisplay { display: block; }
-}
-@media (hover: hover) {
-  #nodisplay {display: none; }
-}
-</style>
   <div class="page">
     <div class="page">
       <div id="explore-app"></div>
@@ -27,4 +43,5 @@
     </div>
   </div>
 </body>
+
 </html>
