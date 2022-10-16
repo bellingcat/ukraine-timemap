@@ -282,25 +282,26 @@ class Dashboard extends React.Component {
     const padding = 2;
     const checkMobile = isMobileOnly || window.innerWidth < 600;
 
-    const popupStyles = {
-      height: checkMobile ? "100vh" : "fit-content",
-      display: checkMobile ? "block" : "table",
-      width: checkMobile
-        ? "100vw"
-        : window.innerWidth > 768
-        ? "60vw"
-        : "calc(100vw - var(--toolbar-width))",
-      maxWidth: checkMobile ? "100vw" : 600,
-      maxHeight: checkMobile
-        ? "100vh"
-        : window.innerHeight > 768
-        ? `calc(100vh - ${timeline.dimensions.height}px - ${dateHeight}px)`
-        : "100vh",
-      left: checkMobile ? padding : "var(--toolbar-width)",
-      top: 0,
-      overflowY: "scroll",
-      textAlign: "justify",
-    };
+    const popupStyles = {};
+    // const popupStyles = {
+    //   height: checkMobile ? "100vh" : "fit-content",
+    //   display: "block",
+    //   width: checkMobile
+    //     ? "100vw"
+    //     : window.innerWidth > 768
+    //       ? "60vw"
+    //       : "calc(100vw - var(--toolbar-width))",
+    //   maxWidth: checkMobile ? "100vw" : 600,
+    //   maxHeight: checkMobile
+    //     ? "100vh"
+    //     : window.innerHeight > 768
+    //       ? `calc(100vh - ${timeline.dimensions.height}px - ${dateHeight}px)`
+    //       : "100vh",
+    //   left: checkMobile ? padding : "var(--toolbar-width)",
+    //   top: 0,
+    //   overflowY: "scroll",
+    //   textAlign: "justify",
+    // };
 
     return (
       <div>
