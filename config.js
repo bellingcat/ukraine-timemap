@@ -29,8 +29,8 @@ module.exports = {
       },
       timeline: {
         dimensions: {
-          height: 150,
-          contentHeight: 150,
+          height: 90,
+          contentHeight: 90,
         },
         zoomLevels: [
           { label: "Zoom to 2 weeks", duration: 14 * one_day },

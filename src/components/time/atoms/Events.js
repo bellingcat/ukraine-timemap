@@ -26,7 +26,7 @@ function renderDot(event, styles, props) {
       key={event.id}
       className="timeline-event"
       onClick={props.onSelect}
-      transform={`translate(${props.x}, ${props.y})`}
+      transform={`translate(${props.x}, ${props.y + 40})`}
     >
       <ColoredMarkers
         radius={props.eventRadius}

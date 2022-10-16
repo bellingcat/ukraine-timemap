@@ -2,18 +2,18 @@
   position: fixed;
   box-sizing: border-box;
   left: 0;
-  right: 0px;
-  height: $timeline-height;
+  right: 0;
+  bottom: 0;
+  height: auto;
   background: rgba($black, 0.8);
   box-shadow: 0 -10px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   color: white;
-  transition: left 0.2s ease, bottom 0.2s ease;
-  bottom: 0px;
+  transition: transform 0.3s ease;
   z-index: $timeline;
   border-top: 1px solid black;
 
   &.folded {
-    transition: bottom 0.2s ease;
+    transform: translateY(100%);
 
     .timeline-header .timeline-toggle p .arrow-down {
       transform: translate(0, 0px) rotate(-135deg);
@@ -44,6 +44,7 @@
         margin: 0 auto;
         background: rgba($black, 0.8);
         margin-top: -25px;
+        border-radius: 6px 6px 0 0;
         cursor: pointer;
 
         &:hover {
@@ -104,10 +105,6 @@
   }
 
   .timeline-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
     .timeline-labels {
       padding-top: 2px;
       padding-left: 20px;
@@ -145,15 +142,11 @@
     }
 
     .timeline {
-      /*width: calc(100% - 200px);*/
-      width: calc(100% - 40px);
-      margin-left: 20px;
+      width: 100%;
       box-sizing: border-box;
-      float: left;
 
       svg {
-        display: inline-block;
-        float: left;
+        display: block;
       }
 
       .domain {
@@ -272,21 +265,37 @@
           }
         }
       }
+    }
+  }
+}
 
-      .zoom-level-button {
-        font-size: $xsmall;
-        cursor: pointer;
-        text-anchor: middle;
-        letter-spacing: 0.05em;
-        transition: 0.2s ease;
-        fill: $midwhite;
+.zoom-controls {
+  display: flex;
+  padding: 6px 20px;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 9px;
 
-        &:hover,
-        &.active {
-          transition: 0.2s ease;
-          fill: $offwhite;
-        }
-      }
+  .zoom-level-button {
+    padding: 6px 9px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    text-anchor: middle;
+    letter-spacing: 0.05em;
+    transition: 0.2s ease;
+    color: $midwhite;
+    border-radius: 3px;
+    border: 0;
+    background-color: transparent;
+    font-weight: 600;
+
+    &:hover {
+      color: $offwhite;
+      background-color: rgba($active, 0.3);
+    }
+    &.active {
+      color: $offwhite;
+      background-color: $active;
     }
   }
 }

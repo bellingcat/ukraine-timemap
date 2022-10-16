@@ -23,7 +23,7 @@ const TimelineZoomControls = ({ extent, zoomLevels, dims, onApplyZoom }) => {
     );
     const isActive = zoomIsActive(zoom.duration, extent, max.duration);
     return (
-      <text
+      <div
         className={`zoom-level-button ${isActive ? "active" : ""}`}
         x="60"
         y={idx * 15 + 20}
@@ -31,7 +31,7 @@ const TimelineZoomControls = ({ extent, zoomLevels, dims, onApplyZoom }) => {
         key={idx}
       >
         {zoom.label}
-      </text>
+      </div>
     );
   }
 
@@ -39,9 +39,9 @@ const TimelineZoomControls = ({ extent, zoomLevels, dims, onApplyZoom }) => {
     zoomLevels = DEFAULT_ZOOM_LEVELS;
   }
   return (
-    <g transform={`translate(${dims.width - dims.width_controls}, 0)`}>
+    <div className="zoom-controls">
       {zoomLevels.map((z, idx) => renderZoom(z, idx))}
-    </g>
+    </div>
   );
 };
 

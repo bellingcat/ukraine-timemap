@@ -77,7 +77,7 @@ const initial = {
         ticks: 15,
         height: isSmallLaptop ? 170 : 250,
         width: 0,
-        marginLeft: 70,
+        marginLeft: 20,
         marginTop: isSmallLaptop ? 5 : 10, // the padding used for the day/month labels inside the timeline
         marginBottom: 60,
         contentHeight: isSmallLaptop ? 160 : 200,
@@ -159,7 +159,7 @@ const initial = {
     tiles: {
       current: "openstreetmap", // ['openstreetmap', 'streets', 'satellite']
       default: "openstreetmap", // ['openstreetmap', 'streets', 'satellite']
-      satellite: "satellite"
+      satellite: "satellite",
     },
     style: {
       categories: {
