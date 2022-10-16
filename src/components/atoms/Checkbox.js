@@ -13,14 +13,26 @@ const Checkbox = ({ label, isActive, onClickCheckbox, color, styleProps }) => {
   const checkboxStyles = styleProps
     ? styleProps.checkboxStyles
     : baseStyles.checkboxStyles;
+
+  const generatedId = label.toLowerCase().replaceAll(" ", "-");
+  const onClickCheckboxWrapper = (e) => {
+    // stop propagation in order to call method only one time
+    e.stopPropagation();
+    onClickCheckbox(e);
+  };
   return (
-    <div className={isActive ? "item active" : "item"}>
-      <span style={{ color: color }}>{label}</span>
-      <button onClick={onClickCheckbox}>
+    <div
+      className={isActive ? "item active" : "item"}
+      onClick={onClickCheckboxWrapper}
+    >
+      <button id={generatedId} onClick={onClickCheckboxWrapper}>
         <div className="border" style={containerStyles}>
           <div className="checkbox" style={checkboxStyles} />
         </div>
       </button>
+      <label htmlFor={generatedId} style={{ color: color }}>
+        {label}
+      </label>
     </div>
   );
 };

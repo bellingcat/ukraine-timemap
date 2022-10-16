@@ -371,7 +371,6 @@ class Timeline extends React.Component {
     const { dims } = this.state;
     const foldedStyle = {
       bottom: this.state.isFolded ? -dims.height : 0,
-      left: 110,
     };
     const heightStyle = { height: dims.height };
     const extraStyle = { ...heightStyle, ...foldedStyle };

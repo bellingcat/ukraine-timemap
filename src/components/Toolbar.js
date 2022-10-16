@@ -29,12 +29,15 @@ class Toolbar extends React.Component {
   constructor(props) {
     super(props);
     this.onSelectFilter = this.onSelectFilter.bind(this);
-    this.state = { _selected: -1 };
+    this.state = { _selected: 0, _active: false };
   }
 
   selectTab(selected) {
-    const _selected = this.state._selected === selected ? -1 : selected;
-    this.setState({ _selected });
+    let active = true;
+    if (this.state._selected === selected && this.state._active === true) {
+      active = false;
+    }
+    this.setState({ _selected: selected, _active: active });
   }
 
   onSelectFilter(key, matchingKeys) {
@@ -79,14 +82,17 @@ class Toolbar extends React.Component {
 
   renderClosePanel() {
     return (
-      <div className="panel-header" onClick={() => this.selectTab(-1)}>
+      <div
+        className="panel-header"
+        onClick={() => this.selectTab(this.state._selected)}
+      >
         <div className="caret" />
       </div>
     );
   }
 
   goToNarrative(narrative) {
-    this.selectTab(-1); // set all unselected within this component
+    // this.selectTab(-1); // set all unselected within this component
     this.props.methods.onSelectNarrative(narrative);
   }
 
@@ -202,7 +208,9 @@ class Toolbar extends React.Component {
         key={key}
         label={label}
         iconKey={iconKey}
-        isActive={this.state._selected === _selected}
+        isActive={
+          this.state._selected === _selected && this.state._active === true
+        }
         onClick={() => {
           this.selectTab(_selected);
         }}
@@ -229,7 +237,7 @@ class Toolbar extends React.Component {
   renderToolbarPanels() {
     const { features, narratives } = this.props;
     const classes =
-      this.state._selected >= 0 ? "toolbar-panels" : "toolbar-panels folded";
+      this.state._active === true ? "toolbar-panels" : "toolbar-panels folded";
     return (
       <div className={classes}>
         {this.renderClosePanel()}
@@ -247,7 +255,8 @@ class Toolbar extends React.Component {
   renderToolbarNavs() {
     if (this.props.narratives) {
       return this.props.narratives.map((nar, idx) => {
-        const isActive = idx === this.state._selected;
+        const isActive =
+          idx === this.state._selected && this.state._active === true;
 
         const classes = isActive ? "toolbar-tab active" : "toolbar-tab";
 
