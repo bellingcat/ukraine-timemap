@@ -1,5 +1,11 @@
 @import "variables";
 
+html {
+  font-family: $mainfont;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
 body {
   margin: 0;
   overflow: hidden;
@@ -15,12 +21,17 @@ body {
 }
 
 h1 {
-  font-family: $mainfont;
 }
 
 h2 {
+  font-size: 1.3rem;
+  font-weight: bold;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.5em;
 }
 
 .login-wrapper {
@@ -58,7 +69,6 @@ h2 {
     height: 30px;
     border: 1px solid $offwhite;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
     cursor: pointer;
     outline: none;
     margin-top: 10px;
