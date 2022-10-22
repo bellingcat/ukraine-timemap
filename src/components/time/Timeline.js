@@ -452,15 +452,6 @@ class Timeline extends React.Component {
                   coloringSet={this.props.app.coloringSet}
                 />
               </svg>
-              {timeline.dimensions.ticks === 1 && (
-                <Handles
-                  dims={dims}
-                  onMoveTime={(dir) => {
-                    this.onMoveTime(dir);
-                  }}
-                  backward={false}
-                />
-              )}
             </div>
 
             <div className="timeline-bottom">

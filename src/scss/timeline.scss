@@ -307,6 +307,10 @@
     font-weight: 600;
     text-align: center;
 
+    @media screen and (max-width: 600px) {
+      font-size: 0.65rem;
+    }
+
     &:hover {
       color: $offwhite;
       background-color: rgba($active, 0.3);
