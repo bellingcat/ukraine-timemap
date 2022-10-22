@@ -217,12 +217,14 @@ export const Card = ({
     }
   }
 
-  function renderRow(row, cardIdx) {
+  function renderRow(row, cardIdx, salt) {
     return (
-      <div className="card-row" key={hash(row)}>
+      <div className="card-row" key={hash({ ...row, salt })}>
         {row.map((field) => (
           // src by src meaning wrapGrahpic must be called around a map of renderField for sources
-          <span key={hash(field)}>{renderField(field, cardIdx)}</span>
+          <span key={hash({ ...field, row: row })}>
+            {renderField(field, cardIdx)}
+          </span>
         ))}
       </div>
     );
@@ -251,7 +253,7 @@ export const Card = ({
                   </span>
                   <span className="summary-line"></span>
                 </summary>
-                {row[0].values.map((r) => renderRow(r, cardIdx))}
+                {row[0].values.map((r) => renderRow(r, cardIdx, row[0]))}
               </details>
             </div>
           );
