@@ -56,6 +56,7 @@
     flex-direction: row;
     justify-content: space-between;
 
+    & > span,
     .card-cell {
       flex: 1;
     }
@@ -283,6 +284,10 @@
     // width: calc(#{$card-width} - 50px) !important;
     width: 100%;
     max-width: 90vw;
+
+    .twitter-tweet {
+      max-width: 450px !important;
+    }
   }
 
   .source-hidden,
