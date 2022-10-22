@@ -340,6 +340,49 @@
   cursor: pointer;
 }
 
-.handle {
-  fill: $offwhite;
+/*
+* Handles
+*/
+.timeline-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.timeline-handle {
+  width: 30px;
+  height: 30px;
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba($active, 0.4);
+    .timeline-handle__triangle {
+      border-color: transparent $offwhite transparent transparent;
+    }
+  }
+  &__triangle {
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 7px 10px 7px 0;
+    border-color: transparent $midwhite transparent transparent;
+  }
+  &.right {
+    margin-right: 5px;
+    &:hover {
+      background-color: rgba($active, 0.4);
+      .timeline-handle__triangle {
+        border-color: transparent transparent transparent $offwhite;
+      }
+    }
+    .timeline-handle__triangle {
+      border-width: 7px 0 7px 10px;
+      border-color: transparent transparent transparent $midwhite;
+    }
+  }
 }

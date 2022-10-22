@@ -390,7 +390,7 @@ class Timeline extends React.Component {
         />
         <div className="timeline-content">
           <div id={this.props.ui.dom.timeline} className="timeline">
-            <div>
+            <div className="timeline-container">
               <svg ref={this.svgRef} width={dims.width} style={contentHeight}>
                 <Clip dims={dims} />
                 <Axis
@@ -415,14 +415,6 @@ class Timeline extends React.Component {
                       .default_categories_label
                   }
                 />
-                {timeline.dimensions.ticks === 1 && (
-                  <Handles
-                    dims={dims}
-                    onMoveTime={(dir) => {
-                      this.onMoveTime(dir);
-                    }}
-                  />
-                )}
                 <Markers
                   dims={dims}
                   selected={this.props.app.selected}
@@ -460,14 +452,39 @@ class Timeline extends React.Component {
                   coloringSet={this.props.app.coloringSet}
                 />
               </svg>
+              {timeline.dimensions.ticks === 1 && (
+                <Handles
+                  dims={dims}
+                  onMoveTime={(dir) => {
+                    this.onMoveTime(dir);
+                  }}
+                  backward={false}
+                />
+              )}
             </div>
 
-            <ZoomControls
-              extent={this.getTimeScaleExtent()}
-              zoomLevels={timeline.zoomLevels}
-              dims={dims}
-              onApplyZoom={this.onApplyZoom}
-            />
+            <div className="timeline-bottom">
+              <Handles
+                dims={dims}
+                onMoveTime={(dir) => {
+                  this.onMoveTime(dir);
+                }}
+                backward={true}
+              />
+              <ZoomControls
+                extent={this.getTimeScaleExtent()}
+                zoomLevels={timeline.zoomLevels}
+                dims={dims}
+                onApplyZoom={this.onApplyZoom}
+              />
+              <Handles
+                dims={dims}
+                onMoveTime={(dir) => {
+                  this.onMoveTime(dir);
+                }}
+                backward={false}
+              />
+            </div>
           </div>
         </div>
       </div>
