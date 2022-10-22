@@ -355,6 +355,7 @@
   max-height: calc(100vh - #{$timeline-height} - 50px);
   box-shadow: 10px -10px 38px rgba(0, 0, 0, 0.3),
     10px 15px 12px rgba(0, 0, 0, 0.22);
+  z-index: 20;
 
   @media screen and (max-width: 600px) {
     left: 3px;
@@ -642,6 +643,31 @@
 
   .item {
     border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  }
+}
+
+/*
+* Made with block
+*/
+#made-with {
+  position: fixed;
+  top: 75px;
+  background: rgba(0, 0, 0, 0.8);
+  left: 5px;
+  padding: 5px 12px;
+  margin-bottom: 6px;
+  border-radius: 4px;
+  width: 115px;
+  text-align: left;
+  font-size: 0.75rem;
+  opacity: 0.65;
+  color: $midwhite;
+  &:hover {
+    opacity: 1;
+  }
+  @media screen and (max-width: 600px) {
+    top: 65px;
+    opacity: 1;
   }
 }
 

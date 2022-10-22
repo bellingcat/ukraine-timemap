@@ -353,6 +353,14 @@ class Toolbar extends React.Component {
           }}
           features={this.props.features}
         />
+
+        <div id="made-with">
+          Made with{" "}
+          <a href="https://github.com/forensic-architecture/timemap">TimeMap</a>
+          <br />
+          Free software from{" "}
+          <a href="https://forensic-architecture.org">Forensic Architecture</a>
+        </div>
       </div>
     );
   }
