@@ -14,6 +14,10 @@ const Popup = ({
 }) => (
   <div>
     <div
+      className={`infopopup__bg ${isOpen ? "" : "hidden"}`}
+      onClick={onClose}
+    ></div>
+    <div
       className={`infopopup ${isOpen ? "" : "hidden"} ${
         theme === "dark" ? "dark" : "light"
       }`}

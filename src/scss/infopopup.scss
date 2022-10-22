@@ -7,8 +7,9 @@
   max-width: min(60vw, 100%);
   color: $darkgrey;
   background: $offwhite-transparent;
-  top: 10px;
-  left: calc($toolbar-width + 10px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   border: 3px solid $offwhite;
   border-radius: 1px;
   padding: 20px 15px 15px;
@@ -22,18 +23,31 @@
   box-shadow: 10px -10px 38px rgba(0, 0, 0, 0.3),
     10px 15px 12px rgba(0, 0, 0, 0.22);
 
+  &__bg {
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    cursor: pointer;
+    &.hidden {
+      display: none;
+    }
+  }
+
   @media screen and (max-width: 600px) {
     font-size: 18px;
-    width: auto;
+    width: 98vw;
     max-width: none;
-    left: 3px;
-    top: auto;
-    bottom: 3px;
-    right: 3px;
-    max-height: 90vh;
-    max-height: calc(100vh - 76px);
+    max-height: 95vh;
     background: rgba(0, 0, 0, 0.95);
     overflow: auto;
+    figcaption {
+      overflow-wrap: break-word;
+      font-size: 0.75rem;
+    }
   }
   p:nth-last-child(1) {
     margin-bottom: 0;
