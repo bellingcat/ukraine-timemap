@@ -50,9 +50,19 @@ export const SCHEMA = Object.freeze({
     // TODO: determine time range if `range` not set.
     rehydrate(nextState, { id }) {
       if (id?.length) {
-        nextState.app.selected = id.map((id) =>
-          nextState.domain.events.find((e) => e.id === id)
-        );
+        nextState.app.selected = id.reduce((acc, curr) => {
+          const event = nextState.domain.events.find((e) => e.id === curr);
+
+          if (event) {
+            acc.push(event);
+          } else {
+            console.warn(
+              `event ${curr} could not be rehydrated. reason: not present.`
+            );
+          }
+
+          return acc;
+        }, []);
       }
     },
   },
