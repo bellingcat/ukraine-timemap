@@ -70,7 +70,6 @@ export const selectRegions = createSelector(
   }
 );
 
-const getTimeRange = (state) => state.app.timeline.range.current;
 const getInitialTimeRange = (state) => state.app.timeline.range.initial;
 const getInitialDaysShown = (state) =>
   state.app.timeline.range.initialDaysShown;
@@ -78,6 +77,7 @@ export const selectTimeRange = createSelector(
   [getTimeRange, getInitialTimeRange, getInitialDaysShown],
   (range, initialRange, initialDaysShown) => {
     let start, end;
+    range = range.current;
 
     if (Array.isArray(range) && range.length === 2) {
       [start, end] = range;
@@ -97,17 +97,6 @@ export const selectTimeRangeLimits = createSelector(
   getTimeRangeLimits,
   (limits) => {
     return [new Date(limits.lower), new Date(limits.upper || Date.now())];
-  }
-);
-
-const getTimelineDimensions = (state) => state.app.timeline.dimensions;
-export const selectDimensions = createSelector(
-  getTimelineDimensions,
-  (dimensions) => {
-    return {
-      ...dimensions,
-      trackHeight: dimensions.contentHeight - 50, // height of time labels
-    };
   }
 );
 

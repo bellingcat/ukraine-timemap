@@ -261,21 +261,27 @@ class Dashboard extends React.Component {
     ) : null;
 
     let searchParams = new URLSearchParams(window.location.href.split("?")[1]);
-    return (
-      <Popup
-        title="Introduction to the platform"
-        theme="dark"
-        isOpen={
-          app.flags.isIntropopup &&
-          (!searchParams.has("cover") || searchParams.get("cover") !== "false")
-        }
-        onClose={actions.toggleIntroPopup}
-        content={app.intro}
-        styles={styles}
-      >
-        {extraContent}
-      </Popup>
-    );
+
+    if (!searchParams.has("id")) {
+      return (
+        <Popup
+          title="Introduction to the platform"
+          theme="dark"
+          isOpen={
+            app.flags.isIntropopup &&
+            (!searchParams.has("cover") ||
+              searchParams.get("cover") !== "false")
+          }
+          onClose={actions.toggleIntroPopup}
+          content={app.intro}
+          styles={styles}
+        >
+          {extraContent}
+        </Popup>
+      );
+    } else {
+      return null;
+    }
   }
 
   render() {
