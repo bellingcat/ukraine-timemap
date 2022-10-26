@@ -77,7 +77,14 @@ export const SCHEMA = Object.freeze({
       if (range?.length === 2) {
         const val = Array.from(range);
         val.sort((a, b) => new Date(a) - new Date(b));
-        nextState.app.timeline.range = val;
+        // HACK! diversion from upstream: we use a custom timeline state format.
+        nextState.app.timeline = {
+          ...nextState.app.timeline,
+          range: {
+            ...nextState.app.timeline.range,
+            current: val,
+          },
+        };
       }
     },
   },

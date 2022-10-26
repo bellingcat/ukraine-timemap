@@ -22,7 +22,13 @@ export class URLState {
 
     this.delete(key);
 
-    if (isSchemaArray(schema)) {
+    // HACK! diversion from upstream: we use a custom timeline state format.
+    if (schema.type === SCHEMA_TYPES.DATE_ARRAY) {
+      value.current.forEach((val) => {
+        const encoded = this._encode(schema, val);
+        if (encoded) this.url.searchParams.append(key, encoded);
+      });
+    } else if (isSchemaArray(schema)) {
       value.forEach((val) => {
         const encoded = this._encode(schema, val);
         if (encoded) this.url.searchParams.append(key, encoded);
