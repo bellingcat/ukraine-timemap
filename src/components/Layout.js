@@ -261,18 +261,24 @@ class Dashboard extends React.Component {
     ) : null;
 
     let searchParams = new URLSearchParams(window.location.href.split("?")[1]);
-
-    if (!searchParams.has("id")) {
+    let rememberDismissedIntro =
+      localStorage.getItem("rememberDismissedIntro") === "true";
+    let forceShowIntro = searchParams.get("cover") === "true";
+    if (
+      (forceShowIntro || !rememberDismissedIntro) &&
+      !searchParams.has("id")
+    ) {
       return (
         <Popup
           title="Introduction to the platform"
           theme="dark"
           isOpen={
-            app.flags.isIntropopup &&
-            (!searchParams.has("cover") ||
-              searchParams.get("cover") !== "false")
+            app.flags.isIntropopup && searchParams.get("cover") !== "false"
           }
-          onClose={actions.toggleIntroPopup}
+          onClose={() => {
+            actions.toggleIntroPopup();
+            localStorage.setItem("rememberDismissedIntro", "true");
+          }}
           content={app.intro}
           styles={styles}
         >
