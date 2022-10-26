@@ -43,15 +43,15 @@ export const SCHEMA = Object.freeze({
   id: {
     key: "id",
     trigger: UPDATE_SELECTED,
-    type: SCHEMA_TYPES.NUMBER_ARRAY,
+    type: SCHEMA_TYPES.STRING_ARRAY,
     dehydrate(state) {
-      return getSelected(state).map(({ id }) => id);
+      return getSelected(state).map(({ civId }) => civId);
     },
     // TODO: determine time range if `range` not set.
     rehydrate(nextState, { id }) {
       if (id?.length) {
         nextState.app.selected = id.reduce((acc, curr) => {
-          const event = nextState.domain.events.find((e) => e.id === curr);
+          const event = nextState.domain.events.find((e) => e.civId === curr);
 
           if (event) {
             acc.push(event);
