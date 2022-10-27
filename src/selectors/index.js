@@ -34,6 +34,9 @@ export const getNotifications = (state) => state.domain.notifications;
 export const getActiveFilters = (state) => state.app.associations.filters;
 export const getActiveCategories = (state) => state.app.associations.categories;
 export const getActiveShapes = (state) => state.app.shapes;
+export const getColoringSet = (state) => state.app.associations.coloringSet;
+export const getTimeRange = (state) => state.app.timeline.range;
+export const getTimelineDimensions = (state) => state.app.timeline.dimensions;
 export const selectNarrative = (state) => state.app.associations.narrative;
 export const getFeatures = (state) => state.features;
 export const getEventRadius = (state) => state.ui.eventRadius;
@@ -67,7 +70,6 @@ export const selectRegions = createSelector(
   }
 );
 
-const getTimeRange = (state) => state.app.timeline.range.current;
 const getInitialTimeRange = (state) => state.app.timeline.range.initial;
 const getInitialDaysShown = (state) =>
   state.app.timeline.range.initialDaysShown;
@@ -75,6 +77,7 @@ export const selectTimeRange = createSelector(
   [getTimeRange, getInitialTimeRange, getInitialDaysShown],
   (range, initialRange, initialDaysShown) => {
     let start, end;
+    range = range.current;
 
     if (Array.isArray(range) && range.length === 2) {
       [start, end] = range;
@@ -94,17 +97,6 @@ export const selectTimeRangeLimits = createSelector(
   getTimeRangeLimits,
   (limits) => {
     return [new Date(limits.lower), new Date(limits.upper || Date.now())];
-  }
-);
-
-const getTimelineDimensions = (state) => state.app.timeline.dimensions;
-export const selectDimensions = createSelector(
-  getTimelineDimensions,
-  (dimensions) => {
-    return {
-      ...dimensions,
-      trackHeight: dimensions.contentHeight - 50, // height of time labels
-    };
   }
 );
 
@@ -394,3 +386,45 @@ export const selectSelected = createSelector(
     return selected.map(insetSourceFrom(sources));
   }
 );
+
+export const selectDimensions = createSelector(
+  [getTimelineDimensions],
+  (dimensions) => {
+    return {
+      ...dimensions,
+      trackHeight: dimensions.contentHeight - 50, // height of time labels
+    };
+  }
+);
+
+export const selectFilterPathToIdMapping = createSelector(
+  [getFilters],
+  (filters) => {
+    return filters.reduce((acc, curr) => {
+      acc[createFilterPathString(curr)] = curr.id;
+      return acc;
+    }, {});
+  }
+);
+
+export const selectActiveColorSets = createSelector(
+  [getColoringSet, selectFilterPathToIdMapping],
+  (set, mapping) => {
+    return set.map((set) => mapFiltersToIds(set, mapping).join(","));
+  }
+);
+
+export const selectActiveFilterIds = createSelector(
+  [getActiveFilters, selectFilterPathToIdMapping],
+  (filters, mapping) => {
+    return mapFiltersToIds(filters, mapping);
+  }
+);
+
+function mapFiltersToIds(arr, filterMapping) {
+  return arr.reduce((acc, path) => {
+    const id = filterMapping[path];
+    if (id) acc.push(id);
+    return acc;
+  }, []);
+}

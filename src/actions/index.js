@@ -407,3 +407,17 @@ export function fetchSourceError(msg) {
     msg,
   };
 }
+
+export const TOGGLE_SATELLITE_VIEW = "TOGGLE_SATELLITE_VIEW";
+export function toggleSatelliteView() {
+  return {
+    type: TOGGLE_SATELLITE_VIEW,
+  };
+}
+
+export const REHYDRATE_STATE = "REHYDRATE_STATE";
+export function rehydrateState() {
+  return {
+    type: REHYDRATE_STATE,
+  };
+}

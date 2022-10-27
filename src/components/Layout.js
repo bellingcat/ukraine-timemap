@@ -2,6 +2,7 @@ import React from "react";
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { isMobileOnly } from "react-device-detect";
 import * as actions from "../actions";
 import * as selectors from "../selectors";
 
@@ -23,7 +24,6 @@ import NarrativeControls from "./controls/NarrativeControls.js";
 
 import colors from "../common/global";
 import { binarySearch, insetSourceFrom } from "../common/utilities";
-// import { isMobileOnly } from "react-device-detect";
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -41,12 +41,14 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    this.props.actions.fetchDomain().then((domain) =>
+    this.props.actions.fetchDomain().then((domain) => {
       this.props.actions.updateDomain({
         domain,
         features: this.props.features,
-      })
-    );
+      });
+      this.props.actions.rehydrateState();
+    });
+
     // NOTE: hack to get the timeline to always show. Not entirely sure why
     // this is necessary.
     window.dispatchEvent(new Event("resize"));
@@ -249,19 +251,33 @@ class Dashboard extends React.Component {
     const { app, actions } = this.props;
 
     let searchParams = new URLSearchParams(window.location.href.split("?")[1]);
-    return (
-      <Popup
-        title="Introduction to the platform"
-        theme="dark"
-        isOpen={
-          app.flags.isIntropopup &&
-          (!searchParams.has("cover") || searchParams.get("cover") !== "false")
-        }
-        onClose={actions.toggleIntroPopup}
-        content={app.intro}
-        styles={styles}
-      />
-    );
+    let rememberDismissedIntro =
+      localStorage.getItem("rememberDismissedIntro") === "true";
+    let forceShowIntro = searchParams.get("cover") === "true";
+    if (
+      (forceShowIntro || !rememberDismissedIntro) &&
+      !searchParams.has("id")
+    ) {
+      return (
+        <Popup
+          title="Introduction to the platform"
+          theme="dark"
+          isOpen={
+            app.flags.isIntropopup && searchParams.get("cover") !== "false"
+          }
+          onClose={() => {
+            actions.toggleIntroPopup();
+            localStorage.setItem("rememberDismissedIntro", "true");
+          }}
+          content={app.intro}
+          styles={styles}
+        >
+          {extraContent}
+        </Popup>
+      );
+    } else {
+      return null;
+    }
   }
 
   render() {
