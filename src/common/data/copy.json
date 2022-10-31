@@ -12,11 +12,26 @@
           "Cada evento estará coloreado según la persona que dio el testimonio del evento."
         ],
         "colors": [
-          { "class": "category_group00", "label": "Categoría Grupo 00" },
-          { "class": "category_group01", "label": "Categoría Grupo 01" },
-          { "class": "category_group02", "label": "Categoría Grupo 02" },
-          { "class": "category_group03", "label": "Categoría Grupo 03" },
-          { "class": "other", "label": "Otras categorías" }
+          {
+            "class": "category_group00",
+            "label": "Categoría Grupo 00"
+          },
+          {
+            "class": "category_group01",
+            "label": "Categoría Grupo 01"
+          },
+          {
+            "class": "category_group02",
+            "label": "Categoría Grupo 02"
+          },
+          {
+            "class": "category_group03",
+            "label": "Categoría Grupo 03"
+          },
+          {
+            "class": "other",
+            "label": "Otras categorías"
+          }
         ]
       },
       "default": {
@@ -54,12 +69,30 @@
     },
     "timeline": {
       "zoomLevels": [
-        { "label": "20 años", "duration": 10512000 },
-        { "label": "2 años", "duration": 1051200 },
-        { "label": "3 meses", "duration": 129600 },
-        { "label": "3 días", "duration": 4320 },
-        { "label": "12 horas", "duration": 720 },
-        { "label": "1 hora", "duration": 60 }
+        {
+          "label": "20 años",
+          "duration": 10512000
+        },
+        {
+          "label": "2 años",
+          "duration": 1051200
+        },
+        {
+          "label": "3 meses",
+          "duration": 129600
+        },
+        {
+          "label": "3 días",
+          "duration": 4320
+        },
+        {
+          "label": "12 horas",
+          "duration": 720
+        },
+        {
+          "label": "1 hora",
+          "duration": 60
+        }
       ],
       "labels_title": "Testimonios",
       "labels": [
@@ -106,11 +139,26 @@
           "Each event is colored according the person that gave category of the event."
         ],
         "colors": [
-          { "class": "category_group00", "label": "Category Group 00" },
-          { "class": "category_group01", "label": "Category Group 01" },
-          { "class": "category_group02", "label": "Category Group 02" },
-          { "class": "category_group03", "label": "Category Group 03" },
-          { "class": "other", "label": "Other categories" }
+          {
+            "class": "category_group00",
+            "label": "Category Group 00"
+          },
+          {
+            "class": "category_group01",
+            "label": "Category Group 01"
+          },
+          {
+            "class": "category_group02",
+            "label": "Category Group 02"
+          },
+          {
+            "class": "category_group03",
+            "label": "Category Group 03"
+          },
+          {
+            "class": "other",
+            "label": "Other categories"
+          }
         ]
       },
       "default": {
@@ -149,7 +197,7 @@
       "filters": "Filters",
       "filters_label": "Filters",
       "explore_by_filter__title": "Explore by filter",
-      "explore_by_filter__description": "'Filters' refer to the types of incident. Select multiple filters to introduce colour-coding, up to a maximum of four filters.<br><br>If no filters are selected, all datapoints are displayed.",
+      "explore_by_filter__description": "'Filters' refer to the types of incident. Select multiple filters to introduce colour-coding, up to a maximum of four filters.<br><br><span class='hint'>If no filters are selected, all datapoints are displayed.</span>",
       "categories": "Categories",
       "categories_label": "Categories",
       "explore_by_category__title": "Explore events by category",
@@ -187,7 +235,7 @@
         "Testimony Group 03",
         "Other"
       ],
-      "info": "Seeing %n events that occurred between",
+      "info": "Showing <span>%n events</span> that occurred between",
       "default_categories_label": ""
     },
     "cardstack": {

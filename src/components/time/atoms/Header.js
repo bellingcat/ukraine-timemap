@@ -12,7 +12,7 @@ const TimelineHeader = ({ title, from, to, onClick, hideInfo }) => {
         </p>
       </div>
       <div className={`timeline-info ${hideInfo ? "hidden" : ""}`}>
-        <p>{title}</p>
+        <p dangerouslySetInnerHTML={{ __html: title }} />
         <p>
           {d0} - {d1}
         </p>

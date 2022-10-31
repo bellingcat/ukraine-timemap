@@ -16,6 +16,7 @@ $green: rgb(61, 241, 79);
 $midgrey: rgb(44, 44, 44);
 $darkgrey: #232323;
 $black: #000000;
+$active: #7e56c2;
 $black-transparent: rgba(0, 0, 0, 0.7);
 
 // Category colors
@@ -37,7 +38,7 @@ $other: yellow;
   background: $beta;
 }
 
-$mainfont: "GT-Zirkon", "Lato", Helvetica, sans-serif;
+$mainfont: "Roboto", Helvetica, sans-serif;
 
 // Font sizes
 $xsmall: 10px; //0.7em;
@@ -52,7 +53,7 @@ $xxxlarge: 32px;
 $final-level: 10000;
 $loading-overlay: 500;
 $overheader: 100;
-$header: 10;
+$header: 20;
 $map-overlay: 2;
 $map: 1;
 $scene: 1;
@@ -67,8 +68,8 @@ $card-width: 500px;
 $card-right: 2px;
 $narrative-info-height: 205px;
 $narrative-info-desc-height: 153px;
-$timeline-height: 250px;
-$toolbar-width: 110px;
+$timeline-height: 130px;
+$toolbar-width: 0px;
 
 $panel-width: 1000px;
 $panel-height: 1000px;

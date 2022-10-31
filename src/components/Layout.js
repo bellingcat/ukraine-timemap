@@ -2,7 +2,6 @@ import React from "react";
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { isMobileOnly } from "react-device-detect";
 import * as actions from "../actions";
 import * as selectors from "../selectors";
 
@@ -248,17 +247,7 @@ class Dashboard extends React.Component {
   }
 
   renderIntroPopup(styles) {
-    const checkMobile = isMobileOnly || window.innerWidth < 600;
     const { app, actions } = this.props;
-
-    const extraContent = checkMobile ? (
-      <div style={{ position: "relative", bottom: 0 }}>
-        <h3 style={{ color: "var(--error-red)" }}>
-          This platform may not work correctly on mobile. If possible, please
-          re-visit the site on a device with a larger screen.
-        </h3>
-      </div>
-    ) : null;
 
     let searchParams = new URLSearchParams(window.location.href.split("?")[1]);
     let rememberDismissedIntro =
@@ -281,9 +270,7 @@ class Dashboard extends React.Component {
           }}
           content={app.intro}
           styles={styles}
-        >
-          {extraContent}
-        </Popup>
+        ></Popup>
       );
     } else {
       return null;
@@ -292,33 +279,12 @@ class Dashboard extends React.Component {
 
   render() {
     const { actions, app, domain, timeline, features } = this.props;
-    const dateHeight = 80;
-    const padding = 2;
-    const checkMobile = isMobileOnly || window.innerWidth < 600;
 
-    const popupStyles = {
-      height: checkMobile ? "100vh" : "fit-content",
-      display: checkMobile ? "block" : "table",
-      width: checkMobile
-        ? "100vw"
-        : window.innerWidth > 768
-        ? "60vw"
-        : "calc(100vw - var(--toolbar-width))",
-      maxWidth: checkMobile ? "100vw" : 600,
-      maxHeight: checkMobile
-        ? "100vh"
-        : window.innerHeight > 768
-        ? `calc(100vh - ${timeline.dimensions.height}px - ${dateHeight}px)`
-        : "100vh",
-      left: checkMobile ? padding : "var(--toolbar-width)",
-      top: 0,
-      overflowY: "scroll",
-      textAlign: "justify",
-    };
+    const popupStyles = {};
 
     return (
       <div>
-        {checkMobile ? null : (
+        {
           <Toolbar
             isNarrative={!!app.associations.narrative}
             domain={domain}
@@ -332,7 +298,7 @@ class Dashboard extends React.Component {
               onSelectNarrative: this.setNarrative,
             }}
           />
-        )}
+        }
         <Space
           kind={"map" in app ? "map" : "space3d"}
           onKeyDown={this.onKeyDown}
@@ -344,7 +310,7 @@ class Dashboard extends React.Component {
               : (ev) => this.handleSelect(ev, 1),
           }}
         />
-        {checkMobile ? null : (
+        {
           <Timeline
             onKeyDown={this.onKeyDown}
             methods={{
@@ -355,7 +321,7 @@ class Dashboard extends React.Component {
               getCategoryColor: this.getCategoryColor,
             }}
           />
-        )}
+        }
         <CardStack
           timelineDims={timeline.dimensions}
           onViewSource={this.handleViewSource}

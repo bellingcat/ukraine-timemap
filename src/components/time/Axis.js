@@ -31,12 +31,12 @@ class TimelineAxis extends React.Component {
       fstFmt = "";
     }
 
-    const { marginTop, contentHeight } = this.props.dims;
+    let { marginTop } = this.props.dims;
     if (this.props.scaleX) {
       this.x0 = axisBottom(this.props.scaleX)
         .ticks(this.props.ticks)
-        .tickPadding(0)
-        .tickSize(contentHeight - TEXT_HEIGHT - marginTop)
+        .tickPadding(marginTop + 30)
+        .tickSize(100 - TEXT_HEIGHT - marginTop)
         .tickFormat(timeFormat(fstFmt));
 
       this.x1 = axisBottom(this.props.scaleX)
@@ -66,7 +66,7 @@ class TimelineAxis extends React.Component {
       <>
         <g
           ref={this.xAxis0Ref}
-          transform={`translate(0, ${this.props.dims.marginTop})`}
+          transform={`translate(0, 24)`}
           clipPath="url(#clip)"
           className="axis xAxis"
         />

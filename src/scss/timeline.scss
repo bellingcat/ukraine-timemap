@@ -1,19 +1,19 @@
 .timeline-wrapper {
   position: fixed;
   box-sizing: border-box;
-  left: 110px;
-  right: 0px;
-  height: $timeline-height;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: auto;
   background: rgba($black, 0.8);
   box-shadow: 0 -10px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   color: white;
-  transition: left 0.2s ease, bottom 0.2s ease;
-  bottom: 0px;
+  transition: transform 0.3s ease;
   z-index: $timeline;
   border-top: 1px solid black;
 
   &.folded {
-    transition: bottom 0.2s ease;
+    transform: translateY(100%);
 
     .timeline-header .timeline-toggle p .arrow-down {
       transform: translate(0, 0px) rotate(-135deg);
@@ -44,6 +44,7 @@
         margin: 0 auto;
         background: rgba($black, 0.8);
         margin-top: -25px;
+        border-radius: 6px 6px 0 0;
         cursor: pointer;
 
         &:hover {
@@ -65,38 +66,59 @@
         border-bottom: 2px solid $midwhite;
       }
     }
+    @media screen and (max-width: 1040px) {
+      .timeline-toggle p {
+        margin: -25px 10px 0 auto;
+      }
+    }
 
     .timeline-info {
+      width: calc(#{$card-width} - 20px);
+      position: absolute;
+      bottom: 100%;
+      margin-bottom: 6px;
+      margin-left: 10px;
+      background: rgba($black, 0.8);
+      padding: 9px 15px 11px;
+      box-sizing: border-box;
+      min-height: 20px;
+      border-radius: 6px;
       &.hidden {
         display: none;
       }
-      width: calc(#{$card-width} - 20px);
-      position: absolute;
-      margin-top: -70px;
-      margin-left: 10px;
-      background: rgba($black, 0.8);
-      padding: 10px;
-      min-height: 20px;
       p {
         margin: 0;
-        height: 20px;
         text-transform: uppercase;
-        letter-spacing: 0.1em;
+        font-size: 1.15rem;
 
+        span {
+          color: $offwhite;
+        }
         &:first-child {
           text-transform: none;
-          font-size: $normal;
-          letter-spacing: 0.05em;
+          font-size: 1rem;
+          color: $midwhite;
+          font-weight: 400;
         }
+        @media screen and (max-width: 600px) {
+          font-size: 1rem;
+          &:nth-child(1) {
+            font-size: 0.875rem;
+          }
+        }
+      }
+
+      // mobile styles
+      @media screen and (max-width: 600px) {
+        bottom: 115%;
+        bottom: calc(100% + 25px);
+        width: 96vw;
+        margin: 0 2vw 10px;
       }
     }
   }
 
   .timeline-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
     .timeline-labels {
       padding-top: 2px;
       padding-left: 20px;
@@ -134,15 +156,11 @@
     }
 
     .timeline {
-      /*width: calc(100% - 200px);*/
-      width: calc(100% - 40px);
-      margin-left: 20px;
+      width: 100%;
       box-sizing: border-box;
-      float: left;
 
       svg {
-        display: inline-block;
-        float: left;
+        display: block;
       }
 
       .domain {
@@ -261,21 +279,45 @@
           }
         }
       }
+    }
+  }
+}
 
-      .zoom-level-button {
-        font-size: $xsmall;
-        cursor: pointer;
-        text-anchor: middle;
-        letter-spacing: 0.05em;
-        transition: 0.2s ease;
-        fill: $midwhite;
+.zoom-controls {
+  display: flex;
+  padding: 6px 20px;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 9px;
+  @media screen and (max-width: 600px) {
+    padding: 6px 3px;
+  }
 
-        &:hover,
-        &.active {
-          transition: 0.2s ease;
-          fill: $offwhite;
-        }
-      }
+  .zoom-level-button {
+    padding: 6px 9px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    text-anchor: middle;
+    letter-spacing: 0.05em;
+    transition: 0.2s ease;
+    color: $midwhite;
+    border-radius: 3px;
+    border: 0;
+    background-color: transparent;
+    font-weight: 600;
+    text-align: center;
+
+    @media screen and (max-width: 600px) {
+      font-size: 0.65rem;
+    }
+
+    &:hover {
+      color: $offwhite;
+      background-color: rgba($active, 0.3);
+    }
+    &.active {
+      color: $offwhite;
+      background-color: $active;
     }
   }
 }
@@ -302,6 +344,49 @@
   cursor: pointer;
 }
 
-.handle {
-  fill: $offwhite;
+/*
+* Handles
+*/
+.timeline-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.timeline-handle {
+  width: 30px;
+  height: 30px;
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba($active, 0.4);
+    .timeline-handle__triangle {
+      border-color: transparent $offwhite transparent transparent;
+    }
+  }
+  &__triangle {
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 7px 10px 7px 0;
+    border-color: transparent $midwhite transparent transparent;
+  }
+  &.right {
+    margin-right: 5px;
+    &:hover {
+      background-color: rgba($active, 0.4);
+      .timeline-handle__triangle {
+        border-color: transparent transparent transparent $offwhite;
+      }
+    }
+    .timeline-handle__triangle {
+      border-width: 7px 0 7px 10px;
+      border-color: transparent transparent transparent $midwhite;
+    }
+  }
 }

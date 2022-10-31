@@ -1,7 +1,6 @@
 .react-tabs {
   padding-top: 0;
   box-sizing: border-box;
-  height: 100%;
 
   [role="tablist"] {
     padding: 0;
@@ -40,6 +39,13 @@
 
   .react-innertabpanel {
     box-sizing: border-box;
-    padding-top: 20px;
+    padding-top: 0;
+
+    hr {
+      border-top: 0;
+      border-bottom: 1px solid $midwhite;
+      margin-block-start: 0.5em;
+      margin-block-end: 1.5em;
+    }
   }
 }

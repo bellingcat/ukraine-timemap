@@ -56,7 +56,10 @@ function FilterListPanel({
         <Checkbox
           label={pathLeaf}
           isActive={activeFilters.includes(key)}
-          onClickCheckbox={() => onSelectFilter(key, matchingKeys)}
+          onClickCheckbox={(e) => {
+            e.preventDefault();
+            onSelectFilter(key, matchingKeys);
+          }}
           color={assignedColor}
         />
         {Object.keys(children).length > 0 ? (
@@ -74,18 +77,21 @@ function FilterListPanel({
     const aggregatedFilterPaths = aggregateFilterPaths(filters);
 
     return (
-      <div>
+      <div className="scrolled-area">
         {Object.entries(aggregatedFilterPaths).map((filter) =>
-          createNodeComponent(filter, 1)
+          createNodeComponent(filter, 0)
         )}
       </div>
     );
   }
 
   return (
-    <div className="react-innertabpanel">
-      <h2>{title}</h2>
-      <p
+    <div>
+      <div className="sticky-header">
+        <h2>{title}</h2>
+      </div>
+      <div
+        className="panel-description"
         dangerouslySetInnerHTML={{
           __html: marked(description),
         }}

@@ -67,13 +67,20 @@ export const generateCardLayout = {
           scaleFont: 1.1,
         },
       ],
-      ...event.sources.flatMap((source) => [
-        source.paths.map((p) => ({
-          kind: "media",
-          title: "Media",
-          value: [{ src: p, title: null, graphic: event.graphic === "TRUE" }],
-        })),
-      ]),
+      [
+        {
+          kind: "sources",
+          values: event.sources.flatMap((source) => [
+            source.paths.map((p) => ({
+              kind: "media",
+              title: "Media",
+              value: [
+                { src: p, title: null, graphic: event.graphic === "TRUE" },
+              ],
+            })),
+          ]),
+        },
+      ],
     ];
   },
 };
@@ -210,12 +217,14 @@ export const Card = ({
     }
   }
 
-  function renderRow(row, cardIdx) {
+  function renderRow(row, cardIdx, salt) {
     return (
-      <div className="card-row" key={hash(row)}>
+      <div className="card-row" key={hash({ ...row, salt })}>
         {row.map((field) => (
           // src by src meaning wrapGrahpic must be called around a map of renderField for sources
-          <span key={hash(field)}>{renderField(field, cardIdx)}</span>
+          <span key={hash({ ...field, row: row })}>
+            {renderField(field, cardIdx)}
+          </span>
         ))}
       </div>
     );
@@ -230,14 +239,34 @@ export const Card = ({
       className={`event-card ${isSelected ? "selected" : ""}`}
       onClick={onSelect}
     >
-      {content.map((row) => renderRow(row, cardIdx))}
-      {isOpen && (
+      {content.map((row) => {
+        if (row[0].kind === "sources" && row[0].values.length > 0) {
+          return (
+            <div>
+              <details open="true">
+                <summary>
+                  <span className="summary-line"></span>
+                  <span className="summary-text">
+                    <span className="summary-show">Show</span>{" "}
+                    <span className="summary-hide">Hide</span> sources (
+                    {row[0].values.length})
+                  </span>
+                  <span className="summary-line"></span>
+                </summary>
+                {row[0].values.map((r) => renderRow(r, cardIdx, row[0]))}
+              </details>
+            </div>
+          );
+        } else return renderRow(row, cardIdx);
+      })}
+
+      {/* {isOpen && (
         <div className="card-bottomhalf">
           {sources.map(() => (
             <div className="card-row"></div>
           ))}
         </div>
-      )}
+      )} */}
       {sources.length > 0 ? renderCaret() : null}
     </li>
   );

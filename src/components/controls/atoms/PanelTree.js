@@ -12,7 +12,6 @@ const PanelTree = ({ data, activeValues, onSelect, type }) => {
           <li
             key={val.title.replace(/ /g, "_")}
             className="filter-filter active"
-            style={{ marginLeft: "20px" }}
           >
             <Checkbox
               label={val.title}

@@ -126,7 +126,10 @@ class CardStack extends React.Component {
 
   renderCardStackContent() {
     return (
-      <div id="card-stack-content" className="card-stack-content">
+      <div
+        id="card-stack-content"
+        className="card-stack-content scrollbar-black"
+      >
         <ul>{this.renderSelectedCards()}</ul>
       </div>
     );

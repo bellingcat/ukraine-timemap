@@ -7,6 +7,7 @@ const CardText = ({ title, value, hoverValue = null }) => {
     <div className="card-cell">
       {title ? <h4>{title}</h4> : null}
       <div
+        className="card-cell__text"
         style={{
           width: `fit-content`,
         }}

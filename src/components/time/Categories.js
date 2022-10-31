@@ -40,15 +40,11 @@ class TimelineCategories extends React.Component {
           className="tick"
           style={{ strokeWidth }}
           opacity="0.5"
-          transform={`translate(0,${this.props.getCategoryY(cat)})`}
+          transform={`translate(0, 66)`}
         >
-          <line x1={dims.marginLeft} x2={dims.width - dims.width_controls} />
+          <line x1={dims.marginLeft} x2={dims.width - dims.marginLeft} />
         </g>
-        <g
-          className="tick"
-          opacity="1"
-          transform={`translate(0,${this.props.getCategoryY(cat)})`}
-        >
+        <g className="tick" opacity="1" transform={`translate(0, 66)`}>
           <text x={dims.marginLeft - 5} dy="0.32em">
             {cat}
           </text>
@@ -72,10 +68,7 @@ class TimelineCategories extends React.Component {
           className="drag-grabber"
           x={dims.marginLeft}
           y={dims.marginTop}
-          width={Math.max(
-            0,
-            dims.width - dims.marginLeft - dims.width_controls
-          )}
+          width={Math.max(0, dims.width - dims.marginLeft * 2)}
           height={dims.contentHeight}
         />
       </g>

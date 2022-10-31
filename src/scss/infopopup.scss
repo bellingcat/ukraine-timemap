@@ -1,32 +1,93 @@
 @import "burger";
 
 .infopopup {
-  width: $infopopup-width;
-  box-shadow: 10px -10px 38px rgba(0, 0, 0, 0.3),
-    10px 15px 12px rgba(0, 0, 0, 0.22);
-  color: $darkgrey;
+  display: block;
   position: absolute;
+  width: 600px;
+  max-width: calc(min(60vw, 100%));
+  color: $darkgrey;
   background: $offwhite-transparent;
-  bottom: $timeline-height;
-  left: $toolbar-width;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   border: 3px solid $offwhite;
   border-radius: 1px;
-  padding: 20px;
+  padding: 20px 15px 15px;
   box-sizing: border-box;
   font-size: $large;
   transition: opacity 0.5s ease 0.1s, z-index 0.1s ease 0s;
   opacity: 1;
   z-index: $overheader;
+  border: 2px solid $midwhite;
+  border-radius: 6px;
+  box-shadow: 10px -10px 38px rgba(0, 0, 0, 0.3),
+    10px 15px 12px rgba(0, 0, 0, 0.22);
+
+  &__bg {
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    cursor: pointer;
+    &.hidden {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: 18px;
+    width: 98vw;
+    max-width: none;
+    max-height: 95vh;
+    background: rgba(0, 0, 0, 0.95);
+    overflow: auto;
+    figcaption {
+      overflow-wrap: break-word;
+      font-size: 0.75rem;
+    }
+  }
+  p:nth-last-child(1) {
+    margin-bottom: 0;
+  }
 
   &.hidden {
     transition: 0.5s ease;
     opacity: 0;
   }
 
+  .two-columns {
+    display: flex;
+    flex-direction: row;
+    max-width: 100%;
+    overflow: hidden;
+    margin-top: 20px;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: flex-start;
+    &_column {
+      flex: 1;
+
+      figure {
+        margin: 0;
+      }
+      figcaption {
+        margin-top: 6px;
+        text-align: left;
+        color: $midwhite;
+      }
+      img {
+        border-radius: 9px;
+      }
+    }
+  }
+
   .side-menu-burg {
     position: absolute;
-    right: 8px;
-    top: 10px;
+    right: 6px;
+    top: 6px;
     &.light {
       &.is-active span:after,
       &.is-active span:before {
@@ -39,6 +100,9 @@
     // background: $black-transparent;
     background: rgba(0, 0, 0, 0.8);
     color: white;
+    @media screen and (max-width: 600px) {
+      background: rgba(0, 0, 0, 0.9);
+    }
   }
 
   iframe {
@@ -67,14 +131,10 @@
   }
 
   .legend-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
     h2 {
-      display: flex;
-      font-size: 12pt;
-      letter-spacing: 2px;
+      width: 100%;
       margin: 0;
+      text-align: center;
     }
   }
 

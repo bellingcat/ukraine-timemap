@@ -97,7 +97,7 @@ class Timeline extends React.Component {
       .domain(this.state.timerange)
       .range([
         this.state.dims.marginLeft,
-        this.state.dims.width - this.state.dims.width_controls,
+        this.state.dims.width - this.state.dims.marginLeft,
       ]);
   }
 
@@ -369,12 +369,6 @@ class Timeline extends React.Component {
     let classes = `timeline-wrapper ${this.state.isFolded ? " folded" : ""}`;
     classes += app.narrative !== null ? " narrative-mode" : "";
     const { dims } = this.state;
-    const foldedStyle = {
-      bottom: this.state.isFolded ? -dims.height : 0,
-      left: 110,
-    };
-    const heightStyle = { height: dims.height };
-    const extraStyle = { ...heightStyle, ...foldedStyle };
     const contentHeight = { height: dims.contentHeight };
     const { activeCategories: categories } = this.props;
 
@@ -384,12 +378,7 @@ class Timeline extends React.Component {
     );
 
     return (
-      <div
-        className={classes}
-        style={extraStyle}
-        onKeyDown={this.props.onKeyDown}
-        tabIndex="1"
-      >
+      <div className={classes} onKeyDown={this.props.onKeyDown} tabIndex="1">
         <Header
           title={title}
           from={this.state.timerange[0]}
@@ -399,87 +388,94 @@ class Timeline extends React.Component {
           }}
           hideInfo={isNarrative}
         />
-        <div className="timeline-content" style={heightStyle}>
-          <div
-            id={this.props.ui.dom.timeline}
-            className="timeline"
-            style={contentHeight}
-          >
-            <svg ref={this.svgRef} width={dims.width} style={contentHeight}>
-              <Clip dims={dims} />
-              <Axis
-                ticks={timeline.dimensions.ticks}
-                dims={dims}
-                extent={this.getTimeScaleExtent()}
-                transitionDuration={this.state.transitionDuration}
-                scaleX={this.state.scaleX}
-              />
-              <Categories
-                dims={dims}
-                getCategoryY={(category) =>
-                  this.getY({ category, project: null })
-                }
-                onDragStart={this.onDragStart}
-                onDrag={this.onDrag}
-                onDragEnd={this.onDragEnd}
-                categories={categories}
-                features={this.props.features}
-                fallbackLabel={
-                  copy[this.props.app.language].timeline
-                    .default_categories_label
-                }
-              />
-              {timeline.dimensions.ticks === 1 && (
-                <Handles
+        <div className="timeline-content">
+          <div id={this.props.ui.dom.timeline} className="timeline">
+            <div className="timeline-container">
+              <svg ref={this.svgRef} width={dims.width} style={contentHeight}>
+                <Clip dims={dims} />
+                <Axis
+                  ticks={timeline.dimensions.ticks}
                   dims={dims}
-                  onMoveTime={(dir) => {
-                    this.onMoveTime(dir);
-                  }}
+                  extent={this.getTimeScaleExtent()}
+                  transitionDuration={this.state.transitionDuration}
+                  scaleX={this.state.scaleX}
                 />
-              )}
+                <Categories
+                  dims={dims}
+                  getCategoryY={(category) =>
+                    this.getY({ category, project: null })
+                  }
+                  onDragStart={this.onDragStart}
+                  onDrag={this.onDrag}
+                  onDragEnd={this.onDragEnd}
+                  categories={categories}
+                  features={this.props.features}
+                  fallbackLabel={
+                    copy[this.props.app.language].timeline
+                      .default_categories_label
+                  }
+                />
+                <Markers
+                  dims={dims}
+                  selected={this.props.app.selected}
+                  getEventX={(ev) => this.getDatetimeX(ev.datetime)}
+                  getEventY={this.getY}
+                  categories={categories}
+                  transitionDuration={this.state.transitionDuration}
+                  styles={this.props.ui.styles}
+                  features={this.props.features}
+                  eventRadius={this.props.ui.eventRadius}
+                />
+                <Events
+                  events={this.props.domain.events}
+                  projects={this.props.domain.projects}
+                  categories={categories}
+                  styleDatetime={this.styleDatetime}
+                  narrative={this.props.app.narrative}
+                  getDatetimeX={this.getDatetimeX}
+                  getY={this.getY}
+                  getHighlights={(group) => {
+                    if (group === "None") {
+                      return [];
+                    }
+                    return categories.map((c) => c.group === group);
+                  }}
+                  getCategoryColor={this.props.methods.getCategoryColor}
+                  transitionDuration={this.state.transitionDuration}
+                  onSelect={this.onSelect}
+                  dims={dims}
+                  features={this.props.features}
+                  setLoading={this.props.actions.setLoading}
+                  setNotLoading={this.props.actions.setNotLoading}
+                  eventRadius={this.props.ui.eventRadius}
+                  filterColors={this.props.ui.filterColors}
+                  coloringSet={this.props.app.coloringSet}
+                />
+              </svg>
+            </div>
+
+            <div className="timeline-bottom">
+              <Handles
+                dims={dims}
+                onMoveTime={(dir) => {
+                  this.onMoveTime(dir);
+                }}
+                backward={true}
+              />
               <ZoomControls
                 extent={this.getTimeScaleExtent()}
                 zoomLevels={timeline.zoomLevels}
                 dims={dims}
                 onApplyZoom={this.onApplyZoom}
               />
-              <Markers
+              <Handles
                 dims={dims}
-                selected={this.props.app.selected}
-                getEventX={(ev) => this.getDatetimeX(ev.datetime)}
-                getEventY={this.getY}
-                categories={categories}
-                transitionDuration={this.state.transitionDuration}
-                styles={this.props.ui.styles}
-                features={this.props.features}
-                eventRadius={this.props.ui.eventRadius}
-              />
-              <Events
-                events={this.props.domain.events}
-                projects={this.props.domain.projects}
-                categories={categories}
-                styleDatetime={this.styleDatetime}
-                narrative={this.props.app.narrative}
-                getDatetimeX={this.getDatetimeX}
-                getY={this.getY}
-                getHighlights={(group) => {
-                  if (group === "None") {
-                    return [];
-                  }
-                  return categories.map((c) => c.group === group);
+                onMoveTime={(dir) => {
+                  this.onMoveTime(dir);
                 }}
-                getCategoryColor={this.props.methods.getCategoryColor}
-                transitionDuration={this.state.transitionDuration}
-                onSelect={this.onSelect}
-                dims={dims}
-                features={this.props.features}
-                setLoading={this.props.actions.setLoading}
-                setNotLoading={this.props.actions.setNotLoading}
-                eventRadius={this.props.ui.eventRadius}
-                filterColors={this.props.ui.filterColors}
-                coloringSet={this.props.app.coloringSet}
+                backward={false}
               />
-            </svg>
+            </div>
           </div>
         </div>
       </div>

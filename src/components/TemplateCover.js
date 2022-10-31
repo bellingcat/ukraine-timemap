@@ -186,10 +186,7 @@ class TemplateCover extends React.Component {
               </video>
             </div>
           ) : null}
-          <h2
-            style={{ margin: 0 }}
-            dangerouslySetInnerHTML={{ __html: marked(this.props.cover.title) }}
-          />
+          <h2 dangerouslySetInnerHTML={{ __html: this.props.cover.title }} />
           {this.props.cover.subtitle ? (
             <h3 style={{ marginTop: 0 }}>{this.props.cover.subtitle}</h3>
           ) : null}
