@@ -4,7 +4,7 @@
   display: block;
   position: absolute;
   width: 600px;
-  max-width: min(60vw, 100%);
+  max-width: calc(min(60vw, 100%));
   color: $darkgrey;
   background: $offwhite-transparent;
   top: 50%;

@@ -2,7 +2,6 @@ import React from "react";
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { isMobileOnly } from "react-device-detect";
 import * as actions from "../actions";
 import * as selectors from "../selectors";
 
@@ -271,9 +270,7 @@ class Dashboard extends React.Component {
           }}
           content={app.intro}
           styles={styles}
-        >
-          {extraContent}
-        </Popup>
+        ></Popup>
       );
     } else {
       return null;

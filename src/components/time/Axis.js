@@ -31,7 +31,7 @@ class TimelineAxis extends React.Component {
       fstFmt = "";
     }
 
-    let { marginTop, contentHeight } = this.props.dims;
+    let { marginTop } = this.props.dims;
     if (this.props.scaleX) {
       this.x0 = axisBottom(this.props.scaleX)
         .ticks(this.props.ticks)
