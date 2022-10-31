@@ -243,7 +243,7 @@ export const Card = ({
         if (row[0].kind === "sources" && row[0].values.length > 0) {
           return (
             <div>
-              <details>
+              <details open="true">
                 <summary>
                   <span className="summary-line"></span>
                   <span className="summary-text">
