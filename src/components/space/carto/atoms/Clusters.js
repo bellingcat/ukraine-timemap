@@ -81,7 +81,7 @@ function Cluster({
           }}
           className="cluster-event-marker"
         />
-        {hovered ? renderHover(cluster) : null}
+        {renderHover(cluster)}
       </g>
     </svg>
   );
@@ -111,8 +111,13 @@ function ClusterEvents({
       <>
         <text
           textAnchor="middle"
-          y="3px"
-          style={{ fontWeight: "bold", fill: "black", zIndex: 10000 }}
+          y={`${txt > 40 ? (txt > 70 ? (txt > 100 ? 14 : 12) : 8) : 3}px`}
+          style={{
+            fontWeight: "bold",
+            fill: "#dedede",
+            zIndex: 10000 + txt,
+            fontSize: Math.min(45, Math.max(18, txt / 1.5)),
+          }}
         >
           {txt}
         </text>

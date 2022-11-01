@@ -17,6 +17,10 @@ import Markers from "./atoms/Markers.js";
 import Events from "./atoms/Events.js";
 import Categories from "./Categories";
 
+function timeout(delay) {
+  return new Promise((res) => setTimeout(res, delay));
+}
+
 class Timeline extends React.Component {
   constructor(props) {
     super(props);
@@ -29,6 +33,7 @@ class Timeline extends React.Component {
     this.onDragStart = this.onDragStart.bind(this);
     this.onDrag = this.onDrag.bind(this);
     this.onDragEnd = this.onDragEnd.bind(this);
+    this.onClick = this.onClick.bind(this);
     this.svgRef = React.createRef();
     this.state = {
       isFolded:
@@ -362,6 +367,30 @@ class Timeline extends React.Component {
     this.props.methods.onSelect(event);
   }
 
+  async onClick() {
+    console.log("click");
+    const timeShift = 3600 * 24; //14 days
+    const { range, rangeLimits } = this.props.app.timeline;
+    // let newDomain0 = timeSecond.offset(range[0], timeShift);
+    let earlyDate = rangeLimits[0];
+    let laterDate = timeSecond.offset(rangeLimits[0], 24 * timeShift);
+    const maxDate = rangeLimits[1];
+    let i = 0;
+    while (laterDate < maxDate) {
+      // i+=1;
+      // console.log(i)
+      // laterDate = timeSecond.offset(earlyDate, timeShift * 14);
+      // laterDate = timeSecond.offset(laterDate, timeShift * 14);
+      // this.props.methods.onUpdateTimerange([earlyDate, laterDate]);
+      // await timeout(100); //for 1 sec delay
+      i += 1;
+      console.log(i);
+      laterDate = timeSecond.offset(laterDate, timeShift * Math.min(2 * i, 14));
+      this.props.methods.onUpdateTimerange([earlyDate, laterDate]);
+      await timeout(750); //for 1 sec delay
+    }
+  }
+
   render() {
     const { isNarrative, app, domain } = this.props;
     const { timeline } = app;
@@ -391,7 +420,12 @@ class Timeline extends React.Component {
         <div className="timeline-content">
           <div id={this.props.ui.dom.timeline} className="timeline">
             <div className="timeline-container">
-              <svg ref={this.svgRef} width={dims.width} style={contentHeight}>
+              <svg
+                ref={this.svgRef}
+                width={dims.width}
+                style={contentHeight}
+                onClick={this.onClick}
+              >
                 <Clip dims={dims} />
                 <Axis
                   ticks={timeline.dimensions.ticks}
