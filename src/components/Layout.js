@@ -248,10 +248,11 @@ class Dashboard extends React.Component {
 
   renderIntroPopup(styles) {
     const { app, actions } = this.props;
+    const localStorageKey = "rememberDismissedIntro2"; // can be incremented when new data appears on the cover
 
     let searchParams = new URLSearchParams(window.location.href.split("?")[1]);
     let rememberDismissedIntro =
-      localStorage.getItem("rememberDismissedIntro") === "true";
+      localStorage.getItem(localStorageKey) === "true";
     let forceShowIntro = searchParams.get("cover") === "true";
     if (
       (forceShowIntro || !rememberDismissedIntro) &&
@@ -266,7 +267,7 @@ class Dashboard extends React.Component {
           }
           onClose={() => {
             actions.toggleIntroPopup();
-            localStorage.setItem("rememberDismissedIntro", "true");
+            localStorage.setItem(localStorageKey, "true");
           }}
           content={app.intro}
           styles={styles}
