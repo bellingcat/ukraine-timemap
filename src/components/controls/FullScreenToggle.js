@@ -15,11 +15,11 @@ export class FullscreenToggle extends React.Component {
   }
 
   componentDidMount() {
-    screenfull.on("change", this.onFullscreenStateChange);
+    if (screenfull.on) screenfull.on("change", this.onFullscreenStateChange);
   }
 
   componentWillUnmount() {
-    screenfull.off("change", this.onFullscreenStateChange);
+    if (screenfull.off) screenfull.off("change", this.onFullscreenStateChange);
   }
 
   onFullscreenStateChange(evt) {
