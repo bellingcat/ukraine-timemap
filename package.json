@@ -79,7 +79,7 @@
     "react-image": "^4.0.3",
     "react-redux": "^8.0.5",
     "react-refresh": "^0.8.3",
-    "react-tabs": "3.0.0",
+    "react-tabs": "^6.0.0",
     "react-twitter-embed": "^4.0.4",
     "redux": "^4.0.0",
     "redux-thunk": "^2.2.0",
