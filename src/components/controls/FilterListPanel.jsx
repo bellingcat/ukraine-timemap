@@ -1,5 +1,5 @@
 import Checkbox from "../atoms/Checkbox";
-import marked from "marked";
+import { marked } from "marked";
 import {
   aggregateFilterPaths,
   getFilterIdxFromColorSet,
