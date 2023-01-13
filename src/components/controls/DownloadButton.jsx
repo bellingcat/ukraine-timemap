@@ -1,7 +1,7 @@
 import React from "react";
-import copy from "../../common/data/copy.json";
 import dayjs from "dayjs";
-import { parse } from "json2csv";
+import { Parser } from "@json2csv/plainjs";
+import copy from "../../common/data/copy.json";
 import { downloadAsFile } from "../../common/utilities";
 
 export class DownloadButton extends React.Component {
@@ -31,7 +31,8 @@ export class DownloadButton extends React.Component {
           .join(","),
       };
     });
-    return parse(exportEvents, { flatten: true });
+    const parser = new Parser();
+    return parser.parse(exportEvents, { flatten: true });
   }
   getJsonData(domain) {
     const { events, sources } = domain;

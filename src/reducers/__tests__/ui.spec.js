@@ -1,5 +1,5 @@
 import { useSatelliteTilesOverlay, resetTilesOverlay } from "../../actions";
-import initial from "../../store/initial.js";
+import initial from "../../store/initial";
 import ui from "../ui";
 
 describe("UI reducer", () => {

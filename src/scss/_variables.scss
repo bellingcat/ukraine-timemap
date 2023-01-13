@@ -74,7 +74,7 @@ $toolbar-width: 0px;
 $panel-width: 1000px;
 $panel-height: 1000px;
 $vimeo-width: $panel-width - 100;
-$vimeo-height: $panel-height / 2;
+$vimeo-height: $panel-height * 0.5;
 $banner-height: 100px;
 $padding: 20px;
 $header-inset: 10px;

@@ -1,4 +1,4 @@
-import initial from "../store/initial.js";
+import initial from "../store/initial";
 
 function features(featureState = initial.features, action) {
   return featureState;

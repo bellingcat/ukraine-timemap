@@ -11,10 +11,10 @@ import copy from "../../common/data/copy.json";
 import Header from "./atoms/Header";
 import Axis from "./Axis";
 import Clip from "./atoms/Clip";
-import Handles from "./atoms/Handles.js";
-import ZoomControls from "./atoms/ZoomControls.js";
-import Markers from "./atoms/Markers.js";
-import Events from "./atoms/Events.js";
+import Handles from "./atoms/Handles";
+import ZoomControls from "./atoms/ZoomControls";
+import Markers from "./atoms/Markers";
+import Events from "./atoms/Events";
 import Categories from "./Categories";
 
 class Timeline extends React.Component {

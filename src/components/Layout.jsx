@@ -19,7 +19,7 @@ import Timeline from "./time/Timeline";
 import Space from "./space/Space";
 import Search from "./controls/Search";
 import CardStack from "./controls/CardStack";
-import NarrativeControls from "./controls/NarrativeControls.js";
+import NarrativeControls from "./controls/NarrativeControls";
 
 import colors from "../common/global";
 import { binarySearch, insetSourceFrom } from "../common/utilities";

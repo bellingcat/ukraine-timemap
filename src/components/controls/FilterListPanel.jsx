@@ -11,7 +11,8 @@ import {
 function getFiltersToToggle(filter, activeFilters) {
   const [key, children] = filter;
   // base case: no children to recurse through
-  if (children === {}) return [key];
+  // eslint-disable-next-line eqeqeq
+  if (children == {}) return [key];
 
   const turningOff = activeFilters.includes(key);
   const childKeys = Object.entries(children)

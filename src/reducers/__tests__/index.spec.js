@@ -1,5 +1,5 @@
 import { updateTimeRange } from "../../actions";
-import initial from "../../store/initial.js";
+import initial from "../../store/initial";
 import reduce from "../app";
 
 describe("app reducer", () => {

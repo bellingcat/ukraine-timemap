@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../actions";
 import * as selectors from "../selectors";
+import config from "../../config";
 
 import { Tabs, TabList, TabPanel } from "react-tabs";
 import FilterListPanel from "./controls/FilterListPanel";
@@ -20,7 +21,7 @@ import {
   mapCategoriesToPaths,
   getCategoryIdxs,
   getFilterIdx,
-} from "../common/utilities.js";
+} from "../common/utilities";
 import { ToolbarButton } from "./controls/atoms/ToolbarButton";
 import { FullscreenToggle } from "./controls/FullScreenToggle";
 import DownloadPanel from "./controls/DownloadPanel";
@@ -279,7 +280,7 @@ class Toolbar extends React.Component {
     const { features, narratives, toolbarCopy } = this.props;
     const narrativesExist = narratives && narratives.length !== 0;
     let title = copy[this.props.language].toolbar.title;
-    if (process.env.display_title) title = process.env.display_title;
+    if (config.display_title) title = config.display_title;
     const { panels } = toolbarCopy;
 
     const narrativesIdx = 0;

@@ -73,8 +73,8 @@ export function validateDomain(domain, features) {
   };
 
   function validateArrayItem(item, domainKey, schema) {
-    const result = Joi.validate(item, schema);
-    if (result.error !== null) {
+    const result = schema.validate(item);
+    if (result.error != null) {
       const id = item.id || "-";
       const domainStr = capitalize(domainKey);
       const error = makeError(domainStr, id, result.error.message);
@@ -97,8 +97,8 @@ export function validateDomain(domain, features) {
     Object.keys(obj).forEach((key) => {
       if (key === "") return;
       const vl = obj[key];
-      const result = Joi.validate(vl, itemSchema);
-      if (result.error !== null) {
+      const result = itemSchema.validate(vl);
+      if (result.error != null) {
         const id = vl.id || "-";
         const domainStr = capitalize(domainKey);
         discardedDomain[domainKey].push({

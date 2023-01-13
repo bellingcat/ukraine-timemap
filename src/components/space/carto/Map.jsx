@@ -7,6 +7,7 @@ import Supercluster from "supercluster";
 import { isMobileOnly } from "react-device-detect";
 
 import { connect } from "react-redux";
+import config from "../../../../config";
 import * as actions from "../../../actions";
 import * as selectors from "../../../selectors";
 
@@ -108,16 +109,13 @@ class Map extends React.Component {
   getTileUrl(tile) {
     if (
       supportedMapboxMap.indexOf(this.props.ui.tiles) !== -1 &&
-      process.env.MAPBOX_TOKEN &&
-      process.env.MAPBOX_TOKEN !== defaultToken
+      config.MAPBOX_TOKEN &&
+      config.MAPBOX_TOKEN !== defaultToken
     ) {
-      return `http://a.tiles.mapbox.com/v4/mapbox.${tile}/{z}/{x}/{y}@2x.png?access_token=${process.env.MAPBOX_TOKEN}`;
-    } else if (
-      process.env.MAPBOX_TOKEN &&
-      process.env.MAPBOX_TOKEN !== defaultToken
-    ) {
-      return `https://api.mapbox.com/styles/v1/${tile}/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.MAPBOX_TOKEN}`;
-      // `http://a.tiles.mapbox.com/styles/v1/${this.props.ui.tiles}/tiles/{z}/{x}/{y}?access_token=${process.env.MAPBOX_TOKEN}`
+      return `http://a.tiles.mapbox.com/v4/mapbox.${tile}/{z}/{x}/{y}@2x.png?access_token=${config.MAPBOX_TOKEN}`;
+    } else if (config.MAPBOX_TOKEN && config.MAPBOX_TOKEN !== defaultToken) {
+      return `https://api.mapbox.com/styles/v1/${tile}/tiles/256/{z}/{x}/{y}@2x?access_token=${config.MAPBOX_TOKEN}`;
+      // `http://a.tiles.mapbox.com/styles/v1/${this.props.ui.tiles}/tiles/{z}/{x}/{y}?access_token=${config.MAPBOX_TOKEN}`
     } else {
       return "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
       // "https://api.maptiler.com/maps/bright/256/{z}/{x}/{y}.png?key="
