@@ -77,7 +77,6 @@
     "react-device-detect": "^2.2.2",
     "react-dom": "^18.0.0",
     "react-image": "^4.0.3",
-    "react-portal": "^4.2.0",
     "react-redux": "^5.0.4",
     "react-refresh": "^0.8.3",
     "react-tabs": "3.0.0",
