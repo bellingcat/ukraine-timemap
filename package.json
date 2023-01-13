@@ -5,7 +5,7 @@
   "homepage": ".",
   "private": true,
   "engines": {
-    "node": "16"
+    "node": "18"
   },
   "scripts": {
     "dev": "vite",
