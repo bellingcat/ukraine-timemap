@@ -1,11 +1,12 @@
-import { useSatelliteTilesOverlay, resetTilesOverlay } from "../../actions";
+import { toggleTileOverlay } from "../../actions";
 import initial from "../../store/initial";
 import ui from "../ui";
+import config from "../../../config";
 
 describe("UI reducer", () => {
   it("can change the tiling", () => {
-    const result = ui(initial.ui, useSatelliteTilesOverlay());
-    expect(result.tiles.current).toEqual("satellite");
+    const result = ui(initial.ui, toggleTileOverlay());
+    expect(result.tiles.current).toEqual(initial.ui.tiles.satellite);
     expect(result.tiles.default).toEqual(initial.ui.tiles.default);
   });
 
@@ -15,9 +16,9 @@ describe("UI reducer", () => {
         ...initial.ui,
         tiles: { default: "some default", current: "something else" },
       },
-      resetTilesOverlay()
+      toggleTileOverlay()
     );
-    expect(result.tiles.current).toEqual("some default");
+    expect(result.tiles.current).toBeUndefined();
     expect(result.tiles.default).toEqual("some default");
   });
 });

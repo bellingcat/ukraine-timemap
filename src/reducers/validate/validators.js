@@ -1,5 +1,3 @@
-import Joi from "joi";
-
 import createEventSchema from "./eventSchema";
 import siteSchema from "./siteSchema";
 import associationsSchema from "./associationsSchema";

@@ -1,4 +1,3 @@
-import React from "react";
 import { DEFAULT_CHECKBOX_COLOR } from "../../common/constants";
 
 const Checkbox = ({ label, isActive, onClickCheckbox, color, styleProps }) => {

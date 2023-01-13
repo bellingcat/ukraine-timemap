@@ -17,6 +17,7 @@ const SatelliteOverlayToggle = ({ isUsingSatellite, toggleSatellite }) => {
       <button
         className={`satellite-overlay-toggle-button ${toggleClass}`}
         style={{ backgroundImage: `url(${toggleImg}` }}
+        name="satellite-toggle"
         onClick={toggleSatellite}
       >
         <div className="label">{toggleLabel}</div>

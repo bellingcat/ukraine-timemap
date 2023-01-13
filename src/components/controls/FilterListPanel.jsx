@@ -1,4 +1,3 @@
-import React from "react";
 import Checkbox from "../atoms/Checkbox";
 import marked from "marked";
 import {
@@ -10,9 +9,6 @@ import {
 /** recursively get an array of node keys to toggle */
 function getFiltersToToggle(filter, activeFilters) {
   const [key, children] = filter;
-  // base case: no children to recurse through
-  // eslint-disable-next-line eqeqeq
-  if (children == {}) return [key];
 
   const turningOff = activeFilters.includes(key);
   const childKeys = Object.entries(children)
