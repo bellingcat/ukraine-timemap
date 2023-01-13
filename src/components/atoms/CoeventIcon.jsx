@@ -11,8 +11,8 @@ const CoeventIcon = ({ isEnabled, toggleMapViews }) => {
         enableBackground="new 0 0 30 20"
       >
         <polygon
-          stroke-linejoin="round"
-          stroke-miterlimit="10"
+          strokeLinejoin="round"
+          strokeMiterlimit="10"
           points="19.178,20 10.823,20 10.473,14.081
           10,13.396 10,6.084 20,6.084 20,13.396 19.445,14.021 "
         />
@@ -24,8 +24,8 @@ const CoeventIcon = ({ isEnabled, toggleMapViews }) => {
           height="3.35"
         />
         <line
-          stroke-linejoin="round"
-          stroke-miterlimit="10"
+          strokeLinejoin="round"
+          strokeMiterlimit="10"
           x1="12.125"
           y1="1"
           x2="12.125"

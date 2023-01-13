@@ -15,8 +15,8 @@ import {
 const DefsClusters = () => (
   <defs>
     <radialGradient id="clusterGradient">
-      <stop offset="10%" stop-color="red" />
-      <stop offset="90%" stop-color="transparent" />
+      <stop offset="10%" stopColor="red" />
+      <stop offset="90%" stopColor="transparent" />
     </radialGradient>
   </defs>
 );
