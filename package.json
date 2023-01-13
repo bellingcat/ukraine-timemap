@@ -76,7 +76,7 @@
     "react-dev-utils": "^11.0.1",
     "react-device-detect": "^2.2.2",
     "react-dom": "^18.0.0",
-    "react-image": "^1.5.1",
+    "react-image": "^4.0.3",
     "react-portal": "^4.2.0",
     "react-redux": "^5.0.4",
     "react-refresh": "^0.8.3",
