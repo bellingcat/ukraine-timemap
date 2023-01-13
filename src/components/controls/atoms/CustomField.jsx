@@ -1,4 +1,3 @@
-import React from "react";
 import marked from "marked";
 
 // TODO could this be a security vulnerability?

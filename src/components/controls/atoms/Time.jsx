@@ -1,5 +1,3 @@
-import React from "react";
-
 import copy from "../../../common/data/copy.json";
 import { isNotNullNorUndefined } from "../../../common/utilities";
 

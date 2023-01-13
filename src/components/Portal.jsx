@@ -1,7 +1,7 @@
-import React from "react";
+import { Component } from "react";
 import ReactDOM from "react-dom";
 
-class Portal extends React.Component {
+class Portal extends Component {
   render() {
     const { children, node } = this.props;
     if (!node) return null;

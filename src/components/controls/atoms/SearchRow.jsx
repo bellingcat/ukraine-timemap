@@ -1,5 +1,3 @@
-import React from "react";
-
 const SearchRow = ({ query, eventObj, onSearchRowClick }) => {
   const { description, location, date } = eventObj;
   function getHighlightedText(text, highlight) {

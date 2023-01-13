@@ -1,4 +1,3 @@
-import React from "react";
 import { makeNiceDate } from "../../../common/utilities";
 
 const TimelineHeader = ({ title, from, to, onClick, hideInfo }) => {

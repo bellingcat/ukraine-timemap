@@ -1,4 +1,3 @@
-import React from "react";
 import { Player } from "video-react";
 import { Img } from "react-image";
 import Md from "./Md";

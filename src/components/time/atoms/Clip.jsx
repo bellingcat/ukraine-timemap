@@ -1,5 +1,3 @@
-import React from "react";
-
 const TimelineClip = ({ dims }) => (
   <clipPath id="clip">
     <rect

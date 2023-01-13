@@ -1,4 +1,3 @@
-import React from "react";
 import Checkbox from "../../atoms/Checkbox";
 import { ASSOCIATION_MODES } from "../../../common/constants";
 

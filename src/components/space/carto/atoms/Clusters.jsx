@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import colors from "../../../../common/global";
 import ColoredMarkers from "../../../atoms/ColoredMarkers";
 import Portal from "../../../Portal";

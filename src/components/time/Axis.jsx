@@ -1,14 +1,14 @@
-import React from "react";
+import { createRef, Component } from "react";
 import { axisBottom, timeFormat, select } from "d3";
 import { setD3Locale } from "../../common/utilities";
 
 const TEXT_HEIGHT = 15;
 setD3Locale();
-class TimelineAxis extends React.Component {
+class TimelineAxis extends Component {
   constructor() {
     super();
-    this.xAxis0Ref = React.createRef();
-    this.xAxis1Ref = React.createRef();
+    this.xAxis0Ref = createRef();
+    this.xAxis1Ref = createRef();
     this.state = {
       isInitialized: false,
     };

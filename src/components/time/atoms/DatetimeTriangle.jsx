@@ -1,5 +1,3 @@
-import React from "react";
-
 const DatetimeTriangle = ({ x, y, r, transform, onSelect, styleProps }) => {
   const s = (r * 2) / 3;
   return (

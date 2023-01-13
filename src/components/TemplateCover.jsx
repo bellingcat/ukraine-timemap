@@ -1,4 +1,4 @@
-import React from "react";
+import { Component } from "react";
 import { connect } from "react-redux";
 import { Player } from "video-react";
 import marked from "marked";
@@ -13,7 +13,7 @@ const MEDIA_HIDDEN = -2;
  * The component is a bit of a mess, keeping a lot of internal state and using
  * a couple of weird offset calculations... but it works for the time being.
  */
-class TemplateCover extends React.Component {
+class TemplateCover extends Component {
   constructor(props) {
     super(props);
     this.state = {

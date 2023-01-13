@@ -1,5 +1,3 @@
-import React from "react";
-
 const RouteIcon = ({ isEnabled, toggleMapViews }) => {
   return (
     <button onClick={() => toggleMapViews("routes")}>

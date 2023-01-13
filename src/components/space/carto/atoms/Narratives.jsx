@@ -1,4 +1,3 @@
-import React from "react";
 import Portal from "../../../Portal";
 // import { concatStatic } from 'rxjs/operator/concat'
 // import { single } from 'rxjs/operator/single'

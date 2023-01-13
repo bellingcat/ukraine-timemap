@@ -1,5 +1,3 @@
-import React from "react";
-
 const TimelineHandles = ({ dims, onMoveTime, backward }) => {
   if (backward === true) {
     return (

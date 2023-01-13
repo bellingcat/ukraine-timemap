@@ -1,5 +1,3 @@
-import React from "react";
-
 const CardCaret = ({ isOpen, toggle }) => {
   let classes = isOpen ? "arrow-down" : "arrow-down folded";
 

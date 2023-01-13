@@ -1,4 +1,4 @@
-import React from "react";
+import { Component } from "react";
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -24,7 +24,7 @@ import NarrativeControls from "./controls/NarrativeControls";
 import colors from "../common/global";
 import { binarySearch, insetSourceFrom } from "../common/utilities";
 
-class Dashboard extends React.Component {
+class Dashboard extends Component {
   constructor(props) {
     super(props);
 

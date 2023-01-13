@@ -1,4 +1,4 @@
-import React from "react";
+import { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../actions";
@@ -26,7 +26,7 @@ import { ToolbarButton } from "./controls/atoms/ToolbarButton";
 import { FullscreenToggle } from "./controls/FullScreenToggle";
 import DownloadPanel from "./controls/DownloadPanel";
 
-class Toolbar extends React.Component {
+class Toolbar extends Component {
   constructor(props) {
     super(props);
     this.onSelectFilter = this.onSelectFilter.bind(this);

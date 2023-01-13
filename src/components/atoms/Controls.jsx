@@ -1,5 +1,3 @@
-import React from "react";
-
 const OverlayControls = ({ viewIdx, paths, onShiftHandler }) => {
   const backArrow =
     viewIdx !== 0 ? (

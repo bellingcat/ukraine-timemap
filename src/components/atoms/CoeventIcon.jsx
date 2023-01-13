@@ -1,5 +1,3 @@
-import React from "react";
-
 const CoeventIcon = ({ isEnabled, toggleMapViews }) => {
   return (
     <button onClick={() => toggleMapViews("coevents")}>

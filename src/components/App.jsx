@@ -1,8 +1,8 @@
 import "../scss/main.scss";
-import React from "react";
+import { Component } from "react";
 import Layout from "./Layout";
 
-class App extends React.Component {
+class App extends Component {
   render() {
     return <Layout />;
   }

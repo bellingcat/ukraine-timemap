@@ -1,4 +1,4 @@
-import React from "react";
+import { Component } from "react";
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -6,7 +6,7 @@ import * as actions from "../../actions";
 
 import SearchRow from "./atoms/SearchRow.jsx";
 
-class Search extends React.Component {
+class Search extends Component {
   constructor(props) {
     super(props);
 

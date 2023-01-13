@@ -1,4 +1,3 @@
-import React from "react";
 import copy from "../../../../common/data/copy.json";
 import { language } from "../../../../common/utilities";
 import mapImg from "../../../../assets/satelliteoverlaytoggle/map.png";

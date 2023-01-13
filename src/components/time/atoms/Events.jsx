@@ -1,4 +1,3 @@
-import React from "react";
 import DatetimeBar from "./DatetimeBar";
 import DatetimeSquare from "./DatetimeSquare";
 import DatetimeStar from "./DatetimeStar";

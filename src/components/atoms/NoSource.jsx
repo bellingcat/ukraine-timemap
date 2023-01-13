@@ -1,5 +1,3 @@
-import React from "react";
-
 const NoSource = ({ failedUrls }) => {
   return (
     <div className="no-source-container">

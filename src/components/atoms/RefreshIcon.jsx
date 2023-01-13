@@ -1,5 +1,3 @@
-import React from "react";
-
 export default ({ isActive, isDisabled, onClickHandler }) => {
   return (
     <svg

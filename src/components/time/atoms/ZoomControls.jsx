@@ -1,5 +1,3 @@
-import React from "react";
-
 const DEFAULT_ZOOM_LEVELS = [
   { label: "20 years", duration: 10512000 },
   { label: "2 years", duration: 1051200 },

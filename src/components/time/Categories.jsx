@@ -1,10 +1,10 @@
-import React from "react";
+import { createRef, Component } from "react";
 import { drag as d3Drag, select } from "d3";
 
-class TimelineCategories extends React.Component {
+class TimelineCategories extends Component {
   constructor(props) {
     super(props);
-    this.grabRef = React.createRef();
+    this.grabRef = createRef();
     this.state = {
       isInitialized: false,
     };

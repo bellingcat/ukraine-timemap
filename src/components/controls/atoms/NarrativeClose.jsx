@@ -1,5 +1,3 @@
-import React from "react";
-
 const Close = ({ onClickHandler, closeMsg }) => {
   return (
     <div className="narrative-close" onClick={onClickHandler}>

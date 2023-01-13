@@ -1,4 +1,4 @@
-import React from "react";
+import { Component } from "react";
 import marked from "marked";
 import Content from "./Content";
 import Controls from "./Controls";
@@ -9,7 +9,7 @@ import { selectTypeFromPathWithPoster } from "../../common/utilities";
  * can be changed by the user. These are both managed in this component's React
  * state.
  */
-class SourceOverlay extends React.Component {
+class SourceOverlay extends Component {
   constructor() {
     super();
     this.state = { mediaIdx: 0, langIdx: 0 };

@@ -1,5 +1,3 @@
-import React from "react";
-
 const Spinner = ({ small }) => {
   return (
     <div className={`spinner ${small ? "small" : ""}`}>

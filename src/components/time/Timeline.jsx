@@ -1,4 +1,4 @@
-import React from "react";
+import { createRef, Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { scaleTime, timeMinute, timeSecond } from "d3";
@@ -17,7 +17,7 @@ import Markers from "./atoms/Markers";
 import Events from "./atoms/Events";
 import Categories from "./Categories";
 
-class Timeline extends React.Component {
+class Timeline extends Component {
   constructor(props) {
     super(props);
     let searchParams = new URLSearchParams(window.location.href.split("?")[1]);
@@ -29,7 +29,7 @@ class Timeline extends React.Component {
     this.onDragStart = this.onDragStart.bind(this);
     this.onDrag = this.onDrag.bind(this);
     this.onDragEnd = this.onDragEnd.bind(this);
-    this.svgRef = React.createRef();
+    this.svgRef = createRef();
     this.state = {
       isFolded:
         searchParams.has("timeline") &&

@@ -1,4 +1,3 @@
-import React from "react";
 import { DownloadButton } from "./DownloadButton";
 
 const DownloadPanel = ({ language, title, description, domain }) => {

@@ -1,10 +1,10 @@
-import React from "react";
+import { Component } from "react";
 import dayjs from "dayjs";
 import { Parser } from "@json2csv/plainjs";
 import copy from "../../common/data/copy.json";
 import { downloadAsFile } from "../../common/utilities";
 
-export class DownloadButton extends React.Component {
+export class DownloadButton extends Component {
   onDownload(format, domain) {
     let filename = `ukr-civharm-${dayjs().format("YYYY-MM-DD")}`;
     if (format === "csv") {

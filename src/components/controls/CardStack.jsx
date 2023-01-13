@@ -1,4 +1,4 @@
-import React from "react";
+import { createRef, Component } from "react";
 import { connect } from "react-redux";
 import { generateCardLayout, Card } from "./Card";
 
@@ -6,12 +6,12 @@ import * as selectors from "../../selectors";
 import { getFilterIdxFromColorSet } from "../../common/utilities";
 import copy from "../../common/data/copy.json";
 
-class CardStack extends React.Component {
+class CardStack extends Component {
   constructor() {
     super();
     this.refs = {};
-    this.refCardStack = React.createRef();
-    this.refCardStackContent = React.createRef();
+    this.refCardStack = createRef();
+    this.refCardStackContent = createRef();
   }
 
   componentDidUpdate() {
@@ -64,7 +64,7 @@ class CardStack extends React.Component {
       generateCardLayout[this.props.cardUI.layout.template];
 
     return events.map((event, idx) => {
-      const thisRef = React.createRef();
+      const thisRef = createRef();
       this.refs[idx] = thisRef;
 
       const content = generateTemplate({

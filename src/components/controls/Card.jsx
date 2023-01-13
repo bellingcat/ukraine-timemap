@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import CardText from "./atoms/Text";
 import CardTime from "./atoms/Time";
 import CardButton from "./atoms/Button";

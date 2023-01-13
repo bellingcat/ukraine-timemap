@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { useCallback } from "react";
 import { typeForPath } from "../../../common/utilities";
 import { TwitterTweetEmbed } from "react-twitter-embed";

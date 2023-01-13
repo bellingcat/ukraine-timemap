@@ -1,9 +1,9 @@
-import React from "react";
+import { Component } from "react";
 import screenfull from "screenfull";
 import { ToolbarButton } from "./atoms/ToolbarButton";
 import copy from "../../common/data/copy.json";
 
-export class FullscreenToggle extends React.Component {
+export class FullscreenToggle extends Component {
   constructor(props) {
     super(props);
 

@@ -1,4 +1,3 @@
-import React from "react";
 import Popup from "./atoms/Popup";
 import copy from "../common/data/copy.json";
 

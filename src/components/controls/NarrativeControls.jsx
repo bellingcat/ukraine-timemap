@@ -1,4 +1,3 @@
-import React from "react";
 import Card from "./atoms/NarrativeCard";
 import Adjust from "./atoms/NarrativeAdjust";
 import Close from "./atoms/NarrativeClose";

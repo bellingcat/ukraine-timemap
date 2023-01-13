@@ -1,5 +1,3 @@
-import React from "react";
-
 import SitesIcon from "../atoms/SitesIcon";
 import CoverIcon from "../atoms/CoverIcon";
 // import InfoIcon from "../atoms/InfoIcon";

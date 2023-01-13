@@ -1,7 +1,7 @@
 /* global L */
 import { bindActionCreators } from "redux";
 import "leaflet";
-import React from "react";
+import { createRef, Component } from "react";
 import { flushSync } from "react-dom";
 import Supercluster from "supercluster";
 import { isMobileOnly } from "react-device-detect";
@@ -36,14 +36,14 @@ import {
 const supportedMapboxMap = ["streets", "satellite"];
 const defaultToken = "your_token";
 
-class Map extends React.Component {
+class Map extends Component {
   constructor() {
     super();
     this.projectPoint = this.projectPoint.bind(this);
     this.onClusterSelect = this.onClusterSelect.bind(this);
     this.loadClusterData = this.loadClusterData.bind(this);
     this.getClusterChildren = this.getClusterChildren.bind(this);
-    this.svgRef = React.createRef();
+    this.svgRef = createRef();
     this.map = null;
     this.superclusterIndex = null;
     this.tileLayer = null;

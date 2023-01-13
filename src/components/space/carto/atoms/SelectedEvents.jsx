@@ -1,9 +1,9 @@
-import React from "react";
+import { Component } from "react";
 import colors from "../../../../common/global";
 import hash from "object-hash";
 import Portal from "../../../Portal";
 
-class MapSelectedEvents extends React.Component {
+class MapSelectedEvents extends Component {
   renderMarker(marker) {
     const { x, y } = this.props.projectPoint([
       marker.latitude,

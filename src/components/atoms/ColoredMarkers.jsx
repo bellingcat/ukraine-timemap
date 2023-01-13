@@ -1,4 +1,3 @@
-import React from "react";
 import { getCoordinatesForPercent } from "../../common/utilities";
 
 function ColoredMarkers({ radius, colorPercentMap, styles, className }) {

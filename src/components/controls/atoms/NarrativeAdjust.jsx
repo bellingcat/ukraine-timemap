@@ -1,5 +1,3 @@
-import React from "react";
-
 const Adjust = ({ isDisabled, direction, onClickHandler }) => {
   return (
     <div

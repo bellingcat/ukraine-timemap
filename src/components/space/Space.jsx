@@ -1,4 +1,3 @@
-import React from "react";
 import MapCarto from "./carto/Map";
 // import Map3d from "./3d/Map";
 

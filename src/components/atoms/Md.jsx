@@ -1,8 +1,8 @@
-import React from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import marked from "marked";
 
-class Md extends React.Component {
+class Md extends Component {
   constructor(props) {
     super(props);
     this.state = { md: null, error: null };

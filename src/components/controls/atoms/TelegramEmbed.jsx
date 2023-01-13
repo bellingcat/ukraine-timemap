@@ -1,7 +1,7 @@
 /*
  * Adapted from https://github.com/cudr/react-telegram-embed
  */
-import React, { Component } from "react";
+import { Component } from "react";
 
 const styles = {
   width: "100%",

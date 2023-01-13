@@ -1,4 +1,3 @@
-import React from "react";
 import copy from "../../common/data/copy.json";
 
 const LoadingOverlay = ({ isLoading, language }) => {
