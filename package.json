@@ -74,7 +74,7 @@
     "react": "^18.0.0",
     "react-app-polyfill": "^2.0.0",
     "react-dev-utils": "^11.0.1",
-    "react-device-detect": "^1.6.2",
+    "react-device-detect": "^2.2.2",
     "react-dom": "^18.0.0",
     "react-image": "^1.5.1",
     "react-portal": "^4.2.0",
