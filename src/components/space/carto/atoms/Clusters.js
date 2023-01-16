@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Portal } from "react-portal";
 import colors from "../../../../common/global";
 import ColoredMarkers from "../../../atoms/ColoredMarkers";
+import Portal from "../../../Portal";
 import {
   calcClusterOpacity,
   calcClusterSize,

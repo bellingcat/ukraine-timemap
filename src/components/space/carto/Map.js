@@ -3,7 +3,6 @@ import { bindActionCreators } from "redux";
 import "leaflet";
 import React from "react";
 import { flushSync } from "react-dom";
-import { Portal } from "react-portal";
 import Supercluster from "supercluster";
 import { isMobileOnly } from "react-device-detect";
 
@@ -16,6 +15,7 @@ import Regions from "./atoms/Regions";
 import Events from "./atoms/Events";
 import Clusters from "./atoms/Clusters";
 import SelectedEvents from "./atoms/SelectedEvents";
+import Portal from "../../Portal";
 import Narratives from "./atoms/Narratives";
 import DefsMarkers from "./atoms/DefsMarkers";
 import SatelliteOverlayToggle from "./atoms/SatelliteOverlayToggle";

@@ -6,8 +6,7 @@ import { downloadAsFile } from "../../common/utilities";
 
 export class DownloadButton extends React.Component {
   onDownload(format, domain) {
-    console.log()
-    let filename = `ukr-civharm-${dayjs().format('YYYY-MM-DD')}`;
+    let filename = `ukr-civharm-${dayjs().format("YYYY-MM-DD")}`;
     if (format === "csv") {
       let outputData = this.getCsvData(domain);
       downloadAsFile(`${filename}.csv`, outputData);

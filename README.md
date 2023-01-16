@@ -44,7 +44,7 @@ Please check our [issues page](https://github.com/bellingcat/ukraine-timemap/iss
 * `store.ui.colors` and `store.ui.maxNumOfColors` are applied to filters, as they are selected
 
 Easiest way to deploy the static files is through 
-* `nvm use 14`
+* `nvm use 16`
 * `npm run build` (rather: `CI=false npm run build`)
 * copy the files to your server, for example to `/var/www/html`
 
