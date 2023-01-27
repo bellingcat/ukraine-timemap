@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
-import rootReducer from "./root.js";
-import domain from "./domain.js";
-import app from "./app.js";
-import ui from "./ui.js";
-import features from "./features.js";
+import rootReducer from "./root";
+import domain from "./domain";
+import app from "./app";
+import ui from "./ui";
+import features from "./features";
 
 function decorateRootReducer(rootReducer, reducer) {
   return (state, action) =>

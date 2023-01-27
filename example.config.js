@@ -1,4 +1,4 @@
-module.exports = {
+const config = {
   title: 'example',
   display_title: 'example',
   SERVER_ROOT: 'http://localhost:4040',
@@ -25,3 +25,5 @@ module.exports = {
     }
   }
 }
+
+export default config;

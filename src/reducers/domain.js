@@ -1,7 +1,7 @@
-import initial from "../store/initial.js";
+import initial from "../store/initial";
 
 import { UPDATE_DOMAIN, MARK_NOTIFICATIONS_READ } from "../actions";
-import { validateDomain } from "./validate/validators.js";
+import { validateDomain } from "./validate/validators";
 
 function updateDomain(domainState, action) {
   return {

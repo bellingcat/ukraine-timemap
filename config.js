@@ -1,5 +1,6 @@
 const one_day = 1440;
-module.exports = {
+
+const config = {
   title: "ukraine",
   display_title: "Civilian Harm\nin Ukraine",
   SERVER_ROOT: "https://ukraine.bellingcat.com/ukraine-server",
@@ -166,3 +167,5 @@ module.exports = {
     },
   },
 };
+
+export default config;

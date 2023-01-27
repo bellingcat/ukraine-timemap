@@ -1,4 +1,4 @@
-import initial from "../store/initial.js";
+import initial from "../store/initial";
 import { ASSOCIATION_MODES } from "../common/constants";
 import { toggleFlagAC } from "../common/utilities";
 import * as selectors from "../selectors";

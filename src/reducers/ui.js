@@ -1,4 +1,4 @@
-import initial from "../store/initial.js";
+import initial from "../store/initial";
 
 import { TOGGLE_TILE_OVERLAY } from "../actions";
 
