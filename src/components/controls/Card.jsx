@@ -239,11 +239,11 @@ export const Card = ({
       className={`event-card ${isSelected ? "selected" : ""}`}
       onClick={onSelect}
     >
-      {content.map((row) => {
+      {content.map((row, idx) => {
         if (row[0].kind === "sources" && row[0].values.length > 0) {
           return (
-            <div>
-              <details open="true">
+            <div key={idx}>
+              <details open={true}>
                 <summary>
                   <span className="summary-line"></span>
                   <span className="summary-text">
