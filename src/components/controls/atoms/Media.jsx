@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useCallback } from "react";
 import { typeForPath } from "../../../common/utilities";
-import { TwitterTweetEmbed } from "react-twitter-embed";
+import TwitterTweet from'./TwitterTweet'
 import TelegramPostEmbed from "./TelegramEmbed";
 
 const TITLE_LENGTH = 50;
@@ -88,11 +88,18 @@ const Media = ({ cardIdx, src, title, graphic }) => {
       );
 
     case "Telegram":
-      return wrapGraphic(
-        <div className="card-cell media embedded">
-          <TelegramPostEmbed src={src} />
-        </div>
-      );
+      if (src.includes("https://t.me/c/")) {
+        return <div>Private <a href={src}>telegram post</a></div>
+      }
+      try {
+        return wrapGraphic(
+          <div className="card-cell media embedded">
+            <TelegramPostEmbed src={src} />
+          </div>
+        );
+      } catch (error) {
+        return <div>Unable to display <a href={src}>telegram post</a></div>
+      }
 
     case "Tweet":
       const tweetIdRegex =
@@ -102,15 +109,18 @@ const Media = ({ cardIdx, src, title, graphic }) => {
         return null;
       }
       const tweetId = match[match.length - 1];
-
-      return wrapGraphic(
-        <div className="card-cell media embedded">
-          <TwitterTweetEmbed
-            tweetId={tweetId}
-            options={{ conversation: "none" }}
-          />
-        </div>
-      );
+      try {
+        return wrapGraphic(
+          <div className="card-cell media embedded">
+            <TwitterTweet
+              tweetId={tweetId}
+              options={{ conversation: "none" }}
+            />
+          </div>
+        );
+      } catch (error) {
+        return <div>Unable to display <a href={src}>tweet</a></div>
+      }
     default:
       if (src === "HIDDEN") {
         return (
@@ -123,7 +133,7 @@ const Media = ({ cardIdx, src, title, graphic }) => {
           </div>
         );
       } else {
-        return null;
+        return <div><a href={src}>other source</a></div>
       }
   }
 };
