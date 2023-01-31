@@ -179,6 +179,15 @@
         text {
           fill: $midwhite;
           text-transform: capitalize;
+
+          @media screen and (max-width: 960px) {
+            writing-mode:vertical-lr;
+            /*
+             * Applies slightly different in Gecko and WebKit/Blink.
+             * Optimized for WebKit as its more common on mobile viewports.
+             */
+            transform: translateX(6px) translateY(6px);
+          }
         }
       }
 
