@@ -34,10 +34,11 @@ const config = {
           contentHeight: 90,
         },
         zoomLevels: [
-          { label: "Zoom to 2 weeks", duration: 14 * one_day },
+          // { label: "Zoom to 2 weeks", duration: 14 * one_day },
           { label: "Zoom to 1 month", duration: 31 * one_day },
           { label: "Zoom to 6 months", duration: 6 * 31 * one_day },
           { label: "Zoom to 1 year", duration: 12 * 31 * one_day },
+          { label: "Zoom to 1.5 years", duration: 18 * 31 * one_day },
         ],
         range: {
           /**
