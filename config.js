@@ -3,10 +3,11 @@ const one_day = 1440;
 const config = {
   title: "ukraine",
   display_title: "Civilian Harm\nin Ukraine",
-  SERVER_ROOT: "https://ukraine.bellingcat.com/ukraine-server",
-  EVENTS_EXT: "/api/ukraine/export_events/deeprows",
-  SOURCES_EXT: "/api/ukraine/export_sources/deepids",
-  ASSOCIATIONS_EXT: "/api/ukraine/export_associations/deeprows",
+  SERVER_ROOT: "https://bellingcat-embeds.ams3.cdn.digitaloceanspaces.com/production/ukr",
+  EVENTS_EXT: "/timemap/events.json",
+  SOURCES_EXT: "/timemap/sources.json",
+  ASSOCIATIONS_EXT: "/timemap/associations.json",
+  API_DATA: "https://bellingcat-embeds.ams3.cdn.digitaloceanspaces.com/production/ukr/timemap/api.json",
   MAPBOX_TOKEN:
     "pk.eyJ1IjoiYmVsbGluZ2NhdC1tYXBib3giLCJhIjoiY2tleW0wbWliMDA1cTJ5bzdkbTRraHgwZSJ9.GJQkjPzj8554VhR5SPsfJg",
   // MEDIA_EXT: "/api/media",
@@ -38,7 +39,7 @@ const config = {
           { label: "Zoom to 1 month", duration: 31 * one_day },
           { label: "Zoom to 6 months", duration: 6 * 31 * one_day },
           { label: "Zoom to 1 year", duration: 12 * 31 * one_day },
-          { label: "Zoom to 1.5 years", duration: 18 * 31 * one_day },
+          { label: "Zoom to 2 years", duration: 24 * 31 * one_day },
         ],
         range: {
           /**
