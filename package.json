@@ -2,7 +2,7 @@
   "name": "timemap",
   "version": "0.1.0",
   "description": "",
-  "homepage": ".",
+  "homepage": "https://bellingcat.github.io/ukraine-timemap",
   "private": true,
   "engines": {
     "node": "18"
@@ -15,7 +15,9 @@
     "test": "vitest",
     "eslint": "eslint src --ext jsx",
     "lint": "prettier --check \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
-    "lint:fix": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
+    "lint:fix": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "predeploy": "vite build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@json2csv/plainjs": "^6.1.2",
@@ -48,6 +50,7 @@
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-react": "^7.32.0",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "gh-pages": "^6.0.0",
     "husky": "^8.0.3",
     "jest-date-mock": "^1.0.8",
     "lint-staged": "^13.1.0",
