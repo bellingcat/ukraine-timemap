@@ -214,6 +214,10 @@
           "title": "Download events",
           "description": "Export the most recent available events in different formats.",
           "formats": {
+            "api": {
+              "label": "API",
+              "description": "An API endpoint where you can always fetch the entire dataset in JSON format with tools like curl. Useful for integrating the data in other services and visualizaitons."
+            },
             "csv": {
               "label": "CSV",
               "description": "CSV file where sources and filters are concatenated into a single column each due to data structure limitations."

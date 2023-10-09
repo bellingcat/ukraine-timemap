@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "preview": "vite preview",
     "dev:wsl": "vite --host",
     "test": "vitest",
     "eslint": "eslint src --ext jsx",

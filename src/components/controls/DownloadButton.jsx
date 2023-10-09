@@ -3,11 +3,14 @@ import dayjs from "dayjs";
 import { Parser } from "@json2csv/plainjs";
 import copy from "../../common/data/copy.json";
 import { downloadAsFile } from "../../common/utilities";
+import config from "../../../config";
 
 export class DownloadButton extends Component {
   onDownload(format, domain) {
     let filename = `ukr-civharm-${dayjs().format("YYYY-MM-DD")}`;
-    if (format === "csv") {
+    if (format === "api") {
+      window.open(config["API_DATA"], '_blank');
+    }else if (format === "csv") {
       let outputData = this.getCsvData(domain);
       downloadAsFile(`${filename}.csv`, outputData);
     } else if (format === "json") {
