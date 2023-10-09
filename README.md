@@ -1,6 +1,10 @@
 <h1 align="center">Civilian Harm in Ukraine TimeMap</h1>
 
-<h2 align="center">Visit <a href="https://ukraine.bellingcat.com/">ukraine.bellingcat.com</a>.</h2>
+<h2 align="center">
+	Explore it in <a href="https://ukraine.bellingcat.com/">ukraine.bellingcat.com</a>
+	<br/>
+	Download/integrate the data from <a href="https://bellingcat-embeds.ams3.cdn.digitaloceanspaces.com/production/ukr/timemap/api.json">here</a> <small>(regularly updated dataset)</small>
+</h2>
 
 <h3 align="center">
 Read Bellingcat's article about this project in 
@@ -24,6 +28,12 @@ Read Bellingcat's article about this project in
 * `CONFIG=config.js npm run dev` or `npm run dev` if the file is named config.js
 * For more info visit the [original repo](https://github.com/forensic-architecture/timemap)
 
+
+## Deployment
+This project is now living in github pages and the API has switched to auto-updated S3 files.
+
+Release with `npm run deploy`. 
+
 ## Contributing
 Please check our [issues page](https://github.com/bellingcat/ukraine-timemap/issues) for desired contributions, and feel free to suggest your own. 
 
@@ -34,6 +44,7 @@ Please check our [issues page](https://github.com/bellingcat/ukraine-timemap/iss
 
 * `SERVER_ROOT` - points to the API base address
 * `XXXX_EXT` - points to the respective JSONs of the data, for events, sources, and associations
+* `API_DATA` - S3 file address that can be downloaded or integrated into external apps/visualizations
 * `MAPBOX_TOKEN` - used to load the custom styles
 * `DATE_FMT` and `TIME_FMT` - how to consume the events' date/time from the API
 * `store.app.map` - configures the initial map view and the UX limits
