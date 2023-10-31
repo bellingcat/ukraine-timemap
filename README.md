@@ -35,7 +35,7 @@ This project is now living in github pages and the API has switched to auto-upda
 Release with `npm run deploy`. 
 
 ## Contributing
-Please check our [issues page](https://github.com/bellingcat/ukraine-timemap/issues) for desired contributions, and feel free to suggest your own. 
+Please read our [Contribution Guide](./CONTRIBUTING.md) and check our [Issues Page](https://github.com/bellingcat/ukraine-timemap/issues) for desired contributions, and feel free to suggest your own. 
 
 ## Configurations
 
