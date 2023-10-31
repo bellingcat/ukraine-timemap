@@ -1,7 +1,10 @@
 # Contributing to timemap 
 
-Hi there! Thank you already, for taking the time to contribute and improve
-timemap. This document is right place to start. Read it thoroughly!
+Hello! Thanks for being part of the Bellingcat Tech Community 💪 We really appreciate your ideas, thoughts, and involvement. Read on for guidance on how to contribute to this project 🏆
+
+Contributions to this project are released to the public under the project's open source license.
+
+Please note that this project is released with a [Contributor Code of Conduct](https://github.com/bellingcat/.github/blob/main/CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 ## What do I need to know to help?
 ### Javascript / React / Redux
