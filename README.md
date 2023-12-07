@@ -31,6 +31,7 @@ Read Bellingcat's article about this project in
 
 ## Deployment
 This project is now living in github pages and the API has switched to auto-updated S3 files.
+Access it at https://bellingcat-embeds.ams3.cdn.digitaloceanspaces.com/production/ukr/timemap/api.json
 
 Release with `npm run deploy`. 
 

@@ -9,6 +9,7 @@ export class DownloadButton extends Component {
   onDownload(format, domain) {
     let filename = `ukr-civharm-${dayjs().format("YYYY-MM-DD")}`;
     if (format === "api") {
+      console.log(config["API_DATA"])
       window.open(config["API_DATA"], '_blank');
     }else if (format === "csv") {
       let outputData = this.getCsvData(domain);
@@ -68,6 +69,14 @@ export class DownloadButton extends Component {
   render() {
     const { language, domain, format } = this.props;
     const textByFormat = copy[language].toolbar.download.panel.formats[format];
+
+    let description = <span className="download-description">{textByFormat.description}</span>;
+    
+    if(format=='api'){
+      const endpoint = config["API_DATA"];
+      description = <span className="download-description">{textByFormat.description} <a href={endpoint}>Copy API endpoint link from here.</a></span>
+    }
+
     return (
       <div className="download-row">
         <span
@@ -78,7 +87,7 @@ export class DownloadButton extends Component {
           <i className="material-icons">{"download"}</i>
           <span className="tab-caption">{textByFormat.label}</span>
         </span>
-        <span className="download-description">{textByFormat.description}</span>
+       {description}
       </div>
     );
   }
