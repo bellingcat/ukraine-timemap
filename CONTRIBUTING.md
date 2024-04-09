@@ -1,7 +1,10 @@
 # Contributing to timemap 
 
-Hi there! Thank you already, for taking the time to contribute and improve
-timemap. This document is right place to start. Read it thoroughly!
+Hello! Thanks for being part of the Bellingcat Tech Community 💪 We really appreciate your ideas, thoughts, and involvement. Read on for guidance on how to contribute to this project 🏆
+
+Contributions to this project are released to the public under the project's open source license.
+
+Please note that this project is released with a [Contributor Code of Conduct](https://github.com/bellingcat/.github/blob/main/CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 ## What do I need to know to help?
 ### Javascript / React / Redux
@@ -14,7 +17,7 @@ as you might like, here's a good tutorial to get you up to speed:
 ### Node JS and Docker
 Timemap doesn't actually use these technologies; but the main way of getting up
 and running with a data provider for timemap,
-[datasheet-server](https://github.com/forensic-architecture/datasheet-server),
+[datasheet-server](https://github.com/bellingcat/datasheet-server),
 does, and so they're helpful to know.
 
 ## Do I need to be an experienced JS developer? 
@@ -29,7 +32,7 @@ are all very welcome contributions:
 - Reporting a bug
 
 If you're new to this project, you could check the issues that are tagged
-["good first issue"](https://github.com/forensic-architecture/timemap/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22).
+["good first issue"](https://github.com/bellingcat/ukraine-timemap/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22).
 
 These are a range of the issues that have come up in conversation for which we
 would welcome community contributions. These are, however, by no means
@@ -41,14 +44,10 @@ discuss it with timemap's maintainers.
 1. Make sure you have a [GitHub account](https://github.com/signup/free)
 2. Fork the repository on GitHub. This is necessary so that you can push your
     changes, as you can't do this directly on our repo.
-
 3. Get set up with a local instance of timemap and datasheet-server. The easiest
-    way to do this is by reading [this blog post on our website](https://forensic-architecture.org/investigation/timemap-for-cartographic-platforms).
-4. [Join our Discord server](https://discord.gg/PjHKHJD5KX). Here you'll be able
-    to track commits that are actively being made across our projects; but more
-    importantly it's where you can ask questions if something's not clear or
-    not working as you expect. The #timemap and #support channels are the two
-    best places to ask questions about setting timemap up.
+    way to do this is by reading [this blog post on the forensic architecture website](https://forensic-architecture.org/investigation/timemap-for-cartographic-platforms).
+4. [Join the Bellingcat Discord server](https://discord.gg/bellingcat), this is our main community hub. Check out the #tool-and-sites and #tech-support channels for support with the ukraine-timemap.
+   Also consider joining the [Forensic Architecture Discord](https://discord.gg/PjHKHJD5KX), the #timemap and #support channels are the two best channels to ask questions about setting timemap up.
 
 Once you're set up with a local copy of timemap and datasheet-server, you can
 start modifying code and making changes. 
