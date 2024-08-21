@@ -240,6 +240,7 @@
         "Other"
       ],
       "info": "Showing <span>%n events</span> that occurred between",
+      "reset": "reset dates",
       "default_categories_label": ""
     },
     "cardstack": {

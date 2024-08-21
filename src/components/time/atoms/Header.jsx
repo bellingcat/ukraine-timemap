@@ -1,6 +1,6 @@
 import { makeNiceDate } from "../../../common/utilities";
 
-const TimelineHeader = ({ title, from, to, onClick, hideInfo }) => {
+const TimelineHeader = ({ title, from, to, onClick, hideInfo, resetTest, resetClick }) => {
   const d0 = from && makeNiceDate(from);
   const d1 = to && makeNiceDate(to);
   return (
@@ -14,6 +14,7 @@ const TimelineHeader = ({ title, from, to, onClick, hideInfo }) => {
         <p dangerouslySetInnerHTML={{ __html: title }} />
         <p>
           {d0} - {d1}
+          <small className="reset-button" onClick={() => resetClick() }><a className="cell">{ resetTest }</a></small>
         </p>
       </div>
     </div>

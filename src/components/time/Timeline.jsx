@@ -53,6 +53,9 @@ class Timeline extends Component {
         timerange: nextProps.app.timeline.range,
         scaleX: this.makeScaleX(),
       });
+      if(this?.initialTimeRange == null) {
+        this.initialTimeRange = nextProps.app.timeline.range;
+      }
     }
 
     if (
@@ -377,6 +380,8 @@ class Timeline extends Component {
       domain.eventCountInTimeRange
     );
 
+    const resetTest = copy[this.props.app.language].timeline.reset;
+
     return (
       <div className={classes} onKeyDown={this.props.onKeyDown} tabIndex="1">
         <Header
@@ -387,6 +392,15 @@ class Timeline extends Component {
             this.onClickArrow();
           }}
           hideInfo={isNarrative}
+          resetTest={resetTest}
+          resetClick={() => {
+            this.setState({
+              timerange: this.initialTimeRange
+            }, () => {
+              this.props.methods.onUpdateTimerange(this.state.timerange);
+            });
+            this.computeDims();
+          }}
         />
         <div className="timeline-content">
           <div id={this.props.ui.dom.timeline} className="timeline">
