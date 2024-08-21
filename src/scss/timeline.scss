@@ -108,6 +108,12 @@
         }
       }
 
+      small.reset-button {
+        float:right;
+        cursor: pointer;
+        font-size: 0.75rem;
+      }
+
       // mobile styles
       @media screen and (max-width: 600px) {
         bottom: 115%;
