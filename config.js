@@ -49,7 +49,7 @@ const config = {
            */
           initial: undefined,
           /** The number of days to show when using a dynamic initial range */
-          initialDaysShown: 31,
+          initialDaysShown: 31*12,
           limits: {
             /** Required. The lower bound of the range that can be accessed on the map. (ISO 8601) */
             lower: "2022-02-01T00:00:00.000Z",
