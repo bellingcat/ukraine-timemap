@@ -70,6 +70,19 @@ export const SCHEMA = Object.freeze({
       }
     },
   },
+  hid: {
+    key: "hid",
+    trigger: null, // Read-only from URL, no action triggers update
+    type: SCHEMA_TYPES.STRING_ARRAY,
+    dehydrate() {
+      return []; // Never update URL from state
+    },
+    rehydrate(nextState, { hid }) {
+      if (hid?.length) {
+        nextState.app.highlighted = hid;
+      }
+    },
+  },
   range: {
     key: "range",
     trigger: UPDATE_TIMERANGE,

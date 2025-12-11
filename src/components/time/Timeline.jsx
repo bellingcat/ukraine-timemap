@@ -464,6 +464,7 @@ class Timeline extends Component {
                   eventRadius={this.props.ui.eventRadius}
                   filterColors={this.props.ui.filterColors}
                   coloringSet={this.props.app.coloringSet}
+                  highlighted={this.props.app.highlighted}
                 />
               </svg>
             </div>
@@ -510,6 +511,7 @@ function mapStateToProps(state) {
     },
     app: {
       selected: state.app.selected,
+      highlighted: state.app.highlighted,
       language: state.app.language,
       narrative: state.app.associations.narrative,
       coloringSet: state.app.associations.coloringSet,

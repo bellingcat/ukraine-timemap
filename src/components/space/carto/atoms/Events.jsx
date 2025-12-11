@@ -8,12 +8,15 @@ import {
   zipColorsToPercentages,
 } from "../../../../common/utilities";
 
+const HIGHLIGHT_COLOR = "#E31A1B";
+
 function MapEvents({
   getCategoryColor,
   categories,
   projectPoint,
   styleLocation,
   selected,
+  highlighted,
   narrative,
   onSelect,
   svg,
@@ -46,18 +49,53 @@ function MapEvents({
   }
 
   function renderLocationSlicesByAssociation(location) {
-    const colorPercentages = calculateColorPercentages([location], coloringSet);
-
     const styles = {
       stroke: colors.darkBackground,
       strokeWidth: 0,
       fillOpacity: narrative ? 1 : calcOpacity(location.events.length),
     };
 
+    // Calculate percentage of highlighted events
+    const totalEvents = location.events.length;
+    const highlightedEvents =
+      highlighted && highlighted.length > 0
+        ? location.events.filter((event) => highlighted.includes(event.civId))
+        : [];
+    const highlightedCount = highlightedEvents.length;
+    const highlightedPercent = highlightedCount / totalEvents;
+
+    // Get non-highlighted events for category color calculation
+    const nonHighlightedEvents = location.events.filter(
+      (event) => !highlighted || !highlighted.includes(event.civId)
+    );
+
+    let colorPercentMap;
+    if (highlightedPercent === 1) {
+      // All events are highlighted
+      colorPercentMap = { [HIGHLIGHT_COLOR]: 1 };
+    } else if (highlightedPercent > 0) {
+      // Mix of highlighted and non-highlighted events
+      const nonHighlightedLocation = { ...location, events: nonHighlightedEvents };
+      const colorPercentages = calculateColorPercentages(
+        [nonHighlightedLocation],
+        coloringSet
+      );
+      // Scale down the category percentages and add highlight percentage
+      const scaledPercentages = colorPercentages.map(
+        (p) => p * (1 - highlightedPercent)
+      );
+      colorPercentMap = zipColorsToPercentages(filterColors, scaledPercentages);
+      colorPercentMap[HIGHLIGHT_COLOR] = highlightedPercent;
+    } else {
+      // No highlighted events
+      const colorPercentages = calculateColorPercentages([location], coloringSet);
+      colorPercentMap = zipColorsToPercentages(filterColors, colorPercentages);
+    }
+
     return (
       <ColoredMarkers
         radius={eventRadius}
-        colorPercentMap={zipColorsToPercentages(filterColors, colorPercentages)}
+        colorPercentMap={colorPercentMap}
         styles={{
           ...styles,
         }}

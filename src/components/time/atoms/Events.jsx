@@ -15,6 +15,8 @@ import {
 } from "../../../common/utilities";
 import { AVAILABLE_SHAPES } from "../../../common/constants";
 
+const HIGHLIGHT_COLOR = "#E31A1B";
+
 function renderDot(event, styles, props) {
   const colorPercentages = calculateColorPercentages(
     [event],
@@ -144,6 +146,7 @@ const TimelineEvents = ({
   eventRadius,
   filterColors,
   coloringSet,
+  highlighted,
 }) => {
   const narIds = narrative ? narrative.steps.map((s) => s.id) : [];
 
@@ -178,13 +181,23 @@ const TimelineEvents = ({
       }
     }
 
+    // Check if this event is highlighted
+    const isHighlighted =
+      highlighted &&
+      highlighted.length > 0 &&
+      highlighted.includes(event.civId);
+
     // if an event has multiple categories, it should be rendered on each of
     // those timelines: so we create as many event 'shadows' as there are
     // categories
     const evShadows = getEventCategories(event, categories).map((cat) => {
       const y = getY({ ...event, category: cat });
 
-      const colour = event.colour ? event.colour : getCategoryColor(cat.title);
+      const colour = isHighlighted
+        ? HIGHLIGHT_COLOR
+        : event.colour
+          ? event.colour
+          : getCategoryColor(cat.title);
 
       const styles = {
         fill: colour,
