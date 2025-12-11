@@ -3,6 +3,7 @@ import {
   UPDATE_COLORING_SET,
   UPDATE_SELECTED,
   UPDATE_TIMERANGE,
+  UPDATE_MAP_VIEW,
 } from "../../../actions";
 import { ASSOCIATION_MODES } from "../../../common/constants";
 import { createFilterPathString } from "../../../common/utilities";
@@ -11,6 +12,9 @@ import {
   getTimeRange,
   selectActiveColorSets,
   selectActiveFilterIds,
+  getMapLat,
+  getMapLng,
+  getMapZoom,
 } from "../../../selectors";
 
 export const SCHEMA_TYPES = {
@@ -125,6 +129,54 @@ export const SCHEMA = Object.freeze({
         state.app.associations.coloringSet = color.map((set) =>
           set.split(",").map((id) => filterMapping[id])
         );
+      }
+    },
+  },
+  lat: {
+    key: "lat",
+    trigger: UPDATE_MAP_VIEW,
+    type: SCHEMA_TYPES.NUMBER,
+    dehydrate(state) {
+      return getMapLat(state);
+    },
+    rehydrate(state, { lat }) {
+      if (lat != null && state.app.map) {
+        state.app.map = {
+          ...state.app.map,
+          anchor: [lat, state.app.map.anchor[1]],
+        };
+      }
+    },
+  },
+  lng: {
+    key: "lng",
+    trigger: UPDATE_MAP_VIEW,
+    type: SCHEMA_TYPES.NUMBER,
+    dehydrate(state) {
+      return getMapLng(state);
+    },
+    rehydrate(state, { lng }) {
+      if (lng != null && state.app.map) {
+        state.app.map = {
+          ...state.app.map,
+          anchor: [state.app.map.anchor[0], lng],
+        };
+      }
+    },
+  },
+  zoom: {
+    key: "zoom",
+    trigger: UPDATE_MAP_VIEW,
+    type: SCHEMA_TYPES.NUMBER,
+    dehydrate(state) {
+      return getMapZoom(state);
+    },
+    rehydrate(state, { zoom }) {
+      if (zoom != null && state.app.map) {
+        state.app.map = {
+          ...state.app.map,
+          startZoom: zoom,
+        };
       }
     },
   },

@@ -54,6 +54,7 @@ class Map extends Component {
       clusters: [],
     };
     this.styleLocation = this.styleLocation.bind(this);
+    this.syncMapViewToUrl = this.syncMapViewToUrl.bind(this);
   }
 
   componentDidMount() {
@@ -73,6 +74,25 @@ class Map extends Component {
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (!isIdentical(nextProps.domain.locations, this.props.domain.locations)) {
       this.loadClusterData(nextProps.domain.locations);
+    }
+
+    // Update map view if anchor or zoom changed (e.g., from URL state rehydration)
+    const { anchor: nextAnchor, startZoom: nextZoom } = nextProps.app.map;
+    const { anchor: currAnchor, startZoom: currZoom } = this.props.app.map;
+    if (
+      this.map &&
+      (!isIdentical(nextAnchor, currAnchor) || nextZoom !== currZoom)
+    ) {
+      const currentCenter = this.map.getCenter();
+      const currentZoom = this.map.getZoom();
+      // Only update if the values actually differ from the current map state
+      if (
+        Math.abs(currentCenter.lat - nextAnchor[0]) > 0.00001 ||
+        Math.abs(currentCenter.lng - nextAnchor[1]) > 0.00001 ||
+        currentZoom !== nextZoom
+      ) {
+        this.map.setView(nextAnchor, nextZoom, { animate: false });
+      }
     }
 
     // Set appropriate zoom for narrative
@@ -167,6 +187,7 @@ class Map extends Component {
     map.on("moveend", () => {
       this.alignLayers();
       this.updateClusters();
+      this.syncMapViewToUrl();
     });
 
     map.on("zoomend viewreset", () => {
@@ -203,6 +224,16 @@ class Map extends Component {
     ];
     const zoom = this.map.getZoom();
     return [bbox, zoom];
+  }
+
+  syncMapViewToUrl() {
+    if (!this.map) return;
+    const center = this.map.getCenter();
+    const zoom = this.map.getZoom();
+    // Round to 5 decimal places for cleaner URLs
+    const lat = Math.round(center.lat * 100000) / 100000;
+    const lng = Math.round(center.lng * 100000) / 100000;
+    this.props.actions.updateMapView(lat, lng, zoom);
   }
 
   updateClusters() {
