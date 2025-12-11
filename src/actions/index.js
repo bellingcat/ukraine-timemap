@@ -421,3 +421,13 @@ export function rehydrateState() {
     type: REHYDRATE_STATE,
   };
 }
+
+export const UPDATE_MAP_VIEW = "UPDATE_MAP_VIEW";
+export function updateMapView(lat, lng, zoom) {
+  return {
+    type: UPDATE_MAP_VIEW,
+    lat,
+    lng,
+    zoom,
+  };
+}

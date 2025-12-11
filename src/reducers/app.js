@@ -31,6 +31,7 @@ import {
   SET_INITIAL_CATEGORIES,
   SET_INITIAL_SHAPES,
   UPDATE_SEARCH_QUERY,
+  UPDATE_MAP_VIEW,
 } from "../actions";
 
 function updateHighlighted(appState, action) {
@@ -310,6 +311,17 @@ function updateSearchQuery(appState, action) {
   };
 }
 
+function updateMapView(appState, action) {
+  return {
+    ...appState,
+    map: {
+      ...appState.map,
+      anchor: [action.lat, action.lng],
+      startZoom: action.zoom,
+    },
+  };
+}
+
 function app(appState = initial.app, action) {
   switch (action.type) {
     case UPDATE_HIGHLIGHTED:
@@ -368,6 +380,8 @@ function app(appState = initial.app, action) {
       return setInitialShapes(appState, action);
     case UPDATE_SEARCH_QUERY:
       return updateSearchQuery(appState, action);
+    case UPDATE_MAP_VIEW:
+      return updateMapView(appState, action);
     default:
       return appState;
   }

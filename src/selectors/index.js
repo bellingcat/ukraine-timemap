@@ -43,6 +43,9 @@ export const getEventRadius = (state) => state.ui.eventRadius;
 export const getTile = (state) => state.ui.tiles.current;
 export const isUsingSatellite = (state) =>
   state.ui.tiles.current === state.ui.tiles.satellite;
+export const getMapLat = (state) => state.app.map.anchor[0];
+export const getMapLng = (state) => state.app.map.anchor[1];
+export const getMapZoom = (state) => state.app.map.startZoom;
 
 export const selectSites = createSelector(
   [getSites, getFeatures],
