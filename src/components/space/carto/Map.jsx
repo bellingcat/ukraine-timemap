@@ -469,6 +469,7 @@ class Map extends Component {
         categories={this.props.domain.categories}
         projectPoint={this.projectPoint}
         selected={this.props.app.selected}
+        highlighted={this.props.app.highlighted}
         narrative={this.props.app.narrative}
         onSelect={this.props.methods.onSelect}
         getCategoryColor={this.props.methods.getCategoryColor}
@@ -495,6 +496,7 @@ class Map extends Component {
         coloringSet={this.props.app.coloringSet}
         getClusterChildren={this.getClusterChildren}
         filterColors={this.props.ui.filterColors}
+        highlighted={this.props.app.highlighted}
       />
     );
   }

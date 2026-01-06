@@ -12,6 +12,8 @@ import {
   calculateTotalClusterPoints,
 } from "../../../../common/utilities";
 
+const HIGHLIGHT_COLOR = "#E31A1B";
+
 const DefsClusters = () => (
   <defs>
     <radialGradient id="clusterGradient">
@@ -32,6 +34,7 @@ function Cluster({
   getClusterChildren,
   coloringSet,
   filterColors,
+  highlighted,
 }) {
   /**
   {
@@ -50,10 +53,48 @@ function Cluster({
   const { cluster_id: clusterId } = cluster.properties;
 
   const individualChildren = getClusterChildren(clusterId);
-  const colorPercentages = calculateColorPercentages(
-    individualChildren,
-    coloringSet
-  );
+
+  // Calculate percentage of highlighted events in this cluster
+  const allEvents = individualChildren.flatMap((loc) => loc.events);
+  const totalEvents = allEvents.length;
+  const highlightedEvents =
+    highlighted && highlighted.length > 0
+      ? allEvents.filter((event) => highlighted.includes(event.civId))
+      : [];
+  const highlightedCount = highlightedEvents.length;
+  const highlightedPercent = totalEvents > 0 ? highlightedCount / totalEvents : 0;
+
+  let colorPercentMap;
+  if (highlightedPercent === 1) {
+    // All events are highlighted
+    colorPercentMap = { [HIGHLIGHT_COLOR]: 1 };
+  } else if (highlightedPercent > 0) {
+    // Mix of highlighted and non-highlighted events
+    const nonHighlightedChildren = individualChildren.map((loc) => ({
+      ...loc,
+      events: loc.events.filter(
+        (event) => !highlighted || !highlighted.includes(event.civId)
+      ),
+    })).filter((loc) => loc.events.length > 0);
+
+    const colorPercentages = calculateColorPercentages(
+      nonHighlightedChildren,
+      coloringSet
+    );
+    // Scale down the category percentages and add highlight percentage
+    const scaledPercentages = colorPercentages.map(
+      (p) => p * (1 - highlightedPercent)
+    );
+    colorPercentMap = zipColorsToPercentages(filterColors, scaledPercentages);
+    colorPercentMap[HIGHLIGHT_COLOR] = highlightedPercent;
+  } else {
+    // No highlighted events
+    const colorPercentages = calculateColorPercentages(
+      individualChildren,
+      coloringSet
+    );
+    colorPercentMap = zipColorsToPercentages(filterColors, colorPercentages);
+  }
 
   const { coordinates } = cluster.geometry;
   const [longitude, latitude] = coordinates;
@@ -72,10 +113,7 @@ function Cluster({
       >
         <ColoredMarkers
           radius={size}
-          colorPercentMap={zipColorsToPercentages(
-            filterColors,
-            colorPercentages
-          )}
+          colorPercentMap={colorPercentMap}
           styles={{
             ...styles,
           }}
@@ -97,6 +135,7 @@ function ClusterEvents({
   clusters,
   filterColors,
   selected,
+  highlighted,
 }) {
   const totalPoints = calculateTotalClusterPoints(clusters);
 
@@ -144,6 +183,7 @@ function ClusterEvents({
                 coloringSet={coloringSet}
                 cluster={c}
                 filterColors={filterColors}
+                highlighted={highlighted}
                 size={clusterSize}
                 projectPoint={projectPoint}
                 totalPoints={totalPoints}

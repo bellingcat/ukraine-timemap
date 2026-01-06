@@ -52,7 +52,7 @@ const initial = {
     errors: {
       source: false,
     },
-    highlighted: null,
+    highlighted: [],
     selected: [],
     source: null,
     associations: {
