@@ -219,19 +219,14 @@ class Timeline extends Component {
    * @param {object} zoom: zoom level from zoomLevels
    */
   onApplyZoom(zoom) {
-    const extent = this.getTimeScaleExtent();
-    const newCentralTime = timeMinute.offset(
-      this.state.scaleX.domain()[0],
-      extent / 2
-    );
+    const now = new Date();
     const { rangeLimits } = this.props.app.timeline;
 
-    let newDomain0 = timeMinute.offset(newCentralTime, -zoom.duration / 2);
-    let newDomainF = timeMinute.offset(newCentralTime, zoom.duration / 2);
+    // Calculate the start and end of the zoom window, ending at 'now' and going back zoom.duration minutes
+    let newDomainF = now;
+    let newDomain0 = timeMinute.offset(now, -zoom.duration);
 
     if (rangeLimits) {
-      // If the store contains absolute time limits,
-      // make sure the zoom doesn't go over them
       const minDate = rangeLimits[0];
       const maxDate = rangeLimits[1];
 

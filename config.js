@@ -36,10 +36,11 @@ const config = {
         },
         zoomLevels: [
           // { label: "Zoom to 2 weeks", duration: 14 * one_day },
-          { label: "Zoom to 1 month", duration: 31 * one_day },
-          { label: "Zoom to 6 months", duration: 6 * 31 * one_day },
+          // { label: "Zoom to 1 month", duration: 31 * one_day },
+          // { label: "Zoom to 6 months", duration: 6 * 31 * one_day },
           { label: "Zoom to 1 year", duration: 12 * 31 * one_day },
-          { label: "Zoom to 2 years", duration: 24 * 31 * one_day },
+          { label: "Zoom to 2 years", duration: 2 * 12 * 31 * one_day },
+          { label: "Zoom to 5 years", duration: 5 * 12 * 31 * one_day },
         ],
         range: {
           /**
@@ -47,7 +48,7 @@ const config = {
            * Use [start, end] (strings in ISO 8601 format) for a fixed range.
            * Use undefined for a dynamic initial range based on the browser time.
            */
-          initial: undefined,
+          initial: ["2022-02-01T00:00:00.000Z", "2025-08-31T23:59:59.999Z"],
           /** The number of days to show when using a dynamic initial range */
           initialDaysShown: 31*12,
           limits: {
@@ -57,7 +58,7 @@ const config = {
              * The upper bound of the range that can be accessed on the map.
              * Defaults to current browser time if undefined.
              */
-            upper: undefined,
+            upper: "2025-08-14T23:59:59.999Z",
           },
         },
       },
