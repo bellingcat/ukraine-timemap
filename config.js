@@ -8,8 +8,6 @@ const config = {
   SOURCES_EXT: "/timemap/sources.json",
   ASSOCIATIONS_EXT: "/timemap/associations.json",
   API_DATA: "https://bellingcat-embeds.ams3.cdn.digitaloceanspaces.com/production/ukr/timemap/api.json",
-  MAPBOX_TOKEN:
-    "pk.eyJ1IjoiYmVsbGluZ2NhdC1tYXBib3giLCJhIjoiY2tleW0wbWliMDA1cTJ5bzdkbTRraHgwZSJ9.GJQkjPzj8554VhR5SPsfJg",
   // MEDIA_EXT: "/api/media",
   DATE_FMT: "M/D/YYYY",
   TIME_FMT: "HH:mm",
@@ -140,9 +138,9 @@ const config = {
         eventRadius: 9,
       },
       tiles: {
-        current: "bellingcat-mapbox/cl0qnou2y003m15s8ieuyhgsy",
-        default: "bellingcat-mapbox/cl0qnou2y003m15s8ieuyhgsy",
-        satellite: "bellingcat-mapbox/cl1win2vp003914pdhateva6p"
+        current: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
+        default: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
+        satellite: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
       },
     },
     features: {

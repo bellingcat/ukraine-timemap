@@ -31,11 +31,6 @@ import {
   calcClusterSize,
 } from "../../../common/utilities";
 
-// NB: important constants for map, TODO: make statics
-// Note: Base map is OpenStreetMaps by default; can choose another base map
-const supportedMapboxMap = ["streets", "satellite"];
-const defaultToken = "your_token";
-
 class Map extends Component {
   constructor() {
     super();
@@ -126,22 +121,6 @@ class Map extends Component {
     }
   }
 
-  getTileUrl(tile) {
-    if (
-      supportedMapboxMap.indexOf(this.props.ui.tiles) !== -1 &&
-      config.MAPBOX_TOKEN &&
-      config.MAPBOX_TOKEN !== defaultToken
-    ) {
-      return `http://a.tiles.mapbox.com/v4/mapbox.${tile}/{z}/{x}/{y}@2x.png?access_token=${config.MAPBOX_TOKEN}`;
-    } else if (config.MAPBOX_TOKEN && config.MAPBOX_TOKEN !== defaultToken) {
-      return `https://api.mapbox.com/styles/v1/${tile}/tiles/256/{z}/{x}/{y}@2x?access_token=${config.MAPBOX_TOKEN}`;
-      // `http://a.tiles.mapbox.com/styles/v1/${this.props.ui.tiles}/tiles/{z}/{x}/{y}?access_token=${config.MAPBOX_TOKEN}`
-    } else {
-      return "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
-      // "https://api.maptiler.com/maps/bright/256/{z}/{x}/{y}.png?key="
-    }
-  }
-
   /**
    * Initialize the base tile layer based on the ui state
    */
@@ -150,7 +129,7 @@ class Map extends Component {
       return;
     }
 
-    const url = this.getTileUrl(this.props.ui.tile);
+    const url = this.props.ui.tile;
     /**
      * If a tile layer already exists, we update its url. Otherwise, we create it and add it to the map.
      */
@@ -175,7 +154,7 @@ class Map extends Component {
       .setMaxBounds(mapConfig.maxBounds);
     // This assumes your map is the constant 'map'
     map.attributionControl.addAttribution(
-      `<a href="http://mapbox.com/about/maps" class='mapbox-logo' target="_blank">Mapbox</a>© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>`
+      `Tiles © Esri — Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community`
     );
 
     // Initialize supercluster index
