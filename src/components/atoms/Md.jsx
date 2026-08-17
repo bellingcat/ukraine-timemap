@@ -1,6 +1,7 @@
 import { Component } from "react";
 import PropTypes from "prop-types";
 import { marked } from "marked";
+import DOMPurify from "dompurify";
 
 class Md extends Component {
   constructor(props) {
@@ -16,7 +17,7 @@ class Md extends Component {
           throw new Error();
         }
 
-        this.setState({ md: marked(text) });
+        this.setState({ md: DOMPurify.sanitize(marked(text)) });
       })
       .catch(() => {
         this.setState({ error: true });
