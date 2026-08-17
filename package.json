@@ -43,9 +43,9 @@
     "video-react": "^0.16.0"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.11.6",
-    "@testing-library/react": "^13.4.0",
-    "@vitejs/plugin-react": "^3.0.1",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@vitejs/plugin-react": "^6.0.5",
     "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-react": "^7.32.0",
@@ -53,11 +53,12 @@
     "gh-pages": "^6.0.0",
     "husky": "^8.0.3",
     "jest-date-mock": "^1.0.8",
-    "lint-staged": "^13.1.0",
+    "jsdom": "^29.1.1",
+    "lint-staged": "^16.1.0",
     "prettier": "^2.2.1",
     "sass": "^1.57.1",
-    "vite": "^4.0.4",
-    "vitest": "^0.27.1"
+    "vite": "^8.2.1",
+    "vitest": "^4.1.10"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
