@@ -3,7 +3,7 @@
 <h2 align="center">
 	Explore it in <a href="https://ukraine.bellingcat.com/">ukraine.bellingcat.com</a>
 	<br/>
-	Download/integrate the data from <a href="https://bellingcat-embeds.ams3.cdn.digitaloceanspaces.com/production/ukr/timemap/api.json">here</a> <small>(no longer updated dataset)</small>
+	Download/integrate the complete data from <a href="https://bellingcat-embeds.ams3.cdn.digitaloceanspaces.com/production/ukr/timemap/api.json">here</a> <small></small>
 </h2>
 
 <h3 align="center">
